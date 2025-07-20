@@ -1,0 +1,92 @@
+.elevate-section {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+              url('https://images.pexels.com/photos/6787334/pexels-photo-6787334.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.elevate-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+}
+
+.elevate-content {
+  max-width: 800px;
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+}
+
+.elevate-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.elevate-description {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  opacity: 0.95;
+  font-weight: 400;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .elevate-section {
+    background-attachment: scroll;
+    min-height: 60vh;
+  }
+  
+  .elevate-title {
+    font-size: 3rem;
+  }
+  
+  .elevate-description {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .elevate-title {
+    font-size: 2.8rem;
+  }
+  
+  .elevate-description {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .elevate-section {
+    min-height: 50vh;
+  }
+  
+  .elevate-title {
+    font-size: 2.5rem;
+    margin-bottom: 24px;
+  }
+  
+  .elevate-description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .elevate-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+}

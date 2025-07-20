@@ -1,0 +1,76 @@
+.luxury-retreats-section {
+  position: relative;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+              url('https://images.pexels.com/photos/3865578/pexels-photo-3865578.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.retreats-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+}
+
+.retreats-content {
+  text-align: center;
+  color: white;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.retreats-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.retreats-btn {
+  display: inline-block;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .luxury-retreats-section {
+    background-attachment: scroll;
+    height: 50vh;
+  }
+  
+  .retreats-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .retreats-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .luxury-retreats-section {
+    height: 40vh;
+  }
+  
+  .retreats-title {
+    font-size: 2rem;
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .retreats-title {
+    font-size: 1.8rem;
+  }
+}
