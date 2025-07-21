@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
-import '../styles/WellnessInsightsSection.css'; // Import the external CSS
+import '../styles/WellnessInsightsSection.css';
 
 interface InsightCard {
   id: number;
@@ -67,32 +67,51 @@ const WellnessInsightsSection: React.FC = () => {
   return (
     <section className="wellness-insights-section">
       <div className="wellness-insights-container">
-        {/* Fixed Left Content Block */}
         <div className="left-content-block">
           <div className="left-content-inner">
-            <h2 className="main-heading">Curated wellness insights, delivered</h2>
-            <p className="sub-text">Explore global centers, trends, and expertise.</p>
-            <button onClick={handleExploreClick} className="explore-button">
+            <h2 className="main-heading">
+              Curated wellness insights, delivered
+            </h2>
+            <p className="sub-text">
+              Explore global centers, trends, and expertise.
+            </p>
+            <button 
+              onClick={handleExploreClick}
+              className="explore-button"
+            >
               Explore Insights
               <ArrowRight className="button-icon" />
             </button>
           </div>
         </div>
 
-        {/* Cards Section */}
         <div className="cards-container">
           <div className="cards-grid">
             {insightCards.map((card) => (
-              <div key={card.id} onClick={() => handleCardClick(card.id)} className="insight-card">
+              <div
+                key={card.id}
+                onClick={() => handleCardClick(card.id)}
+                className="insight-card"
+              >
                 <div className="card-image-container">
-                  <img src={card.image} alt={card.heading} className="card-image" />
+                  <img
+                    src={card.image}
+                    alt={card.heading}
+                    className="card-image"
+                  />
                   <div className="card-label">
-                    <span className="label-text">{card.label}</span>
+                    <span className="label-text">
+                      {card.label}
+                    </span>
                   </div>
                 </div>
                 <div className="card-content">
-                  <h3 className="card-heading">{card.heading}</h3>
-                  <p className="card-description">{card.description}</p>
+                  <h3 className="card-heading">
+                    {card.heading}
+                  </h3>
+                  <p className="card-description">
+                    {card.description}
+                  </p>
                 </div>
               </div>
             ))}

@@ -1,111 +1,91 @@
-/* WellnessInsightsSection.css */
-
 .wellness-insights-section {
-  background: white;
-  min-height: 100vh;
+  background-color: white;
   padding: 80px 0;
 }
 
 .wellness-insights-container {
-  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 24px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  gap: 64px;
   align-items: start;
 }
 
+/* Sticky Left Block */
 .left-content-block {
   position: sticky;
   top: 100px;
-  height: fit-content;
-}
-
-.left-content-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  align-self: start;
 }
 
 .main-heading {
   font-size: 3rem;
-  font-weight: 700;
-  line-height: 1.1;
+  font-weight: 800;
   color: #111827;
-  margin: 0;
+  margin-bottom: 20px;
 }
 
 .sub-text {
-  font-size: 1.125rem;
-  line-height: 1.6;
   color: #6b7280;
-  margin: 0;
+  font-size: 1.125rem;
+  margin-bottom: 32px;
 }
 
 .explore-button {
+  background-color: #7c3aed;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 16px 32px;
-  background: #7c3aed;
-  color: white;
-  font-weight: 600;
-  border: none;
-  border-radius: 50px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-  width: fit-content;
+  transition: background 0.3s ease;
 }
 
 .explore-button:hover {
-  background: #6d28d9;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+  background-color: #6d28d9;
 }
 
 .button-icon {
-  width: 20px;
-  height: 20px;
-  transition: transform 0.3s ease;
+  width: 18px;
+  height: 18px;
 }
 
-.explore-button:hover .button-icon {
-  transform: translateX(4px);
+/* Grid for Cards */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
 }
 
-.cards-container {
+/* Card Styling */
+.insight-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+  cursor: pointer;
+  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
 }
 
-.cards-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-
-.insight-card {
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  border: 1px solid #f3f4f6;
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: 24px;
-}
-
 .insight-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 .card-image-container {
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 180px;
   overflow: hidden;
 }
 
@@ -113,67 +93,55 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.insight-card:hover .card-image {
-  transform: scale(1.1);
 }
 
 .card-label {
   position: absolute;
-  top: 16px;
-  left: 16px;
-}
-
-.label-text {
-  display: inline-block;
-  padding: 6px 12px;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
+  top: 12px;
+  left: 12px;
+  padding: 4px 12px;
+  background: white;
   color: #7c3aed;
   font-size: 0.75rem;
   font-weight: 600;
-  border-radius: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 9999px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
 .card-content {
-  padding: 24px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .card-heading {
   font-size: 1.25rem;
-  font-weight: 700;
+  font-family: 'Georgia', serif;
   color: #111827;
+  font-weight: bold;
   margin: 0;
-  transition: color 0.3s ease;
-}
-
-.insight-card:hover .card-heading {
-  color: #7c3aed;
 }
 
 .card-description {
-  font-size: 0.875rem;
-  line-height: 1.6;
   color: #6b7280;
+  font-size: 0.95rem;
   margin: 0;
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 1024px) {
   .wellness-insights-container {
     grid-template-columns: 1fr;
-    gap: 60px;
   }
 
   .left-content-block {
     position: static;
     text-align: center;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   }
 
   .main-heading {
@@ -182,33 +150,15 @@
 }
 
 @media (max-width: 768px) {
-  .wellness-insights-section {
-    padding: 60px 0;
-  }
-
-  .wellness-insights-container {
-    padding: 0 16px;
-    gap: 40px;
-  }
-
-  .cards-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
   .main-heading {
     font-size: 2rem;
   }
 
-  .sub-text {
-    font-size: 1rem;
+  .card-image-container {
+    height: 160px;
   }
 
   .card-content {
-    padding: 20px;
-  }
-
-  .card-image-container {
-    height: 160px;
+    padding: 16px;
   }
 }

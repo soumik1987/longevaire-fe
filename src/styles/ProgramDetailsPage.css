@@ -1,0 +1,373 @@
+/* Program Details Page Styles */
+.program-details-page {
+  min-height: 100vh;
+  background: #FCFCFC;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Hero Banner */
+.program-hero {
+  position: relative;
+  height: 60vh;
+  min-height: 500px;
+  overflow: hidden;
+  margin-top: 80px;
+}
+
+.hero-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 0;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.hero-content {
+  color: white;
+  margin-top: 80px;
+}
+
+.program-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+
+.program-location-hero,
+.program-duration-hero {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.9;
+}
+
+.location-icon,
+.duration-icon {
+  font-size: 1.2rem;
+}
+
+/* Program Content */
+.program-content {
+  padding: 80px 0 100px;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* Main Content */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.content-section {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f0f0f0;
+}
+
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2C2C2C;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.program-description {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #4A4A4A;
+  margin: 0;
+}
+
+/* Lists */
+.highlights-list,
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.highlight-item,
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4A4A4A;
+}
+
+.highlight-icon,
+.benefit-icon {
+  font-size: 1.2rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* Sidebar */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: sticky;
+  top: 100px;
+}
+
+/* Booking Card */
+.booking-card {
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+  text-align: center;
+}
+
+.booking-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2C2C2C;
+  margin-bottom: 24px;
+}
+
+.program-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.info-value {
+  font-weight: 600;
+  color: #2C2C2C;
+}
+
+.info-value.price {
+  color: #8A5FF2;
+  font-size: 1.125rem;
+}
+
+.book-now-btn {
+  background: linear-gradient(135deg, #7F5AF0 0%, #8A5FF2 100%);
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 30px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-shadow: 0 8px 25px rgba(138, 95, 242, 0.3);
+  margin-bottom: 16px;
+}
+
+.book-now-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(138, 95, 242, 0.4);
+}
+
+.booking-note {
+  font-size: 0.875rem;
+  color: #666;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Dates Card */
+.dates-card {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f0f0f0;
+}
+
+.dates-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #2C2C2C;
+  margin-bottom: 16px;
+}
+
+.dates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.date-item {
+  padding: 12px 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #4A4A4A;
+  text-align: center;
+  border: 1px solid #e9ecef;
+}
+
+/* Loading State */
+.loading {
+  text-align: center;
+  padding: 100px 20px;
+  font-size: 1.125rem;
+  color: #4A4A4A;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .sidebar {
+    position: static;
+    order: -1;
+  }
+  
+  .program-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .program-hero {
+    height: 50vh;
+    min-height: 400px;
+  }
+  
+  .hero-overlay {
+    padding: 20px 0;
+  }
+  
+  .program-title {
+    font-size: 2rem;
+  }
+  
+  .program-location-hero,
+  .program-duration-hero {
+    font-size: 1rem;
+  }
+  
+  .program-content {
+    padding: 40px 0 60px;
+  }
+  
+  .content-section {
+    padding: 24px;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .program-description {
+    font-size: 1rem;
+  }
+  
+  .booking-card {
+    padding: 24px;
+  }
+  
+  .booking-title {
+    font-size: 1.25rem;
+  }
+}
+
+.navigation {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000; 
+  background: white; 
+  
+}
