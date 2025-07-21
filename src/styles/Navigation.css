@@ -1,17 +1,21 @@
+/* Custom Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
 .navigation {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.95);
+  /* Updated background to theme color with transparency */
+  background: rgba(248, 246, 242, 0.95); /* Light Cream/Off-White with opacity */
   backdrop-filter: blur(20px);
   transition: all 0.3s ease;
   padding: 0;
 }
 
 .navigation.scrolled {
-  background: rgba(255, 255, 255, 0.98);
+  background: rgba(248, 246, 242, 0.98); /* Slightly less transparent when scrolled */
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -33,15 +37,18 @@
 }
 
 .logo {
-  color: #333;
+  font-family: 'Baskervville', serif; /* Serif font for logo */
+  color: #3C3C3C; /* Dark Brown/Charcoal */
   font-weight: bold;
   display: flex;
   align-items: center;
+  /* Assuming this is a text logo. If an image, this style won't apply */
 }
 
 .welcome-text {
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
   font-size: 14px;
-  color: #666;
+  color: #5A5A5A; /* Slightly lighter dark text */
   font-weight: 400;
   white-space: nowrap;
 }
@@ -55,8 +62,9 @@
 }
 
 .nav-item {
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
   font-size: 15px;
-  color: #333;
+  color: #3C3C3C; /* Dark Brown/Charcoal */
   cursor: pointer;
   transition: color 0.3s ease;
   position: relative;
@@ -65,7 +73,7 @@
 }
 
 .nav-item:hover {
-  color: #8B5CF6;
+  color: #8B7C6E; /* Muted Brown/Sepia */
 }
 
 .dropdown {
@@ -75,8 +83,9 @@
 .dropdown-trigger {
   background: none;
   border: none;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
   font-size: 15px;
-  color: #333;
+  color: #3C3C3C; /* Dark Brown/Charcoal */
   cursor: pointer;
   transition: color 0.3s ease;
   font-weight: 500;
@@ -86,7 +95,7 @@
 }
 
 .dropdown-trigger:hover {
-  color: #8B5CF6;
+  color: #8B7C6E; /* Muted Brown/Sepia */
 }
 
 .dropdown-arrow {
@@ -99,19 +108,20 @@
 
 .dropdown-content {
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 15px); /* Increased spacing from navbar */
   left: 50%;
   transform: translateX(-50%);
-  background: white;
-  min-width: 320px;
+  background: white; /* Keep white for dropdown background */
+  min-width: 800px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   border-radius: 12px;
-  padding: 24px;
+  padding: 24px; /* Adjusted padding slightly */
   opacity: 0;
   visibility: hidden;
   transform: translateX(-50%) translateY(-10px);
   transition: all 0.3s ease;
   z-index: 1001;
+  margin-top: 10px; /* Ensures consistent spacing */
 }
 
 .dropdown-content.active {
@@ -120,9 +130,24 @@
   transform: translateX(-50%) translateY(0);
 }
 
+.dropdown-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #E9ECEF; /* Light Gray border */
+}
+
+.dropdown-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .dropdown-section h4 {
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif for labels */
   font-size: 12px;
-  color: #999;
+  color: #8B7C6E; /* Muted Brown/Sepia for category labels */
   font-weight: 600;
   letter-spacing: 1px;
   margin-bottom: 16px;
@@ -134,38 +159,91 @@
   align-items: flex-start;
   gap: 12px;
   padding: 12px 0;
-  color: #333;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  color: #3C3C3C; /* Dark Brown/Charcoal */
   text-decoration: none;
   border-radius: 8px;
   transition: all 0.3s ease;
 }
 
 .dropdown-content a:hover {
-  background: #f8f9fa;
-  color: #8B5CF6;
+  background: #F0ECDD; /* Very light warm background for hover */
+  color: #8B7C6E; /* Muted Brown/Sepia */
   padding-left: 8px;
 }
 
-.dropdown-icon {
-  font-size: 18px;
-  margin-top: 2px;
+.partnerships-text {
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  font-size: 14px;
+  color: #5A5A5A; /* Slightly lighter dark text */
+  margin-bottom: 16px;
 }
 
-.dropdown-content a div {
-  flex: 1;
+.membership-section {
+  margin-top: 16px;
 }
 
-.dropdown-content a strong {
-  display: block;
+.membership-section h5 {
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif for labels */
+  font-size: 12px;
+  color: #8B7C6E; /* Muted Brown/Sepia for category labels */
   font-weight: 600;
-  margin-bottom: 4px;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
 }
 
-.dropdown-content a p {
-  font-size: 13px;
-  color: #666;
+.membership-item {
+  display: flex;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.membership-bullet {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #8B7C6E; /* Muted Brown/Sepia */
+  border-radius: 4px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.dropdown-footer {
+  padding-top: 16px;
+  text-align: center;
+}
+
+.dropdown-footer p {
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  font-size: 16px;
+  color: #3C3C3C; /* Dark Brown/Charcoal */
   margin: 0;
-  line-height: 1.4;
+}
+
+.footer-subtext {
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  font-size: 14px;
+  color: #5A5A5A; /* Slightly lighter dark text */
+  margin: 4px 0 16px !important;
+}
+
+.dropdown-button {
+  background: #8B7C6E; /* Muted Brown/Sepia */
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.dropdown-button:hover {
+  background: #7B6C5E; /* Darker Muted Brown/Sepia */
+  transform: translateY(-2px);
 }
 
 .nav-right {
@@ -177,11 +255,12 @@
 }
 
 .join-btn {
-  background: #8B5CF6;
+  background: #C44C30; /* Updated to #C44C30 */
   color: white;
   padding: 12px 24px;
   border: none;
   border-radius: 6px;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
@@ -190,16 +269,16 @@
 }
 
 .join-btn:hover {
-  background: #7C3AED;
+  background: #A93E2B; /* Darker shade of #C44C30 for hover */
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 6px 20px rgba(196, 76, 48, 0.3); /* Shadow adjusted to new button color */
 }
 
 .mobile-menu-toggle {
   display: none;
   background: none;
   border: none;
-  color: #333;
+  color: #3C3C3C; /* Dark Brown/Charcoal */
   cursor: pointer;
   padding: 8px;
   border-radius: 4px;
@@ -207,33 +286,72 @@
 }
 
 .mobile-menu-toggle:hover {
-  background: #f5f5f5;
+  background: #F0ECDD; /* Very light warm background for hover */
 }
 
 .mobile-join {
   display: none;
 }
 
-/* Tablet responsive (768px - 1024px) */
-@media (max-width: 1024px) {
-  .nav-center {
-    gap: 24px;
-  }
-  
-  .welcome-text {
-    display: none;
-  }
-  
-  .nav-container {
-    padding: 16px 20px;
-  }
-  
-  .dropdown-content {
-    min-width: 280px;
-  }
+.user-dropdown {
+  position: relative;
+  display: inline-block;
 }
 
-/* Mobile responsive (max-width: 768px) */
+.user-dropdown button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.user-dropdown img {
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+}
+
+.user-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #f3f0f0; /* Dark Brown/Charcoal */
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  width: 200px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.user-menu p {
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.user-menu button {
+  background-color: #D32F2F; /* A standard red for logout, slightly toned down */
+  color: white;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+.user-menu button:hover {
+  background-color: #B30000; /* Darker red on hover */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile responsive styles */
 @media (max-width: 768px) {
   .nav-container {
     padding: 12px 16px;
@@ -245,21 +363,22 @@
   
   .nav-center {
     position: fixed;
-    top: 100%;
+    top: 60px; /* Adjusted if global nav height changes */
     left: 0;
     right: 0;
     background: white;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    padding: 24px;
+    padding: 0;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    transform: translateY(-100%);
+    transform: translateY(-150%);
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
-    max-height: calc(100vh - 80px);
+    max-height: calc(100vh - 60px);
     overflow-y: auto;
+    z-index: 999;
   }
   
   .nav-center.mobile-open {
@@ -269,27 +388,73 @@
   }
   
   .nav-item {
-    padding: 16px 0;
-    border-bottom: 1px solid #f0f0f0;
+    padding: 16px 20px;
+    border-bottom: 1px solid #E9ECEF; /* Light Gray border */
     font-size: 16px;
+    margin: 0;
   }
   
-  .nav-item:last-child {
-    border-bottom: none;
+  .dropdown-trigger {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    background: none;
   }
   
   .dropdown-content {
-    position: static;
+    position: relative;
     transform: none;
     box-shadow: none;
-    background: #f8f9fa;
-    margin: 8px 0;
-    border-radius: 8px;
+    background: #F8F6F2; /* Light Cream/Off-White for mobile dropdown */
+    margin: 0;
+    border-radius: 0;
     min-width: auto;
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
   }
   
   .dropdown-content.active {
-    transform: none;
+    max-height: 1000px;
+    padding: 10px 20px;
+  }
+  
+  .dropdown-content a {
+    padding: 12px 0;
+    display: block;
+    color: #3C3C3C; /* Dark Brown/Charcoal */
+    border-bottom: 1px solid #DDDDDD; /* Light Gray border */
+  }
+  
+  .dropdown-content a:last-child {
+    border-bottom: none;
+  }
+  
+  .dropdown-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  
+  .dropdown-section {
+    padding: 10px 0;
+  }
+  
+  .dropdown-section h4 {
+    margin-bottom: 12px;
+    padding-left: 10px;
+  }
+  
+  .membership-item {
+    padding: 12px 10px;
+  }
+  
+  .dropdown-footer {
+    padding: 15px 0;
   }
   
   .mobile-menu-toggle {
@@ -302,15 +467,29 @@
   
   .mobile-join {
     display: block;
-    padding-top: 24px;
-    border-top: 1px solid #f0f0f0;
-    margin-top: 16px;
+    padding: 20px;
+    border-top: 1px solid #E9ECEF; /* Light Gray border */
   }
   
   .mobile-join .join-btn {
     display: block;
     width: 100%;
     text-align: center;
+  }
+}
+
+/* Tablet responsive (768px - 1024px) */
+@media (max-width: 1024px) {
+  .nav-center {
+    gap: 24px;
+  }
+  
+  .nav-container {
+    padding: 16px 20px;
+  }
+  
+  .dropdown-content {
+    min-width: 280px;
   }
 }
 
@@ -338,5 +517,47 @@
   
   .nav-center {
     gap: 40px;
+  }
+}
+
+/* Specific styles for discover dropdown */
+.discover-dropdown {
+  min-width: 800px;
+}
+
+/* Specific styles for support dropdown */
+.support-dropdown {
+  min-width: 200px;
+}
+
+/* Contact Us button styling */
+.contact-us-item {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 12px 0;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  color: #3C3C3C; /* Dark Brown/Charcoal */
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  width: 100%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.contact-us-item:hover {
+  color: #8B7C6E; /* Muted Brown/Sepia */
+  padding-left: 8px;
+  background: #F0ECDD; /* Added background hover effect to match dropdown links */
+}
+
+/* Mobile specific styles for contact button */
+@media (max-width: 768px) {
+  .contact-us-item {
+    padding: 16px 0;
+    border-bottom: 1px solid #DDDDDD; /* Light Gray border */
+    font-size: 16px;
   }
 }

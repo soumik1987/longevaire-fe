@@ -1,5 +1,8 @@
+/* Custom Fonts (Add if this is a standalone file, otherwise import in global app.css) */
+/* @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap'); */
+
 .pricing {
-  background: white;
+  background: #F8F6F2; /* Light Cream/Off-White */
 }
 
 .pricing-grid {
@@ -10,8 +13,8 @@
 }
 
 .pricing-card {
-  background: white;
-  border: 2px solid #f0f0f0;
+  background: white; /* Keep white for cards */
+  border: 2px solid #E9ECEF; /* Light Gray border */
   border-radius: 20px;
   padding: 40px;
   position: relative;
@@ -22,12 +25,12 @@
 .pricing-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border-color: #7c3aed;
+  border-color: #8B7C6E; /* Muted Brown/Sepia */
 }
 
 .pricing-card-popular {
-  border-color: #7c3aed;
-  box-shadow: 0 15px 35px rgba(26, 35, 126, 0.15);
+  border-color: #8B7C6E; /* Muted Brown/Sepia */
+  box-shadow: 0 15px 35px rgba(139, 124, 110, 0.15); /* Shadow adjusted to theme color */
   transform: scale(1.05);
 }
 
@@ -40,10 +43,12 @@
   top: -15px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, #7c3aed, #3949ab);
+  /* Updated background gradient to theme colors */
+  background: linear-gradient(135deg, #8B7C6E, #7B6C5E);
   color: white;
   padding: 8px 20px;
   border-radius: 20px;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
   font-size: 0.9rem;
   font-weight: 500;
   display: flex;
@@ -56,8 +61,9 @@
 }
 
 .plan-name {
+  font-family: 'Baskervville', serif; /* Serif font for plan names */
   font-size: 1.5rem;
-  color: #7c3aed;
+  color: #8B7C6E; /* Muted Brown/Sepia */
   margin-bottom: 20px;
   font-weight: 600;
 }
@@ -71,23 +77,27 @@
 }
 
 .currency {
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
   font-size: 1.2rem;
-  color: #666;
+  color: #5A5A5A; /* Slightly lighter dark text */
 }
 
 .amount {
+  font-family: 'Baskervville', serif; /* Serif font for amount */
   font-size: 3rem;
   font-weight: 700;
-  color: #7c3aed;
+  color: #8B7C6E; /* Muted Brown/Sepia */
 }
 
 .period {
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
   font-size: 1rem;
-  color: #666;
+  color: #5A5A5A; /* Slightly lighter dark text */
 }
 
 .plan-description {
-  color: #666;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  color: #5A5A5A; /* Slightly lighter dark text */
   line-height: 1.6;
 }
 
@@ -105,12 +115,13 @@
   align-items: center;
   gap: 12px;
   margin-bottom: 15px;
-  color: #555;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  color: #5A5A5A; /* Slightly lighter dark text */
 }
 
 .feature-check {
-  color: #7c3aed;
-  background: rgba(26, 35, 126, 0.1);
+  color: #8B7C6E; /* Muted Brown/Sepia */
+  background: rgba(139, 124, 110, 0.1); /* Background adjusted to theme color */
   border-radius: 50%;
   padding: 2px;
   flex-shrink: 0;
@@ -119,20 +130,23 @@
 .pricing-btn {
   width: 100%;
   padding: 15px;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
   font-weight: 600;
   font-size: 1rem;
 }
 
 .btn-popular {
-  background: linear-gradient(135deg, #7c3aed, #3949ab);
+  /* Updated background gradient to theme colors */
+  background: linear-gradient(135deg, #8B7C6E, #7B6C5E);
   color: white;
   border: none;
 }
 
 .btn-popular:hover {
-  background: linear-gradient(135deg, #7c3aed, #1976d2);
+  /* Slightly darker gradient on hover */
+  background: linear-gradient(135deg, #7B6C5E, #6A5B4E);
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(26, 35, 126, 0.3);
+  box-shadow: 0 10px 20px rgba(139, 124, 110, 0.3); /* Shadow adjusted to theme color */
 }
 
 .pricing-guarantee {
@@ -141,14 +155,15 @@
   justify-content: center;
   gap: 15px;
   padding: 30px;
-  background: #f8f9fa;
+  background: #F0ECDD; /* Very light warm background */
   border-radius: 15px;
-  color: #7c3aed;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  color: #8B7C6E; /* Muted Brown/Sepia */
   font-weight: 500;
 }
 
 .pricing-guarantee svg {
-  color: #ffd700;
+  color: #AA8D69; /* Subtle gold-like accent for the icon */
 }
 
 @media (max-width: 768px) {
@@ -175,14 +190,17 @@
 }
 
 .section-title {
+  font-family: 'Baskervville', serif; /* Serif font for section title */
+  color: #3C3C3C; /* Dark Brown/Charcoal */
   margin-bottom: 10px; 
   margin-top: 40px;
 }
 
 .section-subtitle {
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font for section subtitle */
   margin-top: 0; 
   margin-bottom: 50px; 
-  color: #666;
+  color: #5A5A5A; /* Slightly lighter dark text */
   font-size: 1rem;
   text-align: center;
 }

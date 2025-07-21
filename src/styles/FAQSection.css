@@ -1,6 +1,9 @@
+/* Custom Fonts (Add if this is a standalone file, otherwise import in global app.css) */
+/* @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap'); */
+
 .faq-section {
   padding: 120px 0;
-  background: #f8f9fa;
+  background: #F8F6F2; /* Light Cream/Off-White */
 }
 
 .faq-list {
@@ -10,7 +13,7 @@
 
 .faq-item {
   margin-bottom: 16px;
-  background: white;
+  background: white; /* Keep white for FAQ items */
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   overflow: hidden;
@@ -31,24 +34,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
   font-size: 1.1rem;
   font-weight: 600;
-  color: #1a1a1a;
+  color: #3C3C3C; /* Dark Brown/Charcoal */
   transition: color 0.3s ease;
 }
 
 .faq-question:hover {
-  color: #8B5CF6;
+  color: #8B7C6E; /* Muted Brown/Sepia */
 }
 
 .faq-question.active {
-  color: #8B5CF6;
+  color: #8B7C6E; /* Muted Brown/Sepia */
 }
 
 .faq-icon {
   transition: transform 0.3s ease;
   flex-shrink: 0;
   margin-left: 16px;
+  color: #8B7C6E; /* Muted Brown/Sepia for icon */
 }
 
 .faq-icon.rotated {
@@ -62,12 +67,13 @@
 }
 
 .faq-answer.open {
-  max-height: 200px;
+  max-height: 200px; /* Adjust as needed for content */
   padding: 0 24px 24px;
 }
 
 .faq-answer p {
-  color: #666;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  color: #5A5A5A; /* Slightly lighter dark text */
   line-height: 1.6;
   font-size: 1rem;
 }

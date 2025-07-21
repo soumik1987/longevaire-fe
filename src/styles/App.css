@@ -1,14 +1,10 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* app.css content below */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  font-family: 'Source Sans 3', sans-serif;
   line-height: 1.6;
-  color: #333;
+  color: #5A5A5A;
   overflow-x: hidden;
+  background-color: #F8F6F2;
 }
 
 .App {
@@ -57,11 +53,12 @@ html {
 }
 
 .btn-primary {
-  background: #8B5CF6;
+  background: #c74427; /* Color changed for button */
   color: white;
   padding: 16px 32px;
   border: none;
   border-radius: 4px;
+  font-family: 'Source Sans 3', sans-serif;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
@@ -72,17 +69,18 @@ html {
 }
 
 .btn-primary:hover {
-  background: #7C3AED;
+  background: #8B7C6E; /* Color changed for button hover */
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 8px 25px #9f9387; /* Shadow adjusted to new button color */
 }
 
 .btn-secondary {
   background: transparent;
-  color: #333;
+  color: #3C3C3C;
   padding: 16px 32px;
-  border: 2px solid #333;
+  border: 2px solid #3C3C3C;
   border-radius: 4px;
+  font-family: 'Source Sans 3', sans-serif;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
@@ -93,7 +91,7 @@ html {
 }
 
 .btn-secondary:hover {
-  background: #333;
+  background: #3C3C3C;
   color: white;
   transform: translateY(-2px);
 }
@@ -109,7 +107,7 @@ html {
   .container {
     padding: 0 16px;
   }
-  
+
   .btn-primary,
   .btn-secondary {
     padding: 14px 24px;

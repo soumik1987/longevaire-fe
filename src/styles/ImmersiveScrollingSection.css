@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+/* Custom Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+/* Baskervville for serif, Source Sans 3 for sans-serif */
 
 .immersive-scroll-container {
   width: 100%;
@@ -26,14 +28,15 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.3); /* Keep original overlay */
   z-index: 1;
 }
 
 .content-card {
   position: relative;
   z-index: 2;
-  background: rgba(255, 255, 255, 0.95);
+  /* Using F8F6F2 for background for theme consistency, keeping high opacity */
+  background: rgba(248, 246, 242, 0.95); 
   backdrop-filter: blur(10px);
   border-radius: 24px;
   padding: 3rem;
@@ -41,8 +44,8 @@
   width: 90%;
   box-shadow: 
     0 25px 50px -12px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+    0 0 0 1px rgba(233, 236, 239, 0.1); /* Lighter border hint */
+  border: 1px solid rgba(233, 236, 239, 0.2); /* Lighter border */
   text-align: center;
   transition: all 0.3s ease;
 }
@@ -51,36 +54,36 @@
   transform: translateY(-8px);
   box-shadow: 
     0 35px 60px -12px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.15);
+    0 0 0 1px rgba(233, 236, 239, 0.15); /* Lighter border hint */
 }
 
 .card-label {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #8b7355;
+  color: #8B7C6E; /* Muted Brown/Sepia */
   margin-bottom: 1rem;
   opacity: 0.8;
 }
 
 .card-heading {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Baskervville', serif; /* Serif font */
   font-size: 2.5rem;
-  font-weight: 600;
+  font-weight: 700; /* Increased weight for headings */
   line-height: 1.2;
-  color: #1a1a1a;
+  color: #3C3C3C; /* Dark Brown/Charcoal */
   margin-bottom: 1.5rem;
   letter-spacing: -0.02em;
 }
 
 .card-description {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
   font-size: 1.125rem;
   font-weight: 400;
   line-height: 1.6;
-  color: #4a4a4a;
+  color: #5A5A5A; /* Slightly lighter dark text */
   margin-bottom: 2rem;
   max-width: 500px;
   margin-left: auto;
@@ -91,20 +94,20 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
   font-size: 1rem;
-  font-weight: 500;
-  color: #d4af37;
+  font-weight: 600; /* Increased weight for CTA */
+  color: #8B7C6E; /* Muted Brown/Sepia */
   text-decoration: none;
   padding: 0.75rem 1.5rem;
-  border: 2px solid #d4af37;
+  border: 2px solid #8B7C6E; /* Muted Brown/Sepia border */
   border-radius: 50px;
   transition: all 0.3s ease;
   background: transparent;
 }
 
 .card-action:hover {
-  background: #d4af37;
+  background: #8B7C6E; /* Muted Brown/Sepia */
   color: #fff;
   transform: translateX(4px);
 }
@@ -163,16 +166,16 @@
 @media (prefers-contrast: high) {
   .content-card {
     background: rgba(255, 255, 255, 1);
-    border: 2px solid #000;
+    border: 2px solid #3C3C3C; /* Darker border for contrast */
   }
   
   .card-action {
-    border-color: #000;
-    color: #000;
+    border-color: #3C3C3C; /* Darker border for contrast */
+    color: #3C3C3C; /* Darker color for contrast */
   }
   
   .card-action:hover {
-    background: #000;
+    background: #3C3C3C; /* Darker background for hover */
     color: #fff;
   }
 }

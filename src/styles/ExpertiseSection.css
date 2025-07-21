@@ -1,6 +1,9 @@
+/* Custom Fonts (Add if this is a standalone file, otherwise import in global app.css) */
+/* @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap'); */
+
 .expertise-section {
   padding: 120px 0;
-  background: white;
+  background: #F8F6F2; /* Light Cream/Off-White */
 }
 
 .expertise-header {
@@ -12,17 +15,19 @@
 }
 
 .testimonial {
+  font-family: 'Baskervville', serif; /* Serif font */
   font-size: 1.5rem;
   font-style: italic;
-  color: #333;
+  color: #3C3C3C; /* Dark Brown/Charcoal */
   margin: 40px 0 20px;
   line-height: 1.6;
   font-weight: 400;
 }
 
 .testimonial-author {
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
   font-size: 1rem;
-  color: #666;
+  color: #5A5A5A; /* Slightly lighter dark text */
   font-style: normal;
   font-weight: 500;
 }
@@ -70,15 +75,17 @@
 }
 
 .expert-name {
+  font-family: 'Baskervville', serif; /* Serif font */
   font-size: 1.1rem;
   font-weight: 600;
-  color: #1a1a1a;
+  color: #3C3C3C; /* Dark Brown/Charcoal */
   margin-bottom: 8px;
 }
 
 .expert-role {
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
   font-size: 0.95rem;
-  color: #666;
+  color: #5A5A5A; /* Slightly lighter dark text */
   font-weight: 400;
 }
 

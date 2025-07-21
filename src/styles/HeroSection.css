@@ -1,8 +1,8 @@
 .hero-section {
   min-height: 80vh;
+  background: linear-gradient(135deg, #F8F6F2 0%, #F5F4F0 100%);
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
   padding: 80px 0;
 }
 
@@ -21,16 +21,18 @@
 }
 
 .hero-title {
+  font-family: 'Baskervville', serif;
   font-size: 2.8rem;
   font-weight: 700;
   line-height: 1.2;
-  color: #1a1a1a;
+  color: #3C3C3C;
   margin-bottom: 24px;
 }
 
 .hero-subtitle {
+  font-family: 'Source Sans 3', sans-serif;
   font-size: 1.1rem;
-  color: #666;
+  color: #5A5A5A;
   margin-bottom: 32px;
   line-height: 1.6;
   font-weight: 400;
@@ -39,45 +41,38 @@
 .hero-buttons {
   display: flex;
   gap: 16px;
-  align-items: center;
 }
 
-.btn-primary, .btn-secondary {
+.btn-primary,
+.btn-secondary {
   padding: 12px 24px;
   border-radius: 6px;
+  font-family: 'Source Sans 3', sans-serif;
   font-weight: 500;
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
 .btn-primary {
-  background-color: #4f46e5;
+  background-color: #8B7C6E;
   color: white;
 }
 
-.btn-primary:hover {
-  background-color: #4338ca;
-}
-
 .btn-secondary {
-  border: 1px solid #4f46e5;
-  color: #4f46e5;
-}
-
-.btn-secondary:hover {
-  background-color: #eef2ff;
+  border: 1px solid #8B7C6E;
+  color: #8B7C6E;
 }
 
 .hero-visual {
   position: relative;
-  height: 500px;
+  height: 400px;
   width: 100%;
 }
 
 .image-stack {
   position: relative;
-  height: 100%;
   width: 100%;
+  height: 100%;
 }
 
 .stacked-image {
@@ -86,12 +81,13 @@
   object-fit: cover;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  border: 3px solid white;
+  border: 3px solid #F8F6F2;
 }
 
+/* 👇 Key image positions for overlay */
 .primary-image {
-  width: 70%;
-  height: 70%;
+  width: 65%;
+  height: 65%;
   top: 0;
   left: 0;
   z-index: 3;
@@ -100,16 +96,16 @@
 .secondary-image {
   width: 50%;
   height: 50%;
-  bottom: 50px;
-  right: 0;
+  top: 30%;
+  left: 50%;
   z-index: 2;
 }
 
 .accent-image {
-  width: 40%;
-  height: 40%;
-  bottom: 0;
-  left: 30%;
+  width: 35%;
+  height: 35%;
+  bottom: -5%;
+  left: 25%;
   z-index: 1;
 }
 
@@ -117,98 +113,4 @@
   transform: scale(1.05);
   z-index: 10;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-}
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .hero-container {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    text-align: center;
-  }
-  
-  .hero-content {
-    max-width: 100%;
-    margin: 0 auto;
-  }
-  
-  .hero-buttons {
-    justify-content: center;
-  }
-  
-  .hero-visual {
-    height: 400px;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-section {
-    padding: 60px 0;
-  }
-  
-  .hero-title {
-    font-size: 2.2rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 1rem;
-  }
-  
-  .hero-buttons {
-    flex-direction: column;
-    gap: 12px;
-  }
-  
-  .hero-buttons a {
-    width: 100%;
-    text-align: center;
-  }
-
-  .hero-visual {
-    height: 350px;
-  }
-
-  .primary-image {
-    width: 65%;
-    height: 65%;
-  }
-
-  .secondary-image {
-    width: 45%;
-    height: 45%;
-    bottom: 40px;
-  }
-
-  .accent-image {
-    width: 35%;
-    height: 35%;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: 1.8rem;
-  }
-  
-  .hero-visual {
-    height: 300px;
-  }
-
-  .primary-image {
-    width: 60%;
-    height: 60%;
-  }
-
-  .secondary-image {
-    width: 40%;
-    height: 40%;
-    bottom: 30px;
-  }
-
-  .accent-image {
-    width: 30%;
-    height: 30%;
-  }
 }

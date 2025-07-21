@@ -1,21 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { programCategories } from '../data/programs';
-import { destinations } from '../data/destinations';
+import { fetchProgramCategories, fetchDestinations } from '../api';
 import '../styles/ExplorePage.css';
+import type { Destination } from '../data/destinations';
+import type { ProgramCategory } from '../data/programs';
 
 const ExplorePage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'programs' | 'destinations'>('programs');
   const [selectedDestination, setSelectedDestination] = useState<string | null>(null);
+  const [programCategories, setProgramCategories] = useState<ProgramCategory[]>([]);
+  const [destinations, setDestinations] = useState<Destination[]>([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const [categories, dests] = await Promise.all([
+          fetchProgramCategories(),
+          fetchDestinations()
+        ]);
+        setProgramCategories(categories);
+        setDestinations(dests);
+      } catch (error) {
+        console.error('Error loading data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleProgramClick = (categoryType: string) => {
     navigate('/programs', { state: { type: 'category', categoryType } });
   };
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   function handleDestinationClick(country: string) {
     if (selectedDestination === country) {
@@ -28,6 +48,17 @@ const ExplorePage: React.FC = () => {
   const handleCityClick = (country: string, city: string) => {
     navigate('/programs', { state: { type: 'location', country, city } });
   };
+
+  if (loading) {
+    return (
+      <div className="explore-page">
+        <div className="container loading-container">
+          <div className="loading-spinner"></div>
+          <p>Loading wellness experiences...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="explore-page">

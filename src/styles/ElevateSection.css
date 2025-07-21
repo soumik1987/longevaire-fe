@@ -1,8 +1,12 @@
+/* Custom Fonts (Add if this is a standalone file, otherwise import in global app.css) */
+/* @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap'); */
+
 .elevate-section {
   position: relative;
   min-height: 80vh;
   display: flex;
   align-items: center;
+  /* Keep original gradient and image URL */
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
               url('https://images.pexels.com/photos/6787334/pexels-photo-6787334.jpeg');
   background-size: cover;
@@ -16,7 +20,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.4); /* Keep original overlay color */
   display: flex;
   align-items: center;
 }
@@ -24,23 +28,27 @@
 .elevate-content {
   max-width: 800px;
   text-align: center;
-  color: white;
+  /* color: white; Removed as we are setting specific colors below */
   margin: 0 auto;
 }
 
 .elevate-title {
+  font-family: 'Baskervville', serif; /* Serif font */
   font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 32px;
   letter-spacing: -0.02em;
   line-height: 1.2;
+  color: #FFFFFF; /* White for the title */
 }
 
 .elevate-description {
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
   font-size: 1.25rem;
   line-height: 1.7;
   opacity: 0.95;
   font-weight: 400;
+  color: #F5F5DC; /* Off-white for the description */
 }
 
 /* Responsive design */

@@ -1,0 +1,340 @@
+/* Custom Fonts (Add if this is a standalone file, otherwise import in global app.css) */
+/* @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans 3:ital,wght@0,200..900;1,200..900&display=swap'); */
+
+.contact-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.contact-modal {
+  background: #F8F6F2; /* Light Cream/Off-White */
+  border-radius: 20px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 32px 0;
+  border-bottom: 1px solid #E9ECEF; /* Light gray border */
+  margin-bottom: 32px;
+}
+
+.modal-title {
+  font-family: 'Baskervville', serif; /* Serif font */
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #3C3C3C; /* Dark Brown/Charcoal */
+  margin: 0;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #5A5A5A; /* Slightly lighter dark text */
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.close-button:hover {
+  background: #f0f0f0; /* Keep light hover background */
+  color: #3C3C3C; /* Dark Brown/Charcoal */
+}
+
+.modal-content {
+  padding: 0 32px 32px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  font-weight: 600;
+  color: #3C3C3C; /* Dark Brown/Charcoal */
+  font-size: 0.9rem;
+}
+
+.form-input {
+  padding: 14px 16px;
+  border: 2px solid #E9ECEF; /* Light gray border */
+  border-radius: 12px;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: white; /* Keep white input background */
+  width: 100%;
+  color: #3C3C3C; /* Dark Brown/Charcoal for input text */
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #8B7C6E; /* Muted Brown/Sepia */
+  box-shadow: 0 0 0 3px rgba(139, 124, 110, 0.1); /* Updated shadow color */
+}
+
+textarea.form-input {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.submit-button {
+  background: #C44C30; /* Updated to #C44C30 */
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+  box-shadow: 0 8px 25px rgba(196, 76, 48, 0.3); /* Shadow adjusted to new button color */
+}
+
+.submit-button:hover:not(.disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(196, 76, 48, 0.4); /* Shadow adjusted to new button color */
+  background: #A93E2B; /* Darker shade for hover */
+}
+
+.submit-button.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 4px 15px rgba(196, 76, 48, 0.2); /* Shadow adjusted to new button color */
+  background: #C44C30; /* Keep original color but lower opacity */
+}
+
+.confirmation-content {
+  padding: 40px 32px;
+  text-align: center;
+}
+
+.confirmation-icon {
+  font-size: 4rem;
+  margin-bottom: 24px;
+  animation: confirmationBounce 0.6s ease-out;
+  color: #C44C30; /* Updated to #C44C30 */
+}
+
+@keyframes confirmationBounce {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.confirmation-title {
+  font-family: 'Baskervville', serif; /* Serif font */
+  font-size: 2rem;
+  font-weight: 700;
+  color: #3C3C3C; /* Dark Brown/Charcoal */
+  margin-bottom: 16px;
+}
+
+.confirmation-message {
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  font-size: 1.125rem;
+  color: #5A5A5A; /* Slightly lighter dark text */
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.close-confirmation {
+  background: #C44C30; /* Updated to #C44C30 */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-confirmation:hover {
+  background: #A93E2B; /* Darker shade for hover */
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .contact-modal {
+    margin: 10px;
+    max-height: 95vh;
+  }
+  
+  .modal-header {
+    padding: 24px 24px 0;
+    margin-bottom: 24px;
+  }
+  
+  .modal-title {
+    font-size: 1.5rem;
+  }
+  
+  .modal-content {
+    padding: 0 24px 24px;
+  }
+  
+  .confirmation-content {
+    padding: 32px 24px;
+  }
+  
+  .confirmation-title {
+    font-size: 1.75rem;
+  }
+  
+  .confirmation-message {
+    font-size: 1rem;
+  }
+}
+
+/* Duplicated sections from your input, only modifying the first instance for clarity */
+/* If these are separate overrides, please organize them into single blocks. */
+
+/* ContactModal.css (second instance in your provided code) */
+.contact-modal-overlay {
+  /* ... (properties already defined above) */
+  z-index: 1001; /* Just above navbar (1000) */
+  animation: fadeIn 0.3s ease-out;
+}
+
+.contact-modal {
+  /* ... (properties already defined above) */
+  max-height: 80vh; /* Limits height to prevent covering navbar */
+  overflow-y: auto; /* Only scroll if absolutely necessary */
+  margin-top: 60px; /* Push modal down to avoid navbar overlap */
+  margin-bottom: 20px;
+}
+
+/* Modal content should avoid scrolling unless necessary */
+.modal-content {
+  padding: 20px 32px; /* Keep original padding values here */
+  max-height: calc(80vh - 100px); /* Accounts for header/footer */
+  overflow-y: auto; /* Internal scroll only if form is too tall */
+}
+
+/* Ensure form fits without scrolling */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 300px; /* Minimum height to look good */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .contact-modal {
+    max-width: 90%;
+    max-height: 85vh;
+    margin-top: 70px; /* Extra space for mobile navbar */
+  }
+  
+  .modal-content {
+    padding: 15px 20px;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ContactModal.css (third instance in your provided code) */
+.contact-modal-overlay {
+  /* ... (properties already defined above) */
+  animation: fadeIn 0.3s ease-out;
+}
+
+.contact-modal {
+  /* ... (properties already defined above) */
+  position: relative;
+  margin: auto;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Make sure the modal is centered on small screens */
+@media (max-width: 600px) {
+  .contact-modal {
+    max-width: 95%;
+    max-height: 95vh;
+  }
+}

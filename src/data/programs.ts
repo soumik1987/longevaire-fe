@@ -1,4 +1,6 @@
+
 export interface Program {
+  [x: string]: any;
   name: string;
   location: string;
   details: string;
@@ -29,34 +31,32 @@ export const programCategories: ProgramCategory[] = [
     image: "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=1200",
     programs: [
       {
-        name: "Longevity Boost",
+        name: "Desert Longevity Program",
         location: "Tucson - USA",
-        details: "Customized longevity treatments for vitality and extended healthspan.",
+        details: "Advanced anti-aging therapies in the Sonoran Desert",
         duration: "7 Days / 6 Nights",
         highlights: [
-          "Personalized longevity diagnostics",
-          "Anti-aging therapies tailored to your biomarkers",
-          "Daily detox treatments with infrared sauna",
-          "Anti-inflammatory meal plans curated by nutritionists",
-          "Guided fitness sessions with personal trainers",
-          "Mindfulness and stress-reduction workshops"
+          "Epigenetic testing and analysis",
+          "Hyperbaric oxygen therapy",
+          "Desert plant-based nutraceuticals",
+          "Heat adaptation training",
+          "Sleep optimization program"
         ],
-        description: `The Longevity Boost program is a scientifically crafted wellness journey designed to optimize your biological age and promote long-lasting vitality. Using cutting-edge diagnostics including epigenetic profiling and telomere analysis, this retreat delivers highly personalized care through medically guided therapies.`,
+        description: "This cutting-edge longevity program combines the latest medical advancements with the unique healing environment of the Arizona desert to optimize your biological age and vitality.",
         benefits: [
-          "Increase energy levels and reduce fatigue",
-          "Enhanced mental clarity and reduced brain fog",
-          "Balanced hormones and improved metabolic health",
-          "Reduce biological age markers",
-          "Comprehensive detoxification"
+          "Reduced biological age markers",
+          "Enhanced cellular repair",
+          "Improved stress resilience",
+          "Optimized metabolic function",
+          "Deep restorative sleep"
         ],
         imageGallery: [
-          "https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg",
-          "https://images.pexels.com/photos/3825578/pexels-photo-3825578.jpeg",
-          "https://images.pexels.com/photos/3825568/pexels-photo-3825568.jpeg"
+          "https://images.pexels.com/photos/4587999/pexels-photo-4587999.jpeg",
+          "https://images.pexels.com/photos/4588008/pexels-photo-4588008.jpeg"
         ],
         bookingOptions: {
-          availableDates: ["2025-09-10", "2025-10-05", "2025-11-15"],
-          pricePerPerson: "$3,500"
+          availableDates: ["2025-03-15", "2025-05-20", "2025-10-10"],
+          pricePerPerson: "$4,200"
         }
       },
       {
@@ -72,7 +72,7 @@ export const programCategories: ProgramCategory[] = [
           "Daily colon hydrotherapy",
           "Therapeutic yoga and mindfulness"
         ],
-        description: `This program targets cellular level detoxification with integrative therapies, restoring balance in your body's vital systems. Ideal for those looking to improve energy, immunity, and overall vitality.`,
+        description: "This program targets cellular level detoxification with integrative therapies, restoring balance in your body's vital systems. Ideal for those looking to improve energy, immunity, and overall vitality.",
         benefits: [
           "Removes toxins and heavy metals",
           "Improved gut health and digestion",
@@ -99,6 +99,35 @@ export const programCategories: ProgramCategory[] = [
     image: "https://images.pexels.com/photos/3259629/pexels-photo-3259629.jpeg?auto=compress&cs=tinysrgb&w=1200",
     programs: [
       {
+        name: "Sonoran Stem Cell Revival",
+        location: "Tucson - USA",
+        details: "Desert-enhanced stem cell therapies for regeneration",
+        duration: "5 Days / 4 Nights",
+        highlights: [
+          "Mesenchymal stem cell treatments",
+          "Native plant growth factor therapy",
+          "Desert mineral IV infusions",
+          "Low-level laser therapy",
+          "Tissue regeneration protocols"
+        ],
+        description: "Harness the regenerative power of stem cells in Tucson's unique desert environment, combining advanced medical treatments with natural healing elements for comprehensive rejuvenation.",
+        benefits: [
+          "Accelerated tissue repair",
+          "Reduced joint and muscle pain",
+          "Improved skin elasticity",
+          "Enhanced energy and vitality",
+          "Systemic anti-aging effects"
+        ],
+        imageGallery: [
+          "https://images.pexels.com/photos/3825581/pexels-photo-3825581.jpeg",
+          "https://images.pexels.com/photos/3825583/pexels-photo-3825583.jpeg"
+        ],
+        bookingOptions: {
+          availableDates: ["2025-04-10", "2025-06-15", "2025-09-20"],
+          pricePerPerson: "$5,800"
+        }
+      },
+      {
         name: "Stem Cell Revive",
         location: "Palm Springs - USA",
         details: "Harness the power of regenerative stem cell treatments.",
@@ -111,7 +140,7 @@ export const programCategories: ProgramCategory[] = [
           "Personalized physical therapy",
           "Biological age tracking"
         ],
-        description: `This state-of-the-art regenerative retreat utilizes the latest stem cell technologies to support joint recovery, reduce pain, and boost overall wellness in a luxurious setting.`,
+        description: "This state-of-the-art regenerative retreat utilizes the latest stem cell technologies to support joint recovery, reduce pain, and boost overall wellness in a luxurious setting.",
         benefits: [
           "Accelerated tissue repair",
           "Improved joint flexibility",
@@ -138,6 +167,36 @@ export const programCategories: ProgramCategory[] = [
     image: "https://images.pexels.com/photos/7588985/pexels-photo-7588985.jpeg?auto=compress&cs=tinysrgb&w=1200",
     programs: [
       {
+        name: "Desert Metabolic Reset",
+        location: "Tucson - USA",
+        details: "High-desert metabolic optimization program",
+        duration: "6 Days / 5 Nights",
+        highlights: [
+          "Comprehensive metabolic testing",
+          "Native desert plant nutrition plan",
+          "Heat adaptation training",
+          "Circadian rhythm optimization",
+          "Desert hiking for glucose control",
+          "Native American fasting techniques"
+        ],
+        description: "This unique metabolic program leverages Tucson's desert environment to reset your metabolism, combining cutting-edge science with traditional healing practices for lasting results.",
+        benefits: [
+          "Improved insulin sensitivity",
+          "Enhanced fat metabolism",
+          "Stable energy levels",
+          "Reduced inflammation",
+          "Sustainable weight management"
+        ],
+        imageGallery: [
+          "https://images.pexels.com/photos/1680247/pexels-photo-1680247.jpeg",
+          "https://images.pexels.com/photos/4588008/pexels-photo-4588008.jpeg"
+        ],
+        bookingOptions: {
+          availableDates: ["2025-02-15", "2025-04-20", "2025-11-10"],
+          pricePerPerson: "$3,900"
+        }
+      },
+      {
         name: "Metabolic Reset",
         location: "Aspen - USA",
         details: "Optimize your metabolism and reset your body's natural rhythms.",
@@ -150,7 +209,7 @@ export const programCategories: ProgramCategory[] = [
           "Functional fitness coaching",
           "Guided nature walks in Aspen"
         ],
-        description: `Perfect for individuals struggling with weight, low energy, or metabolic issues, this program offers a structured reset to improve health markers and vitality.`,
+        description: "Perfect for individuals struggling with weight, low energy, or metabolic issues, this program offers a structured reset to improve health markers and vitality.",
         benefits: [
           "Stabilize blood sugar levels",
           "Boost energy and reduce fatigue",
@@ -172,7 +231,6 @@ export const programCategories: ProgramCategory[] = [
   }
 ];
 
-
 export function getProgramByName(name: string): Program | undefined {
   for (const category of programCategories) {
     const foundProgram = category.programs.find(program => program.name === name);
@@ -182,7 +240,6 @@ export function getProgramByName(name: string): Program | undefined {
   }
   return undefined;
 }
-
 
 export function getProgramsByLocation(country: string, city?: string): Program[] {
   const results: Program[] = [];
@@ -204,11 +261,9 @@ export function getProgramsByLocation(country: string, city?: string): Program[]
   return results;
 }
 
-
 export function getAllPrograms(): Program[] {
   return programCategories.flatMap(category => category.programs);
 }
-
 
 export function getAllCountries(): string[] {
   const countries = new Set<string>();
@@ -220,7 +275,6 @@ export function getAllCountries(): string[] {
   }
   return Array.from(countries);
 }
-
 
 export function getCitiesByCountry(country: string): string[] {
   const cities = new Set<string>();

@@ -1,13 +1,17 @@
+/* Custom Fonts (Add if this is a standalone file, otherwise import in global app.css) */
+/* @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap'); */
+
 .longevity-grid-section {
   padding: 120px 0;
-  background: white;
+  background: #F8F6F2; /* Light Cream/Off-White */
 }
 
 .section-title {
+  font-family: 'Baskervville', serif; /* Serif font for titles */
   font-size: 3rem;
   font-weight: 700;
   text-align: center;
-  color: #1a1a1a;
+  color: #3C3C3C; /* Dark Brown/Charcoal */
   margin-bottom: 80px;
   letter-spacing: -0.02em;
   line-height: 1.2;
@@ -24,7 +28,7 @@
 .grid-item {
   display: flex;
   flex-direction: column;
-  background: white;
+  background: white; /* Keep white for grid items */
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
@@ -59,16 +63,18 @@
 }
 
 .item-title {
+  font-family: 'Baskervville', serif; /* Serif font for item titles */
   font-size: 1.5rem;
   font-weight: 600;
-  color: #1a1a1a;
+  color: #3C3C3C; /* Dark Brown/Charcoal */
   margin-bottom: 12px;
   line-height: 1.3;
 }
 
 .item-description {
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font for descriptions */
   font-size: 1rem;
-  color: #666;
+  color: #5A5A5A; /* Slightly lighter dark text */
   line-height: 1.6;
 }
 

@@ -1,6 +1,8 @@
 /* GLOBAL FONT RESET */
+@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
 * {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Source Sans 3', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -8,30 +10,58 @@
 
 /* HEADINGS (H1-H6) */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 600;
+  font-family: 'Baskervville', serif;
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.2;
-  
 }
 
 /* OPTIONAL: Set sizes */
 h1 {
   font-size: 4rem;
+  color: #3C3C3C;
 }
 
 h2 {
   font-size: 2.75rem;
+  color: #3C3C3C;
 }
 
 h3 {
   font-size: 2rem;
+  color: #3C3C3C;
 }
 
 /* PARAGRAPH / SUBTEXT */
 p, .subheading, .card-description {
+  font-family: 'Source Sans 3', sans-serif;
   font-weight: 400;
   font-size: 1.125rem;
   line-height: 1.7;
-  
+  color: #5A5A5A;
+}
+
+/* Loading Spinner */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  padding: 2rem;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #E9ECEF;
+  border-top: 5px solid #8B7C6E; /* Color changed */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

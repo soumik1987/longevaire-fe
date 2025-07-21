@@ -1,5 +1,8 @@
+/* Custom Fonts (Add if this is a standalone file, otherwise import in global app.css) */
+/* @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap'); */
+
 .wellness-insights-section {
-  background-color: white;
+  background-color: #F8F6F2; /* Light Cream/Off-White */
   padding: 80px 0;
 }
 
@@ -16,28 +19,31 @@
 /* Sticky Left Block */
 .left-content-block {
   position: sticky;
-  top: 100px;
+  top: 100px; /* Adjust if navigation height changes */
   align-self: start;
 }
 
 .main-heading {
+  font-family: 'Baskervville', serif; /* Serif font for main heading */
   font-size: 3rem;
   font-weight: 800;
-  color: #111827;
+  color: #3C3C3C; /* Dark Brown/Charcoal */
   margin-bottom: 20px;
 }
 
 .sub-text {
-  color: #6b7280;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font for sub-text */
+  color: #5A5A5A; /* Slightly lighter dark text */
   font-size: 1.125rem;
   margin-bottom: 32px;
 }
 
 .explore-button {
-  background-color: #7c3aed;
+  background-color: #8B7C6E; /* Muted Brown/Sepia */
   color: white;
   padding: 14px 28px;
   border-radius: 9999px;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
   font-weight: 600;
   font-size: 1rem;
   border: none;
@@ -49,7 +55,7 @@
 }
 
 .explore-button:hover {
-  background-color: #6d28d9;
+  background-color: #7B6C5E; /* Darker Muted Brown/Sepia */
 }
 
 .button-icon {
@@ -66,11 +72,11 @@
 
 /* Card Styling */
 .insight-card {
-  background: white;
+  background: white; /* Keep white for cards */
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  border: 1px solid #e5e7eb;
+  border: 1px solid #E9ECEF; /* Light Gray border */
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
@@ -100,8 +106,9 @@
   top: 12px;
   left: 12px;
   padding: 4px 12px;
-  background: white;
-  color: #7c3aed;
+  background: white; /* Keep white label background */
+  color: #8B7C6E; /* Muted Brown/Sepia */
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
   font-size: 0.75rem;
   font-weight: 600;
   border-radius: 9999px;
@@ -116,15 +123,16 @@
 }
 
 .card-heading {
+  font-family: 'Baskervville', serif; /* Serif font for card heading */
   font-size: 1.25rem;
-  font-family: 'Georgia', serif;
-  color: #111827;
+  color: #3C3C3C; /* Dark Brown/Charcoal */
   font-weight: bold;
   margin: 0;
 }
 
 .card-description {
-  color: #6b7280;
+  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font for card description */
+  color: #5A5A5A; /* Slightly lighter dark text */
   font-size: 0.95rem;
   margin: 0;
 }

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getProgramByName } from '../data/programs';
-import type { Program } from '../data/programs';
+import { fetchProgramByName } from '../api';
 import BookingModal from '../components/BookingModal';
 import '../styles/ProgramDetailsPage.css';
+import type { Program } from '../data/programs';
 
 interface LocationState {
   programName: string;
@@ -14,24 +14,32 @@ const ProgramDetailsPage: React.FC = () => {
   const navigate = useNavigate();
   const [program, setProgram] = useState<Program | null>(null);
   const [showBookingModal, setShowBookingModal] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
+  useEffect(() => {
+    const loadProgram = async () => {
       window.scrollTo(0, 0);
-  const state = location.state as LocationState;
-  
-  if (!state?.programName) {
-    setProgram(null);
-    return;
-  }
-  
-  const foundProgram = getProgramByName(state.programName);
-  if (foundProgram) {
-    setProgram(foundProgram);
-  } else {
-    setProgram(null);
-  }
-}, [location.state]);
+      const state = location.state as LocationState;
+      
+      if (!state?.programName) {
+        setProgram(null);
+        setLoading(false);
+        return;
+      }
+      
+      try {
+        const foundProgram = await fetchProgramByName(state.programName);
+        setProgram(foundProgram || null);
+      } catch (error) {
+        console.error('Error loading program:', error);
+        setProgram(null);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    loadProgram();
+  }, [location.state]);
 
   const handleBackClick = () => {
     navigate(-1);
@@ -45,32 +53,33 @@ const ProgramDetailsPage: React.FC = () => {
     setShowBookingModal(false);
   };
 
-  if (!program) {
+  if (loading) {
     return (
       <div className="program-details-page">
-        <div className="container">
-          <div className="loading">Loading program details...</div>
+        <div className="container loading-container">
+          <div className="loading-spinner"></div>
+          <p>Loading program details...</p>
         </div>
       </div>
     );
   }
 
   if (!program) {
-  return (
-    <div className="program-details-page">
-      <div className="container">
-        <div className="loading">
-          {location.state?.programName 
-            ? "Loading program details..." 
-            : "No program selected. Please select a program from the list."}
+    return (
+      <div className="program-details-page">
+        <div className="container">
+          <div className="loading">
+            {location.state?.programName 
+              ? "Could not load program details." 
+              : "No program selected. Please select a program from the list."}
+          </div>
+          <button onClick={() => navigate('/explore')} className="back-button">
+            Back to Programs
+          </button>
         </div>
-        <button onClick={() => navigate('/explore')} className="back-button">
-          Back to Programs
-        </button>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
   return (
     <div className="program-details-page">
