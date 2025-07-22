@@ -24,6 +24,11 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
+#faqhead{
+  text-align: center;
+  margin-bottom: 30px;
+}
+
 .faq-question {
   width: 100%;
   padding: 24px;

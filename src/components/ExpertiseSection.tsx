@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../styles/global.css';
 import '../styles/ExpertiseSection.css';
 
 const ExpertiseSection: React.FC = () => {
@@ -14,7 +14,7 @@ const ExpertiseSection: React.FC = () => {
     <section className="expertise-section">
       <div className="container">
         <div className="expertise-header fade-in-up">
-          <h2 className="section-title">Our Global Expertise</h2>
+          <h2>Our Global Expertise</h2>
           <blockquote className="testimonial">
             "Global expertise made my longevity journey effortless and tailored. 
             Every aspect was managed with care and precision."

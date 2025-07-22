@@ -322,7 +322,7 @@ const Navigation: React.FC = () => {
                   setIsMobileMenuOpen(false);
                 }}
               >
-                Sign In
+                Join Now
               </button>
             ) : (
               // User is logged in for mobile view
@@ -370,7 +370,7 @@ const Navigation: React.FC = () => {
               className="join-btn" 
               onClick={() => setShowSignInModal(true)}
             >
-              Sign In
+              Join Now
             </button>
           ) : (
             // User is logged in for desktop view

@@ -28,7 +28,7 @@ const LongevityGrid: React.FC = () => {
   return (
     <section className="longevity-grid-section">
       <div className="container">
-        <h2 className="section-title fade-in-up">Discover the art of living longer</h2>
+        <h2 id="discoverhead">Discover the art of living longer</h2>
         <div className="longevity-grid">
           {gridItems.map((item, index) => (
             <div key={index} className="grid-item fade-in-up">

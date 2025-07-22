@@ -6,6 +6,11 @@
   background: #F8F6F2; /* Light Cream/Off-White */
 }
 
+#discoverhead{
+  text-align: center;
+  margin-bottom: 30px;
+}
+
 .section-title {
   font-family: 'Baskervville', serif; /* Serif font for titles */
   font-size: 3rem;

@@ -12,6 +12,15 @@
   margin-bottom: 60px;
 }
 
+#pricehead{
+  text-align: center;
+}
+
+#pricesubhead{
+  text-align: center;
+  margin-bottom: 60px;
+}
+
 .pricing-card {
   background: white; /* Keep white for cards */
   border: 2px solid #E9ECEF; /* Light Gray border */

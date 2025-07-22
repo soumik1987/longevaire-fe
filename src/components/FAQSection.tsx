@@ -40,7 +40,7 @@ const FAQSection: React.FC = () => {
   return (
     <section className="faq-section">
       <div className="container">
-        <h2 className="section-title fade-in-up">Your Questions, Answered</h2>
+        <h2 id="faqhead">Your Questions, Answered</h2>
         <div className="faq-list">
           {faqs.map((faq, index) => (
             <div key={index} className="faq-item fade-in-up">
