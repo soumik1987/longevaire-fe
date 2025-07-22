@@ -1,3 +1,4 @@
+// src/components/ContactModal.tsx
 import React, { useState } from 'react';
 import '../styles/ContactModal.css';
 
@@ -30,7 +31,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ onClose }) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) return false;
 
-    if (phone && !/^[0-9]{10,15}$/.test(phone)) return false;
+    if (phone && !/^[0-9]{7,15}$/.test(phone)) return false; // Adjusted phone regex for more flexibility
 
     return true;
   };

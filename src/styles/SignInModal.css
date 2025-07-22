@@ -1,0 +1,510 @@
+/* src/styles/SignInModal.css */
+/* Porsche-style Sign-in Modal */
+.signin-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.signin-modal-content {
+    background: #ffffff;
+    border-radius: 16px;
+    max-width: 1000px;
+    width: 90%;
+    max-height: 90vh;
+    overflow: auto;
+    display: flex;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    position: relative;
+    animation: slideUp 0.4s ease-out;
+    margin: auto;
+}
+
+.signin-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+}
+
+.signin-close-btn:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.05);
+}
+
+.signin-left-panel {
+    flex: 1;
+    position: relative;
+    min-height: 500px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.signin-hero-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.signin-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7) contrast(1.1);
+}
+
+.signin-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(0, 0, 0, 0.3) 50%,
+        rgba(0, 0, 0, 0.7) 100%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signin-brand {
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+.signin-brand h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 4px;
+    margin: 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.signin-brand p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin: 10px 0 0 0;
+    opacity: 0.9;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.signin-right-panel {
+    flex: 1;
+    padding: 60px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fafafa;
+}
+
+.signin-form-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.signin-header {
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.signin-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #1a1a1a;
+    margin: 0 0 15px 0;
+    font-weight: 400;
+}
+
+.signin-header p {
+    font-family: 'Open Sans', sans-serif;
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.signin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.phone-input-container {
+    display: flex;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+    background: white;
+}
+
+.phone-input-container:focus-within {
+    border-color: #a07f67;
+    box-shadow: 0 0 0 3px rgba(160, 127, 103, 0.1);
+}
+
+.country-code-dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.country-code-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    background: #f8f8f8;
+    border: none; /* Removed border */
+    border-right: 1px solid #e0e0e0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    border-radius: 8px 0 0 8px; /* Apply border-radius to button */
+    outline: none;
+    transition: background-color 0.2s ease;
+}
+
+.country-code-button:hover {
+    background-color: #f0f0f0;
+}
+
+
+.flag-icon {
+    width: 20px;
+    height: auto;
+    border-radius: 2px;
+}
+
+.phone-input,
+.verification-input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    outline: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95rem;
+    background: white;
+}
+
+.verification-input {
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    font-weight: 600;
+    transition: border-color 0.3s ease;
+}
+
+.verification-input:focus {
+    border-color: #a07f67;
+    box-shadow: 0 0 0 3px rgba(160, 127, 103, 0.1);
+}
+
+.form-help-text {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.85rem;
+    color: #888;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.signin-submit-btn {
+    background: #a07f67;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 24px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(160, 127, 103, 0.3);
+}
+
+.signin-submit-btn:hover:not(:disabled) {
+    background: #8a6a57;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(160, 127, 103, 0.4);
+}
+
+.signin-submit-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.signin-divider {
+    position: relative;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.signin-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e0e0e0;
+}
+
+.signin-divider span {
+    background: #fafafa;
+    padding: 0 20px;
+    color: #888;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+}
+
+.google-signin-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.google-signin-btn:hover {
+    border-color: #a07f67;
+    background: #fafafa;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.google-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    color: #a07f67;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 8px;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.back-btn:hover {
+    color: #8a6a57;
+}
+
+.signin-footer {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.signin-footer p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.8rem;
+    color: #999;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Country Code Dropdown Styles */
+.country-dropdown-menu {
+    position: absolute;
+    top: 100%; /* Position below the button */
+    left: 0;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 250px; /* Adjust width as needed */
+    margin-top: 5px; /* Small gap between button and dropdown */
+}
+
+.country-dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #333;
+    transition: background-color 0.2s ease;
+}
+
+.country-dropdown-item:hover {
+    background-color: #f5f5f5;
+}
+
+.country-dropdown-item .flag-icon {
+    margin-right: 10px;
+}
+
+.dropdown-arrow {
+  transition: transform 0.3s ease;
+}
+
+.dropdown-arrow.rotated {
+  transform: rotate(180deg);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .signin-modal-content {
+        flex-direction: column;
+        width: 90%;
+        max-width: 500px;
+    }
+
+    .signin-left-panel {
+        min-height: 200px;
+        flex: none;
+    }
+
+    .signin-right-panel {
+        padding: 40px 30px;
+    }
+
+    .signin-brand h2 {
+        font-size: 2rem;
+    }
+
+    .signin-brand p {
+        font-size: 0.9rem;
+    }
+
+    .signin-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .country-dropdown-menu {
+      width: 100%; /* Make dropdown full width on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .signin-modal-content {
+        width: 95%;
+        max-height: 95vh;
+    }
+
+    .signin-right-panel {
+        padding: 30px 20px;
+    }
+
+    .signin-brand h2 {
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+    }
+
+    .signin-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .phone-input-container {
+        flex-direction: column;
+    }
+
+    .country-code-button {
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        justify-content: center;
+        border-radius: 8px 8px 0 0; /* Adjust border-radius for column layout */
+        width: 100%;
+    }
+
+    .signin-close-btn {
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* Click outside to close functionality */
+.signin-modal-overlay {
+    cursor: pointer;
+}
+
+.signin-modal-content {
+    cursor: auto;
+}

@@ -1,3 +1,8 @@
+// program.ts
+export interface ProgramInclude {
+  title: string;
+  description: string;
+}
 
 export interface Program {
   [x: string]: any;
@@ -5,9 +10,8 @@ export interface Program {
   location: string;
   details: string;
   duration?: string;
-  highlights?: string[];
+  includes?: ProgramInclude[];
   description?: string;
-  benefits?: string[];
   imageGallery?: string[];
   bookingOptions?: {
     availableDates: string[];
@@ -35,24 +39,24 @@ export const programCategories: ProgramCategory[] = [
         location: "Tucson - USA",
         details: "Advanced anti-aging therapies in the Sonoran Desert",
         duration: "7 Days / 6 Nights",
-        highlights: [
-          "Epigenetic testing and analysis",
-          "Hyperbaric oxygen therapy",
-          "Desert plant-based nutraceuticals",
-          "Heat adaptation training",
-          "Sleep optimization program"
+        includes: [
+          { title: "Epigenetic testing and analysis", description: "Personalized longevity planning based on your DNA." },
+          { title: "Hyperbaric oxygen therapy", description: "Oxygenate tissues to promote faster cellular repair." },
+          { title: "Desert plant-based nutraceuticals", description: "Herbal formulations unique to the Sonoran desert." },
+          { title: "Heat adaptation training", description: "Train your body to regulate temperature and improve performance." },
+          { title: "Sleep optimization program", description: "Techniques and tools to enhance sleep cycles." }
         ],
         description: "This cutting-edge longevity program combines the latest medical advancements with the unique healing environment of the Arizona desert to optimize your biological age and vitality.",
-        benefits: [
-          "Reduced biological age markers",
-          "Enhanced cellular repair",
-          "Improved stress resilience",
-          "Optimized metabolic function",
-          "Deep restorative sleep"
-        ],
         imageGallery: [
           "https://images.pexels.com/photos/4587999/pexels-photo-4587999.jpeg",
-          "https://images.pexels.com/photos/4588008/pexels-photo-4588008.jpeg"
+          "https://images.pexels.com/photos/4588008/pexels-photo-4588008.jpeg",
+          "https://images.pexels.com/photos/3825572/pexels-photo-3825572.jpeg",
+          "https://images.pexels.com/photos/3825575/pexels-photo-3825575.jpeg",
+          "https://images.pexels.com/photos/3825579/pexels-photo-3825579.jpeg",
+          "https://images.pexels.com/photos/6787202/pexels-photo-6787202.jpeg",
+          "https://images.pexels.com/photos/7659567/pexels-photo-7659567.jpeg",
+          "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg",
+          "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg"
         ],
         bookingOptions: {
           availableDates: ["2025-03-15", "2025-05-20", "2025-10-10"],
@@ -64,26 +68,24 @@ export const programCategories: ProgramCategory[] = [
         location: "Sedona - USA",
         details: "Deep detoxification to reset cellular health and improve immunity.",
         duration: "10 Days / 9 Nights",
-        highlights: [
-          "Cellular detox treatments with ozone therapy",
-          "Heavy metal chelation sessions",
-          "Customized detox meal plans",
-          "Gut microbiome restoration",
-          "Daily colon hydrotherapy",
-          "Therapeutic yoga and mindfulness"
+        includes: [
+          { title: "Ozone therapy detox", description: "Revitalize and purify cells using activated oxygen." },
+          { title: "Heavy metal chelation", description: "Flush out harmful metals from organs and tissues." },
+          { title: "Customized detox meal plan", description: "Cleansing meals tailored to your biology." },
+          { title: "Gut microbiome restoration", description: "Repopulate healthy gut flora through probiotics and diet." },
+          { title: "Colon hydrotherapy", description: "Gently remove waste to reset digestion." },
+          { title: "Therapeutic yoga and mindfulness", description: "Daily sessions to relax and enhance mental clarity." }
         ],
         description: "This program targets cellular level detoxification with integrative therapies, restoring balance in your body's vital systems. Ideal for those looking to improve energy, immunity, and overall vitality.",
-        benefits: [
-          "Removes toxins and heavy metals",
-          "Improved gut health and digestion",
-          "Boosted immunity and reduced inflammation",
-          "Clearer skin and mental clarity",
-          "Long-lasting health reset"
-        ],
         imageGallery: [
           "https://images.pexels.com/photos/3825572/pexels-photo-3825572.jpeg",
           "https://images.pexels.com/photos/3825575/pexels-photo-3825575.jpeg",
-          "https://images.pexels.com/photos/3825579/pexels-photo-3825579.jpeg"
+          "https://images.pexels.com/photos/3825579/pexels-photo-3825579.jpeg",
+          "https://images.pexels.com/photos/4588008/pexels-photo-4588008.jpeg",
+          "https://images.pexels.com/photos/6787202/pexels-photo-6787202.jpeg",
+          "https://images.pexels.com/photos/7659567/pexels-photo-7659567.jpeg",
+          "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg",
+          "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg"
         ],
         bookingOptions: {
           availableDates: ["2025-08-15", "2025-10-20", "2025-12-05"],
@@ -103,24 +105,23 @@ export const programCategories: ProgramCategory[] = [
         location: "Tucson - USA",
         details: "Desert-enhanced stem cell therapies for regeneration",
         duration: "5 Days / 4 Nights",
-        highlights: [
-          "Mesenchymal stem cell treatments",
-          "Native plant growth factor therapy",
-          "Desert mineral IV infusions",
-          "Low-level laser therapy",
-          "Tissue regeneration protocols"
+        includes: [
+          { title: "Mesenchymal stem cell treatments", description: "Promote repair and reduce inflammation systemically." },
+          { title: "Native plant growth factor therapy", description: "Plant-derived boosters to aid tissue regeneration." },
+          { title: "Desert mineral IV infusions", description: "Infusions rich in healing desert minerals." },
+          { title: "Low-level laser therapy", description: "Stimulates repair at the cellular level." },
+          { title: "Tissue regeneration protocols", description: "Custom strategies for specific tissue rejuvenation." }
         ],
         description: "Harness the regenerative power of stem cells in Tucson's unique desert environment, combining advanced medical treatments with natural healing elements for comprehensive rejuvenation.",
-        benefits: [
-          "Accelerated tissue repair",
-          "Reduced joint and muscle pain",
-          "Improved skin elasticity",
-          "Enhanced energy and vitality",
-          "Systemic anti-aging effects"
-        ],
         imageGallery: [
           "https://images.pexels.com/photos/3825581/pexels-photo-3825581.jpeg",
-          "https://images.pexels.com/photos/3825583/pexels-photo-3825583.jpeg"
+          "https://images.pexels.com/photos/3825583/pexels-photo-3825583.jpeg",
+          "https://images.pexels.com/photos/3825585/pexels-photo-3825585.jpeg",
+          "https://images.pexels.com/photos/4588008/pexels-photo-4588008.jpeg",
+          "https://images.pexels.com/photos/6787202/pexels-photo-6787202.jpeg",
+          "https://images.pexels.com/photos/7659567/pexels-photo-7659567.jpeg",
+          "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg",
+          "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg"
         ],
         bookingOptions: {
           availableDates: ["2025-04-10", "2025-06-15", "2025-09-20"],
@@ -132,26 +133,24 @@ export const programCategories: ProgramCategory[] = [
         location: "Palm Springs - USA",
         details: "Harness the power of regenerative stem cell treatments.",
         duration: "5 Days / 4 Nights",
-        highlights: [
-          "Autologous stem cell infusions",
-          "Joint rejuvenation therapies",
-          "Platelet-rich plasma (PRP) sessions",
-          "Red light therapy for cellular repair",
-          "Personalized physical therapy",
-          "Biological age tracking"
+        includes: [
+          { title: "Autologous stem cell infusions", description: "Stem cells from your own body for targeted healing." },
+          { title: "Joint rejuvenation therapies", description: "Restore mobility and ease joint pain." },
+          { title: "Platelet-rich plasma (PRP) sessions", description: "Boost recovery using your own plasma." },
+          { title: "Red light therapy for cellular repair", description: "Stimulate collagen and cellular activity." },
+          { title: "Personalized physical therapy", description: "Tailored plans to speed recovery and build strength." },
+          { title: "Biological age tracking", description: "Track real-time age reversal metrics." }
         ],
         description: "This state-of-the-art regenerative retreat utilizes the latest stem cell technologies to support joint recovery, reduce pain, and boost overall wellness in a luxurious setting.",
-        benefits: [
-          "Accelerated tissue repair",
-          "Improved joint flexibility",
-          "Reduced chronic pain",
-          "Enhanced recovery post-injury",
-          "Younger biological age"
-        ],
         imageGallery: [
           "https://images.pexels.com/photos/3825581/pexels-photo-3825581.jpeg",
           "https://images.pexels.com/photos/3825583/pexels-photo-3825583.jpeg",
-          "https://images.pexels.com/photos/3825585/pexels-photo-3825585.jpeg"
+          "https://images.pexels.com/photos/3825585/pexels-photo-3825585.jpeg",
+          "https://images.pexels.com/photos/4588008/pexels-photo-4588008.jpeg",
+          "https://images.pexels.com/photos/6787202/pexels-photo-6787202.jpeg",
+          "https://images.pexels.com/photos/7659567/pexels-photo-7659567.jpeg",
+          "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg",
+          "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg"
         ],
         bookingOptions: {
           availableDates: ["2025-09-01", "2025-11-10", "2026-01-25"],
@@ -171,25 +170,25 @@ export const programCategories: ProgramCategory[] = [
         location: "Tucson - USA",
         details: "High-desert metabolic optimization program",
         duration: "6 Days / 5 Nights",
-        highlights: [
-          "Comprehensive metabolic testing",
-          "Native desert plant nutrition plan",
-          "Heat adaptation training",
-          "Circadian rhythm optimization",
-          "Desert hiking for glucose control",
-          "Native American fasting techniques"
+        includes: [
+          { title: "Comprehensive metabolic testing", description: "Get a full picture of your metabolic health." },
+          { title: "Desert plant nutrition plan", description: "Anti-inflammatory meals using desert superfoods." },
+          { title: "Heat adaptation training", description: "Burn calories and improve metabolism through heat exposure." },
+          { title: "Circadian rhythm optimization", description: "Align your biological clock for better energy and sleep." },
+          { title: "Desert hiking for glucose control", description: "Daily low-intensity hikes to stabilize blood sugar." },
+          { title: "Native American fasting techniques", description: "Intermittent fasting traditions blended with science." }
         ],
         description: "This unique metabolic program leverages Tucson's desert environment to reset your metabolism, combining cutting-edge science with traditional healing practices for lasting results.",
-        benefits: [
-          "Improved insulin sensitivity",
-          "Enhanced fat metabolism",
-          "Stable energy levels",
-          "Reduced inflammation",
-          "Sustainable weight management"
-        ],
         imageGallery: [
           "https://images.pexels.com/photos/1680247/pexels-photo-1680247.jpeg",
-          "https://images.pexels.com/photos/4588008/pexels-photo-4588008.jpeg"
+          "https://images.pexels.com/photos/4588008/pexels-photo-4588008.jpeg",
+          "https://images.pexels.com/photos/3825572/pexels-photo-3825572.jpeg",
+          "https://images.pexels.com/photos/3825575/pexels-photo-3825575.jpeg",
+          "https://images.pexels.com/photos/3825579/pexels-photo-3825579.jpeg",
+          "https://images.pexels.com/photos/6787202/pexels-photo-6787202.jpeg",
+          "https://images.pexels.com/photos/7659567/pexels-photo-7659567.jpeg",
+          "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg",
+          "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg"
         ],
         bookingOptions: {
           availableDates: ["2025-02-15", "2025-04-20", "2025-11-10"],
@@ -201,26 +200,24 @@ export const programCategories: ProgramCategory[] = [
         location: "Aspen - USA",
         details: "Optimize your metabolism and reset your body's natural rhythms.",
         duration: "6 Days / 5 Nights",
-        highlights: [
-          "Metabolic rate testing",
-          "Glucose and insulin monitoring",
-          "Nutrition plans for metabolic balance",
-          "Intermittent fasting protocols",
-          "Functional fitness coaching",
-          "Guided nature walks in Aspen"
+        includes: [
+          { title: "Metabolic rate testing", description: "Track how efficiently your body burns calories." },
+          { title: "Glucose and insulin monitoring", description: "Daily tracking for metabolic clarity." },
+          { title: "Nutrition plans for balance", description: "Whole-food diets to stabilize blood sugar." },
+          { title: "Intermittent fasting protocols", description: "Guided fasting plans to improve metabolism." },
+          { title: "Functional fitness coaching", description: "Low-impact exercises tailored to your profile." },
+          { title: "Guided nature walks", description: "Rejuvenating hikes to encourage natural insulin response." }
         ],
         description: "Perfect for individuals struggling with weight, low energy, or metabolic issues, this program offers a structured reset to improve health markers and vitality.",
-        benefits: [
-          "Stabilize blood sugar levels",
-          "Boost energy and reduce fatigue",
-          "Healthier body composition",
-          "Reduced risk of chronic diseases",
-          "Lasting sustainable habits"
-        ],
         imageGallery: [
           "https://images.pexels.com/photos/3825587/pexels-photo-3825587.jpeg",
           "https://images.pexels.com/photos/3825589/pexels-photo-3825589.jpeg",
-          "https://images.pexels.com/photos/3825591/pexels-photo-3825591.jpeg"
+          "https://images.pexels.com/photos/3825591/pexels-photo-3825591.jpeg",
+          "https://images.pexels.com/photos/4588008/pexels-photo-4588008.jpeg",
+          "https://images.pexels.com/photos/6787202/pexels-photo-6787202.jpeg",
+          "https://images.pexels.com/photos/7659567/pexels-photo-7659567.jpeg",
+          "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg",
+          "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg"
         ],
         bookingOptions: {
           availableDates: ["2025-08-22", "2025-10-18", "2025-12-01"],
