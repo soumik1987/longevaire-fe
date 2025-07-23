@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchProgramCategories, fetchProgramsByLocation } from '../api';
 import '../styles/ProgramListsPage.css';
-import type { Program } from '../data/programs';
+import type { Program as ImportedProgram } from '../data/programs';
 
 interface LocationState {
   type: 'category' | 'location';
@@ -11,25 +11,28 @@ interface LocationState {
   city?: string;
 }
 
-interface TransformedProgram extends Program {
+interface TransformedProgram extends ImportedProgram {
+  id: string;
   specialOffer: string;
   nights: string;
   pricing: string;
   bookingDate: string;
   stayDate: string;
   imageUrl: string;
+  highlights: string[];
 }
 
-// Memoized transform function outside component
-const transformProgramData = (programs: Program[]): TransformedProgram[] => {
+const transformProgramData = (programs: ImportedProgram[]): TransformedProgram[] => {
   return programs.map(program => ({
     ...program,
-    specialOffer: program.highlights?.[0] || '',
+    id: program.name.replace(/\s+/g, '-').toLowerCase(), // Generate ID from name
+    specialOffer: program.includes?.[0]?.title || '', // Use first include title as special offer
     nights: program.duration || 'Custom Duration',
     pricing: program.bookingOptions?.pricePerPerson || 'Contact for pricing',
-    bookingDate: program.bookingOptions?.availableDates[0]?.split('-').reverse().join('/') || 'N/A',
-    stayDate: program.bookingOptions?.availableDates[0]?.split('-').reverse().join('/') || 'N/A',
-    imageUrl: program.imageGallery?.[0] || 'https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg'
+    bookingDate: program.bookingOptions?.availableDates?.[0]?.split('-').reverse().join('/') || 'N/A',
+    stayDate: program.bookingOptions?.availableDates?.[0]?.split('-').reverse().join('/') || 'N/A',
+    imageUrl: program.imageGallery?.[0] || 'https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg',
+    highlights: program.includes?.map(include => include.title) || [] // Convert includes to highlights
   }));
 };
 
@@ -125,7 +128,6 @@ const ProgramListPage: React.FC = () => {
         setError(null);
         
         if (state.type === 'category' && state.categoryType) {
-          // Fix: Remove the argument if fetchProgramCategories doesn't expect any
           const allCategories = await fetchProgramCategories();
           const category = allCategories.find(cat => cat.type === state.categoryType);
           if (category) {
@@ -138,7 +140,6 @@ const ProgramListPage: React.FC = () => {
             setError('Category not found');
           }
         } else if (state.type === 'location' && state.country) {
-          // Fix: Ensure correct number of arguments for fetchProgramsByLocation
           const locationPrograms = await fetchProgramsByLocation(
             state.country,
             state.city
@@ -196,9 +197,9 @@ const ProgramListPage: React.FC = () => {
 
     return (
       <div className="programs-grid">
-        {programs.map((program, index) => (
+        {programs.map((program) => (
           <ProgramCard
-            key={`${program.id || program.name}-${index}`}
+            key={program.id}
             program={program}
             onClick={() => handleProgramClick(program.name)}
           />
