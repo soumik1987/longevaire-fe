@@ -1,13 +1,33 @@
 import React from 'react';
 import '../styles/global.css';
 import '../styles/ExpertiseSection.css';
+import IrisImage from '../assets/irisphoto.jpg';
+import SoumikImage from '../assets/soumik.jpg';
+import { FaLinkedin } from 'react-icons/fa';
+
+interface Expert {
+  name: string;
+  role: string;
+  image: string;
+  linkedin: string;
+}
 
 const ExpertiseSection: React.FC = () => {
-  const experts = [
-    { name: "Quinn Foster", role: "Longevity Specialist", image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg" },
-    { name: "Sage Monroe", role: "Wellness Director", image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg" },
-    { name: "Drew Sinclair", role: "Medical Advisor", image: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg" },
-    { name: "Reese Calder", role: "Research Lead", image: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg" }
+  // Local expert data
+  const experts: Expert[] = [
+    {
+      name: "Soumik",
+      role: "Founder",
+      image: SoumikImage,
+      linkedin: "https://www.linkedin.com/in/soumik-ghosh-466b0956/"
+    },
+    {
+      name: "Iris",
+      role: "Operations",
+      image: IrisImage,
+      linkedin: "https://www.linkedin.com/in/iris-zhorov-69a21b1a2/"
+    }
+    
   ];
 
   return (
@@ -26,10 +46,28 @@ const ExpertiseSection: React.FC = () => {
           {experts.map((expert, index) => (
             <div key={index} className="expert-card fade-in-up">
               <div className="expert-image">
-                <img src={expert.image} alt={expert.name} />
+                <img 
+                  src={expert.image} 
+                  alt={expert.name} 
+                  loading="lazy"
+                  width={300}
+                  height={400}
+                  decoding="async"
+                />
               </div>
               <div className="expert-info">
-                <h3 className="expert-name">{expert.name}</h3>
+                <div className="name-container">
+                  <h3 className="expert-name">{expert.name}</h3>
+                  <a 
+                    href={expert.linkedin} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="linkedin-link"
+                    aria-label={`${expert.name}'s LinkedIn profile`}
+                  >
+                    <FaLinkedin className="linkedin-icon" />
+                  </a>
+                </div>
                 <p className="expert-role">{expert.role}</p>
               </div>
             </div>

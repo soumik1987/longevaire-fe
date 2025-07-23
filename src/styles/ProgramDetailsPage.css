@@ -369,7 +369,7 @@
 
 .book-now-btn {
   width: 100%;
-  background-color: #8B5A2B;
+  background-color: #c74427;
   color: white;
   border: none;
   padding: 1rem;
@@ -1410,7 +1410,7 @@
   padding: 20px;
   background-color: #F5E6E3;
   width: 100vw;
-  min-height: 80vh;
+  min-height: 88vh;
   position: relative;
   left: 50%;
   right: 50%;
@@ -2382,3 +2382,34 @@
     margin-bottom: 0.2rem;
   }
 }
+
+.section-navigation {
+  /* Your existing styles */
+  transition: all 0.3s ease-out;
+  will-change: transform, opacity, background-color;
+}
+
+.section-navigation.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

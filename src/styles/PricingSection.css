@@ -38,7 +38,7 @@
 }
 
 .pricing-card-popular {
-  border-color: #8B7C6E; /* Muted Brown/Sepia */
+  border-color: #c74427; /* Muted Brown/Sepia */
   box-shadow: 0 15px 35px rgba(139, 124, 110, 0.15); /* Shadow adjusted to theme color */
   transform: scale(1.05);
 }
@@ -53,7 +53,7 @@
   left: 50%;
   transform: translateX(-50%);
   /* Updated background gradient to theme colors */
-  background: linear-gradient(135deg, #8B7C6E, #7B6C5E);
+  background: linear-gradient(135deg, #c74427, #c74427);
   color: white;
   padding: 8px 20px;
   border-radius: 20px;
@@ -146,7 +146,7 @@
 
 .btn-popular {
   /* Updated background gradient to theme colors */
-  background: linear-gradient(135deg, #8B7C6E, #7B6C5E);
+  background: linear-gradient(135deg, #c74427, #c74427);
   color: white;
   border: none;
 }

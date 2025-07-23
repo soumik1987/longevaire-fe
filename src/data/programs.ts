@@ -5,7 +5,6 @@ export interface ProgramInclude {
 }
 
 export interface Program {
-  [x: string]: any;
   name: string;
   location: string;
   details: string;
@@ -26,6 +25,10 @@ export interface ProgramCategory {
   programs: Program[];
   image: string;
 }
+
+let allProgramsCache: Program[] | null = null;
+let countriesCache: string[] | null = null;
+const citiesByCountryCache = new Map<string, string[]>();
 
 export const programCategories: ProgramCategory[] = [
   {
@@ -228,60 +231,55 @@ export const programCategories: ProgramCategory[] = [
   }
 ];
 
-export function getProgramByName(name: string): Program | undefined {
-  for (const category of programCategories) {
-    const foundProgram = category.programs.find(program => program.name === name);
-    if (foundProgram) {
-      return foundProgram;
-    }
-  }
-  return undefined;
-}
-
-export function getProgramsByLocation(country: string, city?: string): Program[] {
-  const results: Program[] = [];
-  
-  for (const category of programCategories) {
-    for (const program of category.programs) {
-      const locationParts = program.location.split(' - ');
-      const programCity = locationParts[0];
-      const programCountry = locationParts[1];
-      
-      if (programCountry === country) {
-        if (!city || programCity === city) {
-          results.push(program);
-        }
-      }
-    }
-  }
-  
-  return results;
+function getLocationParts(location: string): [string, string] {
+  const parts = location.split(' - ');
+  return [parts[0], parts[1]];
 }
 
 export function getAllPrograms(): Program[] {
-  return programCategories.flatMap(category => category.programs);
+  if (!allProgramsCache) {
+    allProgramsCache = programCategories.flatMap(category => category.programs);
+  }
+  return allProgramsCache;
+}
+
+export function getProgramByName(name: string): Program | undefined {
+  return getAllPrograms().find(program => program.name === name);
+}
+
+export function getProgramsByLocation(country: string, city?: string): Program[] {
+  return getAllPrograms().filter(program => {
+    const [programCity, programCountry] = getLocationParts(program.location);
+    return programCountry === country && (!city || programCity === city);
+  });
 }
 
 export function getAllCountries(): string[] {
-  const countries = new Set<string>();
-  for (const category of programCategories) {
-    for (const program of category.programs) {
-      const country = program.location.split(' - ')[1];
+  if (!countriesCache) {
+    const countries = new Set<string>();
+    for (const program of getAllPrograms()) {
+      const [, country] = getLocationParts(program.location);
       countries.add(country);
     }
+    countriesCache = Array.from(countries);
   }
-  return Array.from(countries);
+  return countriesCache;
 }
 
 export function getCitiesByCountry(country: string): string[] {
+  if (citiesByCountryCache.has(country)) {
+    return citiesByCountryCache.get(country)!;
+  }
+
   const cities = new Set<string>();
-  for (const category of programCategories) {
-    for (const program of category.programs) {
-      const [city, programCountry] = program.location.split(' - ');
-      if (programCountry === country) {
-        cities.add(city);
-      }
+  for (const program of getAllPrograms()) {
+    const [city, programCountry] = getLocationParts(program.location);
+    if (programCountry === country) {
+      cities.add(city);
     }
   }
-  return Array.from(cities);
+
+  const result = Array.from(cities);
+  citiesByCountryCache.set(country, result);
+  return result;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchProgramByName, fetchRelatedPrograms } from '../api';
 import type { Program } from '../data/programs';
@@ -7,35 +7,23 @@ import GalleryModal from '../components/GalleryModal';
 import { ChevronLeft, ChevronRight, Calendar, Utensils, Bed, CalendarDays, Mountain, Dumbbell, HeartPulse, Leaf, Sun, Moon, Waves, Bike } from 'lucide-react';
 import '../styles/ProgramDetailsPage.css';
 
-interface LocationState {
-  programName: string;
-}
-
-interface SectionRefs {
-  overview: React.RefObject<HTMLDivElement>;
-  included: React.RefObject<HTMLDivElement>;
-  offers: React.RefObject<HTMLDivElement>;
-  events: React.RefObject<HTMLDivElement>;
-  schedule: React.RefObject<HTMLDivElement>;
-  gallery: React.RefObject<HTMLDivElement>;
-  location: React.RefObject<HTMLDivElement>;
-}
-
 const ProgramDetailsPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [program, setProgram] = useState<Program | null>(null);
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [showGalleryModal, setShowGalleryModal] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>('overview');
-  const [isNavSticky, setIsNavSticky] = useState<boolean>(false);
-  const [currentIncludedIndex, setCurrentIncludedIndex] = useState<number>(0);
+  const [activeSection, setActiveSection] = useState('overview');
+  const [isNavSticky, setIsNavSticky] = useState(false);
+  const [currentIncludedIndex, setCurrentIncludedIndex] = useState(0);
   const [relatedPrograms, setRelatedPrograms] = useState<Program[]>([]);
-  const [currentEventSlide, setCurrentEventSlide] = useState<number>(0);
+  const [currentEventSlide, setCurrentEventSlide] = useState(0);
   const [currentMobileIncludedSlide, setCurrentMobileIncludedSlide] = useState(0);
   const [currentMobileEventSlide, setCurrentMobileEventSlide] = useState(0);
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
+  const [lastScrollPosition, setLastScrollPosition] = useState(0);
   
-  // Refs for navigation and sections
+  // Initialize refs with proper null values
   const sectionNavRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const overviewRef = useRef<HTMLDivElement>(null);
@@ -45,18 +33,32 @@ const ProgramDetailsPage: React.FC = () => {
   const scheduleRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const locationRef = useRef<HTMLDivElement>(null);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const scrollRequestRef = useRef<number | null>(null);
 
-  const sectionRefs: SectionRefs = {
-    overview: overviewRef as React.RefObject<HTMLDivElement>,
-    included: includedRef as React.RefObject<HTMLDivElement>,
-    offers: offersRef as React.RefObject<HTMLDivElement>,
-    events: eventsRef as React.RefObject<HTMLDivElement>,
-    schedule: scheduleRef as React.RefObject<HTMLDivElement>,
-    gallery: galleryRef as React.RefObject<HTMLDivElement>,
-    location: locationRef as React.RefObject<HTMLDivElement>
-  };
+  const sectionRefs = useRef({
+    overview: overviewRef,
+    included: includedRef,
+    offers: offersRef,
+    events: eventsRef,
+    schedule: scheduleRef,
+    gallery: galleryRef,
+    location: locationRef
+  }).current;
 
-  const getIncludeIcon = (title: string) => {
+  const preloadImages = useCallback((imageUrls: string[]) => {
+    imageUrls.forEach(url => {
+      if (!loadedImages.has(url)) {
+        const img = new Image();
+        img.src = url;
+        img.onload = () => {
+          setLoadedImages(prev => new Set(prev).add(url));
+        };
+      }
+    });
+  }, [loadedImages]);
+
+  const getIncludeIcon = useCallback((title: string) => {
     const lowerTitle = title.toLowerCase();
     if (lowerTitle.includes('dining') || lowerTitle.includes('chef') || lowerTitle.includes('food')) {
       return <Utensils size={20} />;
@@ -84,11 +86,12 @@ const ProgramDetailsPage: React.FC = () => {
       return <Bike size={20} />;
     }
     return <Utensils size={20} />;
-  };
+  }, []);
 
+  // Load program data
   useEffect(() => {
-    const state = location.state as LocationState;
-    if (!state || !state.programName) {
+    const state = location.state as { programName: string };
+    if (!state?.programName) {
       navigate('/explore');
       return;
     }
@@ -98,38 +101,66 @@ const ProgramDetailsPage: React.FC = () => {
         const foundProgram = await fetchProgramByName(state.programName);
         if (foundProgram) {
           setProgram(foundProgram);
+          // Preload images as soon as we have the program data
+          if (foundProgram.imageGallery) {
+            preloadImages(foundProgram.imageGallery);
+          }
           const related = await fetchRelatedPrograms(foundProgram);
           setRelatedPrograms(related);
+          // Preload related program images
+          related.forEach(p => {
+            if (p.imageGallery?.[0]) {
+              preloadImages([p.imageGallery[0]]);
+            }
+          });
         } else {
           navigate('/explore');
         }
       } catch (error) {
-        console.error('Error loading program:', error);
         navigate('/explore');
       }
     };
 
     loadProgram();
-  }, [location.state, navigate]);
+  }, [location.state, navigate, preloadImages]);
 
-  useEffect(() => {
-    const handleScroll = () => {
+  const handleScroll = useCallback(() => {
+    if (scrollRequestRef.current) {
+      cancelAnimationFrame(scrollRequestRef.current);
+    }
+
+    scrollRequestRef.current = requestAnimationFrame(() => {
       const mainNavHeight = 80;
       const sectionNavHeight = sectionNavRef.current?.offsetHeight ?? 0;
       const offset = mainNavHeight + sectionNavHeight + 10;
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollDirection = scrollTop > lastScrollPosition ? 'down' : 'up';
+      setLastScrollPosition(scrollTop);
 
       if (sectionNavRef.current && heroRef.current) {
         const heroBottom = heroRef.current.offsetTop + heroRef.current.offsetHeight;
-        setIsNavSticky(scrollTop >= (heroBottom - mainNavHeight));
+        const shouldBeSticky = scrollTop >= (heroBottom - mainNavHeight);
+        
+        if (shouldBeSticky !== isNavSticky) {
+          setIsNavSticky(shouldBeSticky);
+        }
+
+        // Smooth transition for the sticky nav
+        if (scrollDirection === 'down' && shouldBeSticky) {
+          sectionNavRef.current.style.transform = 'translateY(0)';
+          sectionNavRef.current.style.opacity = '1';
+        } else if (scrollDirection === 'up' && !shouldBeSticky) {
+          sectionNavRef.current.style.transform = 'translateY(-100%)';
+          sectionNavRef.current.style.opacity = '0';
+        }
       }
 
       let currentActiveSection = 'overview';
       for (const sectionId in sectionRefs) {
-        const ref = sectionRefs[sectionId as keyof SectionRefs];
-        if (ref.current) {
-          const sectionTop = ref.current.offsetTop;
-          const sectionBottom = sectionTop + ref.current.offsetHeight;
+        const ref = sectionRefs[sectionId as keyof typeof sectionRefs].current;
+        if (ref) {
+          const sectionTop = ref.offsetTop;
+          const sectionBottom = sectionTop + ref.offsetHeight;
           if (scrollTop + offset >= sectionTop && scrollTop + offset < sectionBottom) {
             currentActiveSection = sectionId;
             break;
@@ -137,84 +168,111 @@ const ProgramDetailsPage: React.FC = () => {
         }
       }
       setActiveSection(currentActiveSection);
-    };
+    });
+  }, [isNavSticky, sectionRefs, lastScrollPosition]);
 
+  useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [program]);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollRequestRef.current) {
+        cancelAnimationFrame(scrollRequestRef.current);
+      }
+    };
+  }, [handleScroll]);
 
   useEffect(() => {
     if (!program?.includes) return;
-
     const interval = setInterval(() => {
       setCurrentIncludedIndex(prev => (prev + 1) % program.includes!.length);
     }, 4000);
-
     return () => clearInterval(interval);
   }, [program]);
 
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = useCallback((sectionId: string) => {
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+
     const element = document.getElementById(sectionId);
     if (element) {
       const mainNavHeight = 80;
       const sectionNavHeight = 60;
       const offset = mainNavHeight + sectionNavHeight + 20;
+      const targetPosition = element.offsetTop - offset;
+
       window.scrollTo({
-        top: element.offsetTop - offset,
+        top: targetPosition,
         behavior: 'smooth'
       });
-      setActiveSection(sectionId);
-    }
-  };
 
-  const nextMobileIncludedSlide = () => {
+      scrollTimeoutRef.current = setTimeout(() => {
+        setActiveSection(sectionId);
+      }, 300);
+    }
+  }, []);
+
+  const nextMobileIncludedSlide = useCallback(() => {
     if (!program?.includes) return;
     setCurrentMobileIncludedSlide(prev => 
       prev === program.includes!.length - 1 ? 0 : prev + 1
     );
-  };
+  }, [program]);
 
-  const prevMobileIncludedSlide = () => {
+  const prevMobileIncludedSlide = useCallback(() => {
     if (!program?.includes) return;
     setCurrentMobileIncludedSlide(prev => 
       prev === 0 ? program.includes!.length - 1 : prev - 1
     );
-  };
+  }, [program]);
 
-  const nextMobileEventSlide = () => {
+  const nextMobileEventSlide = useCallback(() => {
     if (!relatedPrograms.length) return;
     setCurrentMobileEventSlide(prev => 
       prev === relatedPrograms.length - 1 ? 0 : prev + 1
     );
-  };
+  }, [relatedPrograms]);
 
-  const prevMobileEventSlide = () => {
+  const prevMobileEventSlide = useCallback(() => {
     if (!relatedPrograms.length) return;
     setCurrentMobileEventSlide(prev => 
       prev === 0 ? relatedPrograms.length - 1 : prev - 1
     );
-  };
+  }, [relatedPrograms]);
 
-  const nextEventSlide = () => {
+  const nextEventSlide = useCallback(() => {
     if (!relatedPrograms.length) return;
     const cardsPerView = window.innerWidth <= 576 ? 1 : window.innerWidth <= 1024 ? 3 : 4;
     setCurrentEventSlide(prev => 
       prev >= relatedPrograms.length - cardsPerView ? 0 : prev + 1
     );
-  };
+  }, [relatedPrograms]);
 
-  const prevEventSlide = () => {
+  const prevEventSlide = useCallback(() => {
     if (!relatedPrograms.length) return;
     const cardsPerView = window.innerWidth <= 576 ? 1 : window.innerWidth <= 1024 ? 3 : 4;
     setCurrentEventSlide(prev => 
       prev === 0 ? relatedPrograms.length - cardsPerView : prev - 1
     );
-  };
+  }, [relatedPrograms]);
 
-  const goToEventSlide = (index: number) => {
+  const goToEventSlide = useCallback((index: number) => {
     setCurrentEventSlide(index);
-  };
+  }, []);
+
+  const handleEventCardClick = useCallback((programName: string) => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    
+    setTimeout(() => {
+      navigate('/program-details', { 
+        state: { programName }
+      });
+    }, 300); 
+  }, [navigate]);
 
   if (!program) {
     return (
@@ -224,20 +282,6 @@ const ProgramDetailsPage: React.FC = () => {
     );
   }
 
-// Inside ProgramDetailsPage component
-const handleEventCardClick = (programName: string) => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-  
-  setTimeout(() => {
-    navigate('/program-details', { 
-      state: { programName }
-    });
-  }, 300); 
-};
-
   return (
     <div className="program-details-page">
       <section ref={heroRef} className="hero-section">
@@ -246,6 +290,8 @@ const handleEventCardClick = (programName: string) => {
             src={program.imageGallery?.[0] || "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=1200"}
             alt={program.name}
             className="hero-image"
+            loading="lazy"
+            decoding="async"
           />
           <div className="hero-overlay">
             <div className="hero-content">
@@ -256,29 +302,32 @@ const handleEventCardClick = (programName: string) => {
         </div>
       </section>
 
-      <nav ref={sectionNavRef} className={`section-navigation ${isNavSticky ? 'sticky' : ''}`}>
+      <nav 
+        ref={sectionNavRef} 
+        className={`section-navigation ${isNavSticky ? 'sticky' : ''}`}
+        style={{
+          transition: 'transform 0.3s ease-out, opacity 0.3s ease-out',
+          willChange: 'transform, opacity',
+          transform: isNavSticky ? 'translateY(0)' : 'translateY(-100%)',
+          opacity: isNavSticky ? 1 : 0
+        }}
+      >
         <div className="section-nav-container">
-          <button className={activeSection === 'overview' ? 'active' : ''} onClick={() => scrollToSection('overview')}>
-            ABOUT PROGRAM
-          </button>
-          <button className={activeSection === 'included' ? 'active' : ''} onClick={() => scrollToSection('included')}>
-            WHAT'S INCLUDED
-          </button>
-          <button className={activeSection === 'offers' ? 'active' : ''} onClick={() => scrollToSection('offers')}>
-            SPECIAL OFFERS
-          </button>
-          <button className={activeSection === 'events' ? 'active' : ''} onClick={() => scrollToSection('events')}>
-            EVENTS & RETREATS
-          </button>
-          <button className={activeSection === 'schedule' ? 'active' : ''} onClick={() => scrollToSection('schedule')}>
-            DAILY SCHEDULE
-          </button>
-          <button className={activeSection === 'gallery' ? 'active' : ''} onClick={() => scrollToSection('gallery')}>
-            GALLERY
-          </button>
-          <button className={activeSection === 'location' ? 'active' : ''} onClick={() => scrollToSection('location')}>
-            ARRIVAL
-          </button>
+          {Object.keys(sectionRefs).map((section) => (
+            <button 
+              key={section}
+              className={activeSection === section ? 'active' : ''} 
+              onClick={() => scrollToSection(section)}
+            >
+              {section === 'overview' && 'ABOUT PROGRAM'}
+              {section === 'included' && "WHAT'S INCLUDED"}
+              {section === 'offers' && 'SPECIAL OFFERS'}
+              {section === 'events' && 'EVENTS & RETREATS'}
+              {section === 'schedule' && 'DAILY SCHEDULE'}
+              {section === 'gallery' && 'GALLERY'}
+              {section === 'location' && 'ARRIVAL'}
+            </button>
+          ))}
         </div>
       </nav>
 
@@ -298,13 +347,13 @@ const handleEventCardClick = (programName: string) => {
                 {program.imageGallery?.[0] && program.imageGallery?.[1] && program.imageGallery?.[2] ? (
                   <div className="image-grid-special">
                     <div className="image-item left-image">
-                      <img src={program.imageGallery[0]} alt="Program feature left" />
+                      <img src={program.imageGallery[0]} alt="Program feature left" loading="lazy" decoding="async" />
                     </div>
                     <div className="image-item center-image">
-                      <img src={program.imageGallery[1]} alt="Program feature center" />
+                      <img src={program.imageGallery[1]} alt="Program feature center" loading="lazy" decoding="async" />
                     </div>
                     <div className="image-item right-image">
-                      <img src={program.imageGallery[2]} alt="Program feature right" />
+                      <img src={program.imageGallery[2]} alt="Program feature right" loading="lazy" decoding="async" />
                     </div>
                   </div>
                 ) : (
@@ -395,6 +444,8 @@ const handleEventCardClick = (programName: string) => {
                       src={program.imageGallery?.[currentIncludedIndex + 8] || "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=800"}
                       alt={program.includes[currentIncludedIndex].title}
                       className="included-image"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                   
@@ -421,7 +472,8 @@ const handleEventCardClick = (programName: string) => {
                   <div 
                     className="mobile-included-slides"
                     style={{
-                      transform: `translateX(-${currentMobileIncludedSlide * 100}%)`
+                      transform: `translateX(-${currentMobileIncludedSlide * 100}%)`,
+                      transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
                     }}
                   >
                     {program.includes.map((item, index) => (
@@ -432,6 +484,8 @@ const handleEventCardClick = (programName: string) => {
                               src={program.imageGallery?.[index + 8] || "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=800"}
                               alt={item.title}
                               className="mobile-included-image"
+                              loading="lazy"
+                              decoding="async"
                             />
                           </div>
                           <div className="mobile-included-content">
@@ -485,14 +539,14 @@ const handleEventCardClick = (programName: string) => {
           <p className="section-subtitle">Explore limited-time offers to help you enjoy your perfect getaway</p>
           <div className="offers-grid">
             <div className="offer-card">
-              <img src={program.imageGallery?.[9] || "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=600"} alt="Early Bird Special" />
+              <img src={program.imageGallery?.[9] || "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=600"} alt="Early Bird Special" loading="lazy" decoding="async" />
               <div className="offer-content">
                 <h3>Big Ultimate Mindful Yoga Experience</h3>
                 <p>Enjoy a 3-day yoga retreat</p>
               </div>
             </div>
             <div className="offer-card">
-              <img src={program.imageGallery?.[10] || "https://images.pexels.com/photos/6787202/pexels-photo-6787202.jpeg?auto=compress&cs=tinysrgb&w=600"} alt="Extended Stay Discount" />
+              <img src={program.imageGallery?.[10] || "https://images.pexels.com/photos/6787202/pexels-photo-6787202.jpeg?auto=compress&cs=tinysrgb&w=600"} alt="Extended Stay Discount" loading="lazy" decoding="async" />
               <div className="offer-content">
                 <h3>Spa Fitness Getaway</h3>
                 <p>Enjoy a 3-day spa retreat</p>
@@ -500,174 +554,168 @@ const handleEventCardClick = (programName: string) => {
             </div>
           </div>
         </section>
-        
 
+        <section id="events" ref={eventsRef} className="content-section events-section">
+          <div className="events-header">
+            <h2 className="section-title">EVENTS & RETREATS</h2>
+            <p className="section-subtitle">Gain fresh perspectives on physical, spiritual, and mental wellness</p>
+          </div>
 
-<section id="events" ref={eventsRef} className="content-section events-section">
-  <div className="events-header">
-    <h2 className="section-title">EVENTS & RETREATS</h2>
-    <p className="section-subtitle">Gain fresh perspectives on physical, spiritual, and mental wellness</p>
-  </div>
-
-  {/* Desktop View */}
-  <div className="desktop-events-view">
-    <div className="events-slider-container">
-      <button
-        className="slider-nav-btn slider-nav-prev"
-        onClick={prevEventSlide}
-      >
-        <ChevronLeft size={24} />
-      </button>
-      <div className="events-slider-wrapper">
-        <div
-          className={`events-slider ${relatedPrograms.length <= 2 ? 'display-two-cards-desktop' : 'display-five-cards-desktop'}`}
-          style={{
-            transform: `translateX(-${currentEventSlide * (100 / (relatedPrograms.length <= 2 ? 2 : 5))}%)`
-          }}
-        >
-          {relatedPrograms.map((program, index) => (
-            <div 
-              key={index} 
-              className="event-slide-card"
-              onClick={() => handleEventCardClick(program.name)}
-              style={{ cursor: 'pointer' }}
-            >
-              <div className="event-card-image">
-                <img src={program.imageGallery?.[0] || "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=400"} alt={program.name} />
-                <div className="event-card-overlay">
-                  <div className="event-badge" style={{ backgroundColor: index % 2 === 0 ? '#D97706' : '#DC2626' }}>
-                    {index % 2 === 0 ? 'GUEST EXPERT' : 'SIGNATURE EVENT'}
-                  </div>
-                  <div className="event-location">{program.location.split(' - ')[0].toUpperCase()}</div>
-                  <h3 className="event-title">{program.name.toUpperCase()}</h3>
-                  <p className="event-description">{program.description || 'A transformative wellness experience'}</p>
-                  <div className="event-date">
-                    <Calendar size={16} />
-                    <span>{program.duration || 'Contact for details'}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      <button
-        className="slider-nav-btn slider-nav-next"
-        onClick={nextEventSlide}
-      >
-        <ChevronRight size={24} />
-      </button>
-    </div>
-    <div className="slider-pagination">
-      {Array.from({ length: Math.ceil(relatedPrograms.length / (relatedPrograms.length <= 2 ? 2 : 5)) }).map((_, index) => (
-        <button
-          key={index}
-          className={`slider-dot ${Math.floor(currentEventSlide / (relatedPrograms.length <= 2 ? 2 : 5)) === index ? 'active' : ''}`}
-          onClick={() => goToEventSlide(index * (relatedPrograms.length <= 2 ? 2 : 5))}
-        />
-      ))}
-    </div>
-  </div>
-
-  {/* Mobile View */}
-  <div className="mobile-events-view">
-    {relatedPrograms.length > 0 ? (
-      <div className="mobile-events-slider">
-        <div className="mobile-events-slider-container">
-          <div
-            className="mobile-events-slides"
-            style={{
-              transform: `translateX(-${currentMobileEventSlide * 100}%)`
-            }}
-          >
-            {relatedPrograms.map((program, index) => (
-              <div 
-                key={index} 
-                className="mobile-events-slide"
-                onClick={() => handleEventCardClick(program.name)}
-                style={{ cursor: 'pointer' }}
+          <div className="desktop-events-view">
+            <div className="events-slider-container">
+              <button
+                className="slider-nav-btn slider-nav-prev"
+                onClick={prevEventSlide}
               >
-                <div className="mobile-events-card">
-                  <div className="mobile-events-image-container">
-                    <img
-                      src={program.imageGallery?.[0] || "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=400"}
-                      alt={program.name}
-                      className="mobile-events-image"
-                    />
-                    <div className="mobile-events-overlay">
-                      <div className="mobile-events-badge" style={{ backgroundColor: index % 2 === 0 ? '#D97706' : '#DC2626' }}>
-                        {index % 2 === 0 ? 'GUEST EXPERT' : 'SIGNATURE EVENT'}
-                      </div>
-                      <div className="mobile-events-location">{program.location.split(' - ')[0].toUpperCase()}</div>
-                      <h3 className="mobile-events-title">{program.name.toUpperCase()}</h3>
-                      <p className="mobile-events-description">{program.description || 'A transformative wellness experience'}</p>
-                      <div className="mobile-events-date">
-                        <Calendar size={16} />
-                        <span>{program.duration || 'Contact for details'}</span>
+                <ChevronLeft size={24} />
+              </button>
+              <div className="events-slider-wrapper">
+                <div
+                  className={`events-slider ${relatedPrograms.length <= 2 ? 'display-two-cards-desktop' : 'display-five-cards-desktop'}`}
+                  style={{
+                    transform: `translateX(-${currentEventSlide * (100 / (relatedPrograms.length <= 2 ? 2 : 5))}%)`,
+                    transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+                  }}
+                >
+                  {relatedPrograms.map((program, index) => (
+                    <div 
+                      key={index} 
+                      className="event-slide-card"
+                      onClick={() => handleEventCardClick(program.name)}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <div className="event-card-image">
+                        <img src={program.imageGallery?.[0] || "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=400"} alt={program.name} loading="lazy" decoding="async" />
+                        <div className="event-card-overlay">
+                          <div className="event-badge" style={{ backgroundColor: index % 2 === 0 ? '#D97706' : '#DC2626' }}>
+                            {index % 2 === 0 ? 'GUEST EXPERT' : 'SIGNATURE EVENT'}
+                          </div>
+                          <div className="event-location">{program.location.split(' - ')[0].toUpperCase()}</div>
+                          <h3 className="event-title">{program.name.toUpperCase()}</h3>
+                          <p className="event-description">{program.description || 'A transformative wellness experience'}</p>
+                          <div className="event-date">
+                            <Calendar size={16} />
+                            <span>{program.duration || 'Contact for details'}</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-        <div className="mobile-events-nav">
-          <button
-            className="mobile-events-prev"
-            onClick={prevMobileEventSlide}
-          >
-            <ChevronLeft size={24} />
-          </button>
-          <div className="mobile-events-dots">
-            {relatedPrograms.map((_, index) => (
               <button
-                key={index}
-                className={`mobile-events-dot ${currentMobileEventSlide === index ? 'active' : ''}`}
-                onClick={() => setCurrentMobileEventSlide(index)}
-              />
-            ))}
+                className="slider-nav-btn slider-nav-next"
+                onClick={nextEventSlide}
+              >
+                <ChevronRight size={24} />
+              </button>
+            </div>
+            <div className="slider-pagination">
+              {Array.from({ length: Math.ceil(relatedPrograms.length / (relatedPrograms.length <= 2 ? 2 : 5)) }).map((_, index) => (
+                <button
+                  key={index}
+                  className={`slider-dot ${Math.floor(currentEventSlide / (relatedPrograms.length <= 2 ? 2 : 5)) === index ? 'active' : ''}`}
+                  onClick={() => goToEventSlide(index * (relatedPrograms.length <= 2 ? 2 : 5))}
+                />
+              ))}
+            </div>
           </div>
-          <button
-            className="mobile-events-next"
-            onClick={nextMobileEventSlide}
-          >
-            <ChevronRight size={24} />
-          </button>
-        </div>
-      </div>
-    ) : (
-      <div className="no-events">
-        <p>No related events or retreats found.</p>
-      </div>
-    )}
-  </div>
-</section>
 
-
-
-
-
-        
+          <div className="mobile-events-view">
+            {relatedPrograms.length > 0 ? (
+              <div className="mobile-events-slider">
+                <div className="mobile-events-slider-container">
+                  <div
+                    className="mobile-events-slides"
+                    style={{
+                      transform: `translateX(-${currentMobileEventSlide * 100}%)`,
+                      transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+                    }}
+                  >
+                    {relatedPrograms.map((program, index) => (
+                      <div 
+                        key={index} 
+                        className="mobile-events-slide"
+                        onClick={() => handleEventCardClick(program.name)}
+                        style={{ cursor: 'pointer' }}
+                      >
+                        <div className="mobile-events-card">
+                          <div className="mobile-events-image-container">
+                            <img
+                              src={program.imageGallery?.[0] || "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=400"}
+                              alt={program.name}
+                              className="mobile-events-image"
+                              loading="lazy"
+                              decoding="async"
+                            />
+                            <div className="mobile-events-overlay">
+                              <div className="mobile-events-badge" style={{ backgroundColor: index % 2 === 0 ? '#D97706' : '#DC2626' }}>
+                                {index % 2 === 0 ? 'GUEST EXPERT' : 'SIGNATURE EVENT'}
+                              </div>
+                              <div className="mobile-events-location">{program.location.split(' - ')[0].toUpperCase()}</div>
+                              <h3 className="mobile-events-title">{program.name.toUpperCase()}</h3>
+                              <p className="mobile-events-description">{program.description || 'A transformative wellness experience'}</p>
+                              <div className="mobile-events-date">
+                                <Calendar size={16} />
+                                <span>{program.duration || 'Contact for details'}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mobile-events-nav">
+                  <button
+                    className="mobile-events-prev"
+                    onClick={prevMobileEventSlide}
+                  >
+                    <ChevronLeft size={24} />
+                  </button>
+                  <div className="mobile-events-dots">
+                    {relatedPrograms.map((_, index) => (
+                      <button
+                        key={index}
+                        className={`mobile-events-dot ${currentMobileEventSlide === index ? 'active' : ''}`}
+                        onClick={() => setCurrentMobileEventSlide(index)}
+                      />
+                    ))}
+                  </div>
+                  <button
+                    className="mobile-events-next"
+                    onClick={nextMobileEventSlide}
+                  >
+                    <ChevronRight size={24} />
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="no-events">
+                <p>No related events or retreats found.</p>
+              </div>
+            )}
+          </div>
+        </section>
 
         <section id="schedule" ref={scheduleRef} className="content-section schedule-section">
           <h2 className="section-title">DAILY SCHEDULE</h2>
           <p className="section-subtitle">Choose from over 40 daily organized resort activities, with three included in your stay</p>
           <div className="schedule-grid">
             <div className="schedule-card">
-              <img src={program.imageGallery?.[11] || "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&w=400"} alt="Fitness Classes" />
+              <img src={program.imageGallery?.[11] || "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&w=400"} alt="Fitness Classes" loading="lazy" decoding="async" />
               <h3>Fitness Classes + Outdoor Activities</h3>
             </div>
             <div className="schedule-card">
-              <img src={program.imageGallery?.[12] || "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=400"} alt="Clinics & Workshops" />
+              <img src={program.imageGallery?.[12] || "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=400"} alt="Clinics & Workshops" loading="lazy" decoding="async" />
               <h3>Clinics & Workshops</h3>
             </div>
             <div className="schedule-card">
-              <img src={program.imageGallery?.[13] || "https://images.pexels.com/photos/7659567/pexels-photo-7659567.jpeg?auto=compress&cs=tinysrgb&w=400"} alt="Gatherings & Experiences" />
+              <img src={program.imageGallery?.[13] || "https://images.pexels.com/photos/7659567/pexels-photo-7659567.jpeg?auto=compress&cs=tinysrgb&w=400"} alt="Gatherings & Experiences" loading="lazy" decoding="async" />
               <h3>Gatherings & Experiences</h3>
             </div>
             <div className="schedule-card">
-              <img src={program.imageGallery?.[14] || "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400"} alt="View All Activities" />
+              <img src={program.imageGallery?.[14] || "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400"} alt="View All Activities" loading="lazy" decoding="async" />
               <h3>View All Activities</h3>
             </div>
           </div>
@@ -676,9 +724,9 @@ const handleEventCardClick = (programName: string) => {
         <section id="gallery" ref={galleryRef} className="content-section gallery-section">
           <div className="gallery-hero">
             {program.imageGallery && program.imageGallery.length > 0 ? (
-              <img src={program.imageGallery[0]} alt="Program Highlights" />
+              <img src={program.imageGallery[0]} alt="Program Highlights" loading="lazy" decoding="async" />
             ) : (
-              <img src="https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Program Highlights" />
+              <img src="https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Program Highlights" loading="lazy" decoding="async" />
             )}
             <div className="gallery-overlay">
               <h2 className="gallery-title">{program.location.split(' - ')[0].toUpperCase()} HIGHLIGHTS</h2>

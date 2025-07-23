@@ -1,10 +1,11 @@
+// destinations.ts
 export interface Destination {
   country: string;
   cities: string[];
   image: string;
 }
 
-export const destinations: Destination[] = [
+const destinationsData: Destination[] = [
   {
     country: "USA",
     cities: ["Tucson", "Lenox", "Sedona", "Palm Springs", "Aspen", "Malibu"],
@@ -51,3 +52,28 @@ export const destinations: Destination[] = [
     image: "https://images.pexels.com/photos/2166553/pexels-photo-2166553.jpeg?auto=compress&cs=tinysrgb&w=1200"
   }
 ];
+
+let destinationsCache: Destination[] | null = null;
+
+export function getDestinations(): Destination[] {
+  if (!destinationsCache) {
+    destinationsCache = [...destinationsData];
+  }
+  return destinationsCache;
+}
+
+export function getCountries(): string[] {
+  return getDestinations().map(d => d.country);
+}
+
+export function getCitiesByCountry(country: string): string[] {
+  const destination = getDestinations().find(d => d.country === country);
+  return destination ? destination.cities : [];
+}
+
+export function getDestinationByCountry(country: string): Destination | undefined {
+  return getDestinations().find(d => d.country === country);
+}
+
+// Export the raw data if needed
+export const destinations = destinationsData;

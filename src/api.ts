@@ -2,6 +2,11 @@
 import axios from 'axios';
 import { destinations, type Destination } from './data/destinations';
 import { getProgramByName, getProgramsByLocation, programCategories, type Program, type ProgramCategory } from './data/programs';
+// import { sampleExperts, type Expert } from './data/experts';
+
+import { sampleFAQs, type FAQ } from './data/faq';
+
+
 
 // For temporary frontend-only solution, use a direct URL or empty string
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ''; // Fallback to empty string if not defined
@@ -95,4 +100,17 @@ export const fetchRelatedPrograms = async (currentProgram: Program): Promise<Pro
     const [city, country] = currentProgram.location.split(' - ');
     return getProgramsByLocation(country, city).filter(p => p.name !== currentProgram.name);
   }
+};
+
+
+
+
+// Function to fetch experts with fallback
+// export const fetchExperts = async (): Promise<Expert[]> => {
+//   return fetchWithFallback('/experts', sampleExperts);
+// };
+
+
+export const fetchFAQs = async (): Promise<FAQ[]> => {
+  return fetchWithFallback('/faqs', sampleFAQs);
 };

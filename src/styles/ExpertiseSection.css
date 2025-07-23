@@ -173,3 +173,47 @@
     height: 100px;
   }
 }
+
+
+
+
+
+/* Add to ExpertiseSection.css */
+
+.experts-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.expert-card {
+  text-align: center;
+  transition: transform 0.3s ease;
+  width: 200px;
+}
+
+.name-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.linkedin-link {
+  color: #8B7C6E;
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.linkedin-link:hover {
+  transform: scale(1.1);
+}
+
+.linkedin-icon {
+  font-size: 18px;
+}
