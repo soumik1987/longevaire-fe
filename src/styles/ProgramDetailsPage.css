@@ -393,165 +393,9 @@
   text-align: center;
 }
 
-.journey-section {
-  padding: 20px;
-  background-color: #F5E6E3;
-  width: 100vw;
-  min-height: 100vh;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 40px;
-}
-
-.journey-section .section-header {
-  width: 100%;
-  max-width: 1200px;
-  padding: 40px 20px 20px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.journey-section .section-title {
-  font-size: 42px;
-  letter-spacing: 2px;
-  color: #333;
-  margin-bottom: 10px;
-  font-weight: 400;
-  text-transform: uppercase;
-  position: relative;
-  padding-bottom: 15px;
-  display: inline-block;
-}
-
-.journey-section .section-title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 2px;
-  background-color: #8B5A2B;
-}
-
-.journey-section .section-subtitle {
-  font-size: 16px;
-  color: #666;
-  margin-top: 20px;
-  margin-bottom: 40px;
-  font-weight: 300;
-  text-align: center;
-}
-
-.journey-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  width: 100%;
-}
-
-.journey-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-  height: 400px;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.journey-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-  transform: scale(1);
-}
-
-.journey-card h3 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 20px;
-  margin: 0;
-  color: #333;
-  font-size: 18px;
-  font-weight: 400;
-  text-align: left;
-  background-color: white;
-  transform: translateY(0);
-  opacity: 1;
-  transition: all 0.3s ease, background-color 0.3s ease, color 0.3s ease;
-  box-shadow: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.journey-card h3::after {
-  content: "→";
-  font-size: 24px;
-  color: white;
-  margin-left: 10px;
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: all 0.3s ease;
-}
-
-.journey-card:hover {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.journey-card:hover img {
-  transform: scale(1.05);
-}
-
-.journey-card:hover h3 {
-  color: white;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-  transform: translateY(0);
-  opacity: 1;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-}
-
-.journey-card:hover h3::after {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-@media (max-width: 1024px) {
-  .journey-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .journey-grid {
-    grid-template-columns: 1fr;
-    padding: 0 15px;
-  }
-
-  .journey-card {
-    height: 200px;
-  }
-}
-
-/* ProgramDetailsPage.css (included section styles) */
-/* Keep your existing layout but update title & subtitle styles */
 .included-section {
   padding: 60px 0;
-  background-color: #fff; /* Keep white background */
+  background-color: #fff;
 }
 
 .included-header {
@@ -559,7 +403,6 @@
   margin-bottom: 40px;
 }
 
-/* Updated to match journey-section title style */
 .included-header .section-title {
   font-size: 42px;
   letter-spacing: 2px;
@@ -572,7 +415,6 @@
   display: inline-block;
 }
 
-/* Add the underline (same as journey-section) */
 .included-header .section-title::after {
   content: '';
   position: absolute;
@@ -584,12 +426,11 @@
   background-color: #8B5A2B;
 }
 
-/* Updated to match journey-section subtitle style */
 .included-header .section-subtitle {
   font-size: 16px;
   color: #666;
   max-width: 800px;
-  margin: 20px auto 40px; /* Adjusted to match journey spacing */
+  margin: 20px auto 40px;
   font-weight: 300;
 }
 
@@ -678,19 +519,19 @@
   width: 100%;
 }
 
-.progress-bar {
+.progress-bar-include {
   height: 2px;
   background-color: #e0e0e0;
   margin-top: 10px;
   width: 100%;
 }
 
-.progress-fill {
+.progress-fill-include {
   height: 100%;
   background-color: #8B5A2B;
-  width: 100%;
+  width: 70%;
   animation: progress 4s linear infinite;
-}
+} 
 
 .feature-toggle {
   font-size: 1.2rem;
@@ -745,6 +586,155 @@
 @keyframes progress {
   0% { width: 0; }
   100% { width: 100%; }
+}
+
+.mobile-included-view {
+  display: none;
+}
+
+.mobile-included-slider {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.mobile-included-slider-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.mobile-included-slides {
+  display: flex;
+  transition: transform 0.5s ease;
+  width: 100%;
+}
+
+.mobile-included-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+
+.mobile-included-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-included-image-container {
+  height: 250px;
+  overflow: hidden;
+}
+
+.mobile-included-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mobile-included-content {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-included-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.mobile-included-icon {
+  margin-right: 10px;
+  color: #8B5A2B;
+}
+
+.mobile-included-content h3 {
+  font-size: 1.2rem;
+  margin: 0;
+  color: #333;
+}
+
+.mobile-included-description {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+.mobile-included-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 15px;
+}
+
+.mobile-included-prev,
+.mobile-included-next {
+  background: none;
+  border: 1px solid #8B5A2B;
+  color: #8B5A2B;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mobile-included-prev:hover,
+.mobile-included-next:hover {
+  background-color: #8B5A2B;
+  color: white;
+}
+
+.mobile-included-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.mobile-included-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mobile-included-dot.active {
+  background-color: #8B5A2B;
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .desktop-included-view {
+    display: none;
+  }
+  
+  .mobile-included-view {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-included-view {
+    display: none;
+  }
+  
+  .desktop-included-view {
+    display: block;
+  }
 }
 
 .offers-section {
@@ -1100,25 +1090,27 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 3.125rem;
-  height: 3.125rem;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
-  border: none;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  background: none;
+  border: 1px solid #8B5A2B;
+  color: #8B5A2B;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 10;
   transition: all 0.3s ease;
-  color: white;
-  font-size: 1.5rem;
 }
 
 .slider-nav-btn:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-50%) scale(1.1);
+  background-color: #8B5A2B;
+  color: white;
+}
+
+.slider-nav-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .slider-nav-prev {
@@ -1132,27 +1124,195 @@
 .slider-pagination {
   display: flex;
   justify-content: center;
-  margin-top: 40px;
-  gap: 10px;
+  margin-top: 20px;
+  gap: 8px;
 }
 
 .pagination-dot {
   width: 10px;
   height: 10px;
-  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 50%;
+  background-color: #ddd;
+  border: none;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .pagination-dot.active {
   background-color: #8B5A2B;
-  width: 30px;
-  border-radius: 5px;
+  transform: scale(1.2);
 }
 
 .event-slide-card:hover .event-card-image img {
   transform: scale(1.05);
+}
+
+.desktop-events-view {
+  display: block;
+}
+
+.mobile-events-view {
+  display: none;
+}
+
+.mobile-events-slider {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.mobile-events-slider-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.mobile-events-slides {
+  display: flex;
+  transition: transform 0.5s ease;
+  width: 100%;
+}
+
+.mobile-events-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+
+.mobile-events-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-events-image-container {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.mobile-events-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mobile-events-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 0.3125rem 0.9375rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background-color: #D97706;
+  color: white;
+}
+
+.mobile-events-content {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
+  color: white;
+}
+
+.mobile-events-location {
+  font-size: 0.75rem;
+  letter-spacing: 0.125em;
+  margin-bottom: 0.625rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+  color: white;
+}
+
+.mobile-events-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 0.625rem;
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.0625rem;
+  color: white;
+}
+
+.mobile-events-description {
+  font-size: 0.875rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+  font-weight: 300;
+  color: #ccc;
+}
+
+.mobile-events-date {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.0625rem;
+  color: #ccc;
+}
+
+.mobile-events-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 15px;
+}
+
+.mobile-events-prev,
+.mobile-events-next {
+  background: none;
+  border: 1px solid #8B5A2B;
+  color: #8B5A2B;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mobile-events-prev:hover,
+.mobile-events-next:hover {
+  background-color: #8B5A2B;
+  color: white;
+}
+
+.mobile-events-prev.disabled,
+.mobile-events-next.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.mobile-events-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.mobile-events-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mobile-events-dot.active {
+  background-color: #8B5A2B;
+  transform: scale(1.2);
 }
 
 @media (max-width: 1024px) {
@@ -1166,8 +1326,12 @@
 }
 
 @media (max-width: 768px) {
-  .event-slide-card {
-    flex: 0 0 calc(50% - 10px);
+  .desktop-events-view {
+    display: none;
+  }
+
+  .mobile-events-view {
+    display: block;
   }
 
   .events-section {
@@ -1187,8 +1351,8 @@
   }
 
   .slider-nav-btn {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 40px;
+    height: 40px;
   }
 }
 
@@ -1232,13 +1396,21 @@
     width: 100%;
     justify-content: center;
   }
+
+  .mobile-events-card {
+    height: 350px;
+  }
+
+  .mobile-events-image-container {
+    height: 175px;
+  }
 }
 
 .schedule-section {
   padding: 20px;
   background-color: #F5E6E3;
   width: 100vw;
-  min-height: 100vh;
+  min-height: 80vh;
   position: relative;
   left: 50%;
   right: 50%;
@@ -1410,7 +1582,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.7) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -1423,129 +1595,42 @@
   font-size: 2.5rem;
   font-weight: 300;
   letter-spacing: 0.1em;
-  margin-bottom: 1.5rem;
-  text-transform: uppercase;
-  color: #f0f0f0;
+  margin-bottom: 1rem;
+  color: #e0e0e0;
 }
 
 .gallery-button {
-  background-color: transparent;
+  background-color: #8B5A2B;
   color: white;
-  border: 1px solid white;
-  padding: 0.8rem 2rem;
+  border: none;
+  padding: 0.8rem 1.5rem;
   font-size: 1rem;
-  letter-spacing: 0.1em;
+  font-weight: 500;
+  border-radius: 4px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .gallery-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #6d4722;
 }
 
-/* Location Section - Updated to match Journey Section */
 .location-section {
-  padding: 80px 0;
-  width: 100%;
+  padding: 60px 0;
   background-color: #fff;
-}
-
-.location-section .section-header {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.location-section .section-title {
-  font-size: 42px;
-  letter-spacing: 2px;
-  color: #333;
-  margin-bottom: 10px;
-  font-weight: 400;
-  text-transform: uppercase;
-  position: relative;
-  padding-bottom: 15px;
-  display: inline-block;
-}
-
-.location-section .section-title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 2px;
-  background-color: #8B5A2B;
-}
-
-.location-section .section-subtitle {
-  font-size: 16px;
-  color: #666;
-  margin-top: 20px;
-  font-weight: 300;
-  text-align: center;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .location-content {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
 }
 
-@media (min-width: 768px) {
-  .location-content {
-    flex-direction: row;
-  }
-  
-  .location-info {
-    flex: 1;
-    padding-right: 2rem;
-  }
-  
-  .location-map {
-    flex: 1;
-  }
-}
-
-.location-info {
-  font-size: 1.1rem;
-  line-height: 1.8;
-}
-
-.location-address {
-  margin-bottom: 1.5rem;
-  font-style: normal;
-}
-
-.location-phone {
-  font-weight: 500;
-}
-
-.location-map {
-  height: 300px;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.location-map iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .location-content {
     flex-direction: row;
   }
@@ -1559,37 +1644,19 @@
   }
 }
 
-.location-info {
-  font-size: 1.1rem;
-  line-height: 1.8;
-}
-
-.location-address {
-  margin-bottom: 1.5rem;
-}
-
+.location-address,
 .location-phone {
-  font-weight: 500;
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 1rem;
 }
 
-.location-map {
-  height: 300px;
-}
-
-.location-map iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  border-radius: 8px;
-}
-
-@media (max-width: 1200px) {
-  .hero-title-programdetails {
-    font-size: 3rem;
+@media (max-width: 768px) {
+  .hero-section {
+    height: 60vh;
+    min-height: 400px;
   }
-}
 
-@media (max-width: 992px) {
   .hero-title-programdetails {
     font-size: 2.5rem;
   }
@@ -1598,58 +1665,9 @@
     font-size: 1.2rem;
   }
 
-  .journey-grid,
-  .schedule-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .offers-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-section {
-    height: 70vh;
-    min-height: 500px;
-  }
-
-  .hero-title-programdetails {
-    font-size: 2rem;
-  }
-
-  .section-nav-container {
-    overflow-x: auto;
-    padding: 1rem;
-    white-space: nowrap;
-    justify-content: flex-start;
-    gap: 1.5rem;
-  }
-
-  .image-grid-special {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .left-image img,
-  .right-image img,
-  .center-image img {
-    height: 280px;
-  }
-}
-
-@media (max-width: 576px) {
-  .hero-section {
-    height: 60vh;
-    min-height: 400px;
-  }
-
-  .hero-title-programdetails {
-    font-size: 1.8rem;
-  }
-
-  .hero-subtitle-programdetails {
-    font-size: 1rem;
+  .section-navigation button {
+    font-size: 0.8rem;
+    padding: 0.5rem;
   }
 
   .section-title {
@@ -1660,22 +1678,707 @@
     font-size: 1rem;
   }
 
-  .journey-grid,
-  .schedule-grid {
+  .award-winning-title {
+    font-size: 2rem;
+  }
+
+  .award-winning-subtitle {
+    font-size: 1rem;
+  }
+
+  .image-grid-special {
     grid-template-columns: 1fr;
   }
 
   .left-image img,
-  .right-image img,
-  .center-image img {
-    height: 220px;
+  .center-image img,
+  .right-image img {
+    height: 200px;
+  }
+
+  .booking-card {
+    margin: 2rem auto;
   }
 
   .gallery-hero {
-    height: 400px;
+    height: 300px;
   }
 
   .gallery-title {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title-programdetails {
     font-size: 2rem;
+  }
+
+  .hero-subtitle-programdetails {
+    font-size: 1rem;
+  }
+
+  .section-nav-container {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .section-navigation button {
+    font-size: 0.7rem;
+  }
+
+  .booking-card {
+    padding: 1.5rem;
+  }
+
+  .booking-title {
+    font-size: 1.2rem;
+  }
+
+  .book-now-btn {
+    font-size: 1rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.events-section {
+  padding: 0px;
+  background-color: #3F3A37;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 0px;
+}
+
+.events-header {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.events-section .section-title {
+  font-size: 2.625rem;
+  letter-spacing: 0.125em;
+  color: #fff;
+  margin-bottom: 0.625rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 0.9375rem;
+  display: inline-block;
+}
+
+.events-section .section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3.75rem;
+  height: 2px;
+  background-color: #8B5A2B;
+}
+
+.events-section .section-subtitle {
+  font-size: 1rem;
+  color: #ccc;
+  margin: 1.25rem auto 0 auto;
+  font-weight: 300;
+  text-align: center;
+  max-width: 800px;
+  line-height: 1.6;
+}
+
+/* Desktop View Container */
+.desktop-events-view {
+  display: block;
+  width: 100%;
+}
+
+.events-slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 60px; /* Space for arrows */
+}
+
+.events-slider-wrapper {
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.events-slider {
+  display: flex;
+  transition: transform 0.5s ease;
+  flex-wrap: nowrap; /* Essential to prevent wrapping onto next line */
+  gap: 20px; /* Consistent spacing between cards */
+  align-items: stretch; /* Ensure all cards have equal height */
+}
+
+/* General Card Styles (applied to both desktop .event-slide-card and mobile .mobile-events-card) */
+.event-slide-card,
+.mobile-events-card {
+  box-sizing: border-box;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  position: relative;
+  height: 28rem; /* Consistent height for desktop cards */
+  flex-shrink: 0; /* Prevent cards from shrinking below their flex-basis */
+  display: flex; /* Make cards themselves flex containers */
+  flex-direction: column; /* Stack image and overlay */
+}
+
+.event-card-image,
+.mobile-events-image-container {
+  position: absolute; /* Keep absolute for overlay effect */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Image initially covers full card */
+  overflow: hidden;
+}
+
+.event-card-image img,
+.mobile-events-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.event-card-overlay,
+.mobile-events-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
+  padding: 1.5625rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* This is the key change! */
+  color: white;
+  z-index: 1;
+}
+
+.event-badge,
+.mobile-events-badge {
+  display: inline-block;
+  padding: 0.3125rem 0.9375rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background-color: #D97706; /* Orange color from image */
+  color: white;
+  align-self: flex-start;
+  z-index: 2;
+  margin-bottom: 0.5rem; /* Small margin below badge */
+}
+
+.event-location,
+.mobile-events-location {
+  font-size: 0.75rem;
+  letter-spacing: 0.125em;
+  opacity: 0.8;
+  text-transform: uppercase;
+  margin-top: 0.5rem; /* Add some space above location */
+  margin-bottom: auto; /* Pushes location to top if content-bottom takes space */
+}
+
+/* New wrapper for content to be at the bottom */
+.event-content-bottom,
+.mobile-events-content-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align text to the left */
+  margin-top: auto; /* Pushes this entire block to the bottom */
+  width: 100%; /* Ensure it spans full width for text alignment */
+}
+
+
+.event-title,
+.mobile-events-title {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 0.625rem; /* Keep this to separate from description */
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.0625rem;
+  color: white;
+}
+
+.event-description,
+.mobile-events-description {
+  font-size: 0.875rem;
+  margin-bottom: 1.25rem; /* Ensure space before date */
+  line-height: 1.5;
+  font-weight: 300;
+  color: #ccc;
+}
+
+.event-date,
+.mobile-events-date {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.0625rem;
+  color: #ccc;
+}
+
+/* Slider Navigation Buttons (from image_a3320c.png) */
+.slider-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid #8B5A2B;
+  color: #8B5A2B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.slider-nav-btn:hover {
+  background-color: #8B5A2B;
+  color: white;
+}
+
+.slider-nav-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: #554f49;
+  color: #554f49;
+}
+
+.slider-nav-prev {
+  left: 0;
+}
+
+.slider-nav-next {
+  right: 0;
+}
+
+/* Slider Pagination (from image_a3320c.png) */
+.slider-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 12px;
+}
+
+.slider-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slider-dot.active {
+  background-color: #8B5A2B;
+  transform: scale(1.2);
+}
+
+.event-slide-card:hover .event-card-image img {
+  transform: scale(1.05);
+}
+
+/* Mobile View Container */
+.mobile-events-view {
+  display: none; /* Hidden by default, shown on smaller screens */
+  width: 100%;
+}
+
+.mobile-events-slider {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.mobile-events-slider-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.mobile-events-slides {
+  display: flex;
+  transition: transform 0.5s ease;
+  flex-wrap: nowrap; /* Ensure single card per view */
+}
+
+.mobile-events-slide {
+  min-width: 100%; /* Each slide takes full width */
+  box-sizing: border-box;
+  padding: 0 10px; /* Padding for spacing between cards on mobile */
+}
+
+.mobile-events-card {
+  height: 400px; /* Fixed height for mobile cards */
+  display: flex; /* Make the mobile card a flex container */
+  flex-direction: column; /* Stack content vertically */
+  position: relative; /* Needed for absolute positioning of image/overlay */
+}
+
+.mobile-events-image-container {
+  /* This container now doesn't need to be absolutely positioned,
+     it will be a part of the flex flow, but the img inside will still cover.
+     We need to control its height. */
+  position: absolute; /* Keep absolute to allow text overlay */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Image still covers the whole card for the background effect */
+  overflow: hidden;
+}
+
+.mobile-events-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+
+/* Mobile navigation buttons and dots */
+.mobile-events-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 15px;
+}
+
+.mobile-events-prev,
+.mobile-events-next {
+  background: none;
+  border: 1px solid #8B5A2B;
+  color: #8B5A2B;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mobile-events-prev:hover,
+.mobile-events-next:hover {
+  background-color: #8B5A2B;
+  color: white;
+}
+
+.mobile-events-prev.disabled,
+.mobile-events-next.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.mobile-events-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.mobile-events-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mobile-events-dot.active {
+  background-color: #8B5A2B;
+  transform: scale(1.2);
+}
+
+/* Responsive Adjustments */
+
+/* Full Desktop (>= 1200px) */
+@media (min-width: 1200px) {
+  /* Default for more than 2 cards: show 5 cards */
+  .event-slide-card {
+    flex-basis: calc(20% - 16px); /* 5 cards with 20px gaps (4 gaps * 20px = 80px total gap, divided by 5 cards = 16px per card) */
+  }
+
+  /* Specific rule when there are 2 or fewer cards */
+  .events-slider.display-two-cards-desktop .event-slide-card {
+    flex-basis: calc(50% - 10px); /* 2 cards with 20px gap (1 gap * 20px = 20px total gap, divided by 2 cards = 10px per card) */
+  }
+
+  .event-card-overlay {
+    padding: 2rem;
+  }
+  .event-badge {
+    font-size: 0.8rem;
+  }
+  .event-title {
+    font-size: 1.25rem;
+  }
+  .event-description {
+    font-size: 0.95rem;
+  }
+  .event-date {
+    font-size: 0.8rem;
+  }
+}
+
+/* Half Desktop (1025px - 1199px) */
+@media (min-width: 1025px) and (max-width: 1199px) {
+  .event-slide-card {
+    flex-basis: calc(50% - 10px); /* Always show 2 cards */
+    height: 5rem; 
+    margin: 25px;/* Slightly reduced height for this breakpoint */
+  }
+  .events-slider-container {
+    padding: 0 40px; /* Adjust padding for arrows */
+  }
+  .slider-nav-btn {
+    width: 45px;
+    height: 45px;
+  }
+  .event-card-overlay {
+    padding: 1.25rem;
+  }
+  .event-badge {
+    font-size: 0.7rem;
+  }
+  .event-title {
+    font-size: 1rem;
+  }
+  .event-description {
+    font-size: 0.8rem;
+  }
+  .event-date {
+    font-size: 0.7rem;
+  }
+}
+
+/* Tablet (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .event-slide-card {
+    flex-basis: calc(50% - 10px); /* Show 2 cards */
+    height: 15rem;
+     /* Further reduced height for tablets */
+  }
+  .events-slider-container {
+    padding: 0 30px; /* More padding adjustment */
+  }
+  .slider-nav-btn {
+    width: 40px;
+    height: 40px;
+  }
+  .event-card-overlay {
+    padding: 1rem;
+  }
+  .event-badge {
+    font-size: 0.65rem;
+  }
+  .event-title {
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+  }
+  .event-description {
+    font-size: 0.75rem;
+  }
+  .event-date {
+    font-size: 0.65rem;
+  }
+}
+
+/* Mobile (<= 768px) */
+@media (max-width: 768px) {
+  .desktop-events-view {
+    display: none;
+  }
+
+  .mobile-events-view {
+    display: block;
+  }
+
+  .events-section {
+    padding: 60px 0;
+  }
+
+  .events-section .section-title {
+    font-size: 2rem;
+  }
+
+  .mobile-events-card {
+    height: 350px; /* Mobile card height */
+    /* Ensure the card itself is a flex container to manage its children */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 16px; /* Important for the absolute image overlay */
+  }
+
+  .mobile-events-image-container {
+    position: absolute; /* Keep absolute so overlay sits on top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Image still covers the whole card */
+    z-index: 0; /* Ensure it's behind the overlay */
+  }
+
+  .mobile-events-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .mobile-events-overlay {
+    position: absolute; /* Overlay covers the image */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
+    padding: 1.5rem; /* Increased padding for better spacing */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes content to top/bottom */
+    color: white;
+    z-index: 1; /* Ensures overlay is on top of the image */
+  }
+
+  .mobile-events-badge {
+    font-size: 0.75rem; /* Slightly larger for readability */
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem; /* Space below badge */
+  }
+
+  .mobile-events-location {
+    font-size: 0.7rem; /* Adjusted for mobile */
+    margin-top: 2rem; /* Small space after badge */
+    margin-bottom: auto; /* Pushes other content down */
+    z-index: 2; /* Ensure it's above the image */
+  }
+
+  .mobile-events-content-bottom {
+    margin-top: auto; /* Ensures this group is at the bottom */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem; /* Reduced gap between title, description, date for compactness */
+  }
+
+  .mobile-events-title {
+    font-size: 1.1rem; /* Slightly larger */
+    margin-bottom: 0.2rem; /* Reduce space after title to bring description closer */
+  }
+
+  .mobile-events-description {
+    font-size: 0.85rem; /* Adjusted for mobile */
+    margin-bottom: 0.5rem; /* Reduce space after description to bring date closer */
+  }
+
+  .mobile-events-date {
+    font-size: 0.7rem;
+    gap: 0.4rem; /* Slightly less gap for compactness */
+  }
+}
+
+/* Very Small Screens (< 576px) */
+@media (max-width: 576px) {
+  .events-section .section-title {
+    font-size: 1.75rem;
+  }
+
+  .events-section .section-subtitle {
+    font-size: 0.875rem;
+  }
+
+  .mobile-events-slide {
+    padding: 0 5px;
+  }
+
+  .mobile-events-card {
+    height: 235px;
+    margin: 16px; /* Further reduced height for very small screens */
+  }
+
+  .mobile-events-overlay {
+    padding: 1rem; /* Adjusted padding for smaller screens */
+  }
+
+  .mobile-events-badge {
+    font-size: 0.65rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .mobile-events-location {
+    font-size: 0.6rem;
+    margin-top: 2rem;
+  }
+
+  .mobile-events-title {
+    font-size: 0.9rem;
+    margin-bottom: 0.1rem;
+    margin-top: 1.5rem;
+  }
+
+  .mobile-events-description {
+    font-size: 0.75rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .mobile-events-date {
+    font-size: 0.65rem;
+    gap: 0.3rem;
+    margin-bottom: 0.2rem;
   }
 }
