@@ -1,0 +1,117 @@
+/* AdminPanel.css */
+.admin-panel-container {
+  background: white;
+  border-radius: 8px;
+  padding: 32px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  flex: 1;
+}
+
+.admin-panel-container .content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.admin-panel-container .content-header h1 {
+  font-size: 24px;
+  font-weight: 500;
+  color: #333;
+}
+
+.admin-tabs {
+  display: flex;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 24px;
+}
+
+.admin-tab {
+  padding: 12px 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.admin-tab:hover {
+  color: #333;
+}
+
+.admin-tab.active {
+  color: #b8733a;
+  border-bottom-color: #b8733a;
+}
+
+.admin-programs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin-program-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.admin-program-info h3 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.admin-program-info p {
+  font-size: 14px;
+  color: #666;
+}
+
+.admin-program-status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.admin-program-status.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.admin-program-status.approved {
+  background: #d4edda;
+  color: #155724;
+}
+
+.admin-program-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.admin-approve-button {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.admin-reject-button {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}

@@ -1,13 +1,19 @@
-// src/components/ContactModal.tsx
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import '../styles/ContactModal.css';
 
 interface ContactModalProps {
   onClose: () => void;
 }
 
+interface ContactForm {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
 const ContactModal: React.FC<ContactModalProps> = ({ onClose }) => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactForm>({
     name: '',
     email: '',
     phone: '',
@@ -15,32 +21,76 @@ const ContactModal: React.FC<ContactModalProps> = ({ onClose }) => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [formErrors, setFormErrors] = useState<Partial<ContactForm>>({});
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  // Memoized validation functions
+  const validateEmail = useCallback((email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }, []);
+
+  const validatePhone = useCallback((phone: string): boolean => {
+    // Phone is optional, but if provided, validate it
+    return phone === '' || /^[0-9]{7,15}$/.test(phone);
+  }, []);
+
+  // Real-time field validation
+  const validateField = useCallback((name: keyof ContactForm, value: string): string | undefined => {
+    if (name !== 'phone' && !value.trim()) return 'This field is required';
+    
+    switch (name) {
+      case 'email':
+        return !validateEmail(value) ? 'Please enter a valid email address' : undefined;
+      case 'phone':
+        return !validatePhone(value) ? 'Please enter a valid phone number (7-15 digits)' : undefined;
+      default:
+        return undefined;
+    }
+  }, [validateEmail, validatePhone]);
+
+  // Handle input changes with validation
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+    
+    // Validate the field as user types (except for message which we'll validate on submit)
+    if (name !== 'message') {
+      const error = validateField(name as keyof ContactForm, value);
+      setFormErrors(prev => ({
+        ...prev,
+        [name]: error
+      }));
+    }
+    
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-  };
+  }, [validateField]);
 
-  const validateForm = () => {
-    const { name, email, phone, message } = formData;
-    if (!name.trim() || !email.trim() || !message.trim()) return false;
+  // Validate the entire form
+  const validateForm = useCallback((): boolean => {
+    const errors: Partial<ContactForm> = {};
+    let isValid = true;
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) return false;
+    (Object.keys(formData) as Array<keyof ContactForm>).forEach(key => {
+      if (key !== 'phone') { // Phone is optional
+        const error = validateField(key, formData[key]);
+        if (error) {
+          errors[key] = error;
+          isValid = false;
+        }
+      }
+    });
 
-    if (phone && !/^[0-9]{7,15}$/.test(phone)) return false; // Adjusted phone regex for more flexibility
+    setFormErrors(errors);
+    return isValid;
+  }, [formData, validateField]);
 
-    return true;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Handle form submission
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!validateForm()) {
-      alert('Please fill in all required fields correctly.');
       return;
     }
 
@@ -48,12 +98,37 @@ const ContactModal: React.FC<ContactModalProps> = ({ onClose }) => {
 
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      console.log('Contact form submitted:', formData);
       setShowConfirmation(true);
+
+    } catch (error) {
+      console.error('Form submission failed:', error);
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }, [formData, validateForm]);
+
+  // Close modal on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
+  // Focus first input when modal opens
+  useEffect(() => {
+    const firstInput = document.querySelector('.form-input') as HTMLInputElement;
+    if (firstInput && !showConfirmation) {
+      firstInput.focus();
+    }
+  }, [showConfirmation]);
 
   return (
     <div className="contact-modal-overlay" onClick={onClose}>
@@ -62,11 +137,17 @@ const ContactModal: React.FC<ContactModalProps> = ({ onClose }) => {
           <>
             <div className="modal-header">
               <h2 className="modal-title">Contact Us</h2>
-              <button className="close-button" onClick={onClose}>×</button>
+              <button 
+                className="close-button" 
+                onClick={onClose}
+                aria-label="Close contact modal"
+              >
+                ×
+              </button>
             </div>
 
             <div className="modal-content">
-              <form className="contact-form" onSubmit={handleSubmit}>
+              <form className="contact-form" onSubmit={handleSubmit} noValidate>
                 <div className="form-group">
                   <label htmlFor="name" className="form-label">Full Name *</label>
                   <input
@@ -75,10 +156,11 @@ const ContactModal: React.FC<ContactModalProps> = ({ onClose }) => {
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="form-input"
+                    className={`form-input ${formErrors.name ? 'invalid' : ''}`}
                     required
                     placeholder="Enter your full name"
                   />
+                  {formErrors.name && <span className="error-message">{formErrors.name}</span>}
                 </div>
 
                 <div className="form-group">
@@ -89,10 +171,11 @@ const ContactModal: React.FC<ContactModalProps> = ({ onClose }) => {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="form-input"
+                    className={`form-input ${formErrors.email ? 'invalid' : ''}`}
                     required
                     placeholder="Enter your email address"
                   />
+                  {formErrors.email && <span className="error-message">{formErrors.email}</span>}
                 </div>
 
                 <div className="form-group">
@@ -103,9 +186,10 @@ const ContactModal: React.FC<ContactModalProps> = ({ onClose }) => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="form-input"
+                    className={`form-input ${formErrors.phone ? 'invalid' : ''}`}
                     placeholder="Enter your phone number (optional)"
                   />
+                  {formErrors.phone && <span className="error-message">{formErrors.phone}</span>}
                 </div>
 
                 <div className="form-group">
@@ -115,19 +199,27 @@ const ContactModal: React.FC<ContactModalProps> = ({ onClose }) => {
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    className="form-input"
+                    className={`form-input ${formErrors.message ? 'invalid' : ''}`}
                     required
                     placeholder="How can we help you?"
                     rows={4}
                   />
+                  {formErrors.message && <span className="error-message">{formErrors.message}</span>}
                 </div>
 
                 <button
                   type="submit"
-                  className={`submit-button ${isSubmitting || !validateForm() ? 'disabled' : ''}`}
-                  disabled={isSubmitting || !validateForm()}
+                  className={`submit-button ${isSubmitting ? 'submitting' : ''}`}
+                  disabled={isSubmitting}
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? (
+                    <>
+                      <span className="spinner" aria-hidden="true"></span>
+                      Sending...
+                    </>
+                  ) : (
+                    'Send Message'
+                  )}
                 </button>
               </form>
             </div>
@@ -139,7 +231,11 @@ const ContactModal: React.FC<ContactModalProps> = ({ onClose }) => {
             <p className="confirmation-message">
               Thank you for contacting us. Our team will get back to you shortly.
             </p>
-            <button className="close-confirmation" onClick={onClose}>
+            <button 
+              className="close-confirmation"
+              onClick={onClose}
+              autoFocus
+            >
               Close
             </button>
           </div>
@@ -149,4 +245,4 @@ const ContactModal: React.FC<ContactModalProps> = ({ onClose }) => {
   );
 };
 
-export default ContactModal;
+export default React.memo(ContactModal);

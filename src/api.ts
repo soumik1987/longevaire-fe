@@ -105,7 +105,7 @@ export const fetchRelatedPrograms = async (currentProgram: Program): Promise<Pro
 
 
 
-// Function to fetch experts with fallback
+// // Function to fetch experts with fallback
 // export const fetchExperts = async (): Promise<Expert[]> => {
 //   return fetchWithFallback('/experts', sampleExperts);
 // };

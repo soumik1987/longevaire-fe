@@ -1,0 +1,140 @@
+/* Services Table */
+.services-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.services-table th,
+.services-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.services-table th {
+  font-weight: 500;
+  color: #555;
+  font-size: 14px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-badge.active {
+  background: #e6f7ee;
+  color: #28a745;
+}
+
+.status-badge.inactive {
+  background: #f8f9fa;
+  color: #6c757d;
+}
+
+/* Admin Panel */
+.admin-panel-container {
+  background: white;
+  border-radius: 8px;
+  padding: 32px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.admin-tabs {
+  display: flex;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 24px;
+}
+
+.tab {
+  padding: 12px 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.tab:hover {
+  color: #333;
+}
+
+.tab.active {
+  color: #b8733a;
+  border-bottom-color: #b8733a;
+}
+
+.programs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.program-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.program-info h3 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.program-info p {
+  font-size: 14px;
+  color: #666;
+}
+
+.status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status.approved {
+  background: #d4edda;
+  color: #155724;
+}
+
+.program-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.approve-button {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.reject-button {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}

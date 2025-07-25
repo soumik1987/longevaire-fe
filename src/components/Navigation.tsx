@@ -1,58 +1,25 @@
-// src/components/Navigation.tsx
-import React, { useState, useEffect } from 'react';
-import { Star, ChevronDown, Menu, X, UserCircle } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Star, ChevronDown, Menu, X, User, LogOut, Building, Shield } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Navigation.css';
 import ContactModal from './ContactModal';
-import SignInModal from './SignInModal';
-
-// Mock authentication service
-const AuthService = {
-  signIn: (userData: any): Promise<any> => {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        const userToStore = {
-          displayName: userData.displayName || 'Demo User',
-          email: userData.email || 'demo@example.com',
-          photoURL: userData.photoURL || 'https://i.pravatar.cc/150?img=3',
-          token: 'fake-auth-token-123',
-          phone: userData.phone || ''
-        };
-        localStorage.setItem('fakeAuthUser', JSON.stringify(userToStore));
-        console.log('AuthService: User signed in and stored:', userToStore); // Debug log
-        resolve(userToStore);
-      }, 1000);
-    });
-  },
-
-  signOut: (): Promise<void> => {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        console.log('AuthService: Attempting to remove fakeAuthUser from localStorage.'); // Debug log
-        localStorage.removeItem('fakeAuthUser');
-        console.log('AuthService: fakeAuthUser after removal:', localStorage.getItem('fakeAuthUser')); // Debug log
-        resolve();
-      }, 500);
-    });
-  },
-
-  getCurrentUser: (): any => {
-    const user = localStorage.getItem('fakeAuthUser');
-    console.log('AuthService: Current user from localStorage:', user ? JSON.parse(user).email : 'None'); // Debug log
-    return user ? JSON.parse(user) : null;
-  }
-};
+import { useAuth } from '../contexts/AuthContext';
+import AuthModal from './Auth/AuthModal';
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [user, setUser] = useState<any>(AuthService.getCurrentUser());
-  const [showUserMenu, setShowUserMenu] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
-  const [showSignInModal, setShowSignInModal] = useState(false);
-  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
+  
+  const { user, isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
+  const profileDropdownRef = useRef<HTMLDivElement>(null);
 
+  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -61,6 +28,7 @@ const Navigation: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Handle click outside for dropdowns
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       // Close mobile menu when clicking outside
@@ -79,7 +47,7 @@ const Navigation: React.FC = () => {
         }
       }
       
-      // Close general dropdowns (Discover, Support) when clicking outside
+      // Close general dropdowns when clicking outside
       if (activeDropdown) {
         const dropdown = document.querySelector(`.dropdown-content.${activeDropdown}-dropdown`);
         const trigger = document.querySelector(`[data-dropdown="${activeDropdown}"]`);
@@ -94,26 +62,25 @@ const Navigation: React.FC = () => {
         }
       }
 
-      // Close user menu when clicking outside
-      if (showUserMenu) {
-        const userDropdownElement = document.querySelector('.user-dropdown');
-        const userDropdownButtonElement = document.querySelector('.user-dropdown-button');
-        if (userDropdownElement && userDropdownButtonElement && 
-            !userDropdownElement.contains(event.target as Node) && 
-            !userDropdownButtonElement.contains(event.target as Node)) {
-          setShowUserMenu(false);
-        }
+      // Close profile dropdown when clicking outside
+      if (
+        showProfileDropdown && 
+        profileDropdownRef.current && 
+        !profileDropdownRef.current.contains(event.target as Node)
+      ) {
+        setShowProfileDropdown(false);
       }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isMobileMenuOpen, activeDropdown, showUserMenu]);
+  }, [isMobileMenuOpen, activeDropdown, showProfileDropdown]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
     if (!isMobileMenuOpen) {
       setActiveDropdown(null);
+      setShowProfileDropdown(false);
     }
   };
 
@@ -121,74 +88,67 @@ const Navigation: React.FC = () => {
     setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
   };
 
-  const handleModalSignIn = async (userData: any) => {
-    try {
-      const signedInUser = await AuthService.signIn(userData);
-      setUser(signedInUser);
-      setShowSignInModal(false);
-    } catch (error) {
-      console.error('Sign in failed:', error);
+  const handleLogout = () => {
+    logout();
+    setShowProfileDropdown(false);
+    navigate('/');
+  };
+
+  const handleSignIn = () => {
+    setAuthMode('signin');
+    setShowAuthModal(true);
+    setIsMobileMenuOpen(false);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const handleCloseAuthModal = () => {
+    setShowAuthModal(false);
+    document.body.style.overflow = 'auto';
+  };
+
+  const navigateToDashboard = (path: string) => {
+    navigate(path);
+    setShowProfileDropdown(false);
+    setIsMobileMenuOpen(false);
+  };
+
+  const getInitials = () => {
+    if (!user) return '';
+    return `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`.toUpperCase();
+  };
+
+  // Get dashboard path based on user role
+  const getDashboardPath = () => {
+    if (!user) return '/';
+    switch (user.role) {
+      case 'user': return '/dashboard/user';
+      case 'facility': return '/dashboard/facility';
+      case 'admin': return '/dashboard/admin';
+      default: return '/';
     }
   };
 
-  const handleSignOut = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation(); // Stop propagation to prevent parent elements from handling the click
-    
-    console.log('handleSignOut: Clicked, attempting sign out...'); // Debug log
-    try {
-      setIsLoggingOut(true); // Set loading state
-      await AuthService.signOut(); // Perform the asynchronous sign out
-
-      // Crucial: Update state ONLY after AuthService.signOut completes
-      setUser(null); // Clear the user state to null
-      setShowUserMenu(false); // Close the user menu
-      setIsMobileMenuOpen(false); // Close mobile menu if open
-
-      console.log('handleSignOut: User successfully signed out. User state is now:', user); // Debug log
-    } catch (error) {
-      console.error('handleSignOut: Sign out failed:', error);
-    } finally {
-      setIsLoggingOut(false); // Reset loading state
-      console.log('handleSignOut: Sign out process finished.'); // Debug log
+  // Get dashboard label based on user role
+  const getDashboardLabel = () => {
+    if (!user) return 'Dashboard';
+    switch (user.role) {
+      case 'user': return 'User Dashboard';
+      case 'facility': return 'Facility Dashboard';
+      case 'admin': return 'Admin Panel';
+      default: return 'Dashboard';
     }
   };
 
-  const toggleUserMenu = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation(); // Stop propagation to prevent closing immediately
-    setShowUserMenu(!showUserMenu);
+  // Get dashboard icon based on user role
+  const getDashboardIcon = () => {
+    if (!user) return <User size={16} />;
+    switch (user.role) {
+      case 'user': return <User size={16} />;
+      case 'facility': return <Building size={16} />;
+      case 'admin': return <Shield size={16} />;
+      default: return <User size={16} />;
+    }
   };
-
-  const renderUserDropdown = () => (
-    <div className="user-dropdown">
-      <button 
-        onClick={toggleUserMenu} 
-        className="user-dropdown-button"
-        aria-label="User menu"
-        aria-expanded={showUserMenu}
-      >
-        {user.photoURL ? (
-          <img src={user.photoURL} alt="User avatar" className="user-avatar" />
-        ) : (
-          <UserCircle size={32} />
-        )}
-      </button>
-      {showUserMenu && (
-        <div className="user-menu">
-          <p className="user-name">{user.displayName || 'User'}</p>
-          <p className="user-email">{user.email}</p>
-          <button 
-            onClick={handleSignOut} // Direct call to handleSignOut
-            className="logout-button"
-            disabled={isLoggingOut} // Disable during logout
-          >
-            {isLoggingOut ? 'Signing Out...' : 'Sign Out'}
-          </button>
-        </div>
-      )}
-    </div>
-  );
 
   return (
     <nav className={`navigation ${isScrolled ? 'scrolled' : ''}`}>
@@ -305,55 +265,12 @@ const Navigation: React.FC = () => {
                 onClick={() => {
                   setActiveDropdown(null);
                   setShowContactModal(true);
-                  if (isMobileMenuOpen) setIsMobileMenuOpen(false);
+                  setIsMobileMenuOpen(false);
                 }}
               >
                 Contact Us
               </button>
             </div>
-          </div>
-
-          <div className="mobile-join">
-            {!user ? (
-              <button 
-                className="join-btn" 
-                onClick={() => {
-                  setShowSignInModal(true);
-                  setIsMobileMenuOpen(false);
-                }}
-              >
-                Join Now
-              </button>
-            ) : (
-              // User is logged in for mobile view
-              <div className="user-dropdown">
-                <button 
-                  onClick={toggleUserMenu} 
-                  className="user-dropdown-button"
-                  aria-label="User menu"
-                  aria-expanded={showUserMenu}
-                >
-                  {user.photoURL ? (
-                    <img src={user.photoURL} alt="User avatar" className="user-avatar" />
-                  ) : (
-                    <UserCircle size={24} />
-                  )}
-                </button>
-                {showUserMenu && (
-                  <div className="user-menu">
-                    <p className="user-name">{user.displayName || 'User'}</p>
-                    <p className="user-email">{user.email}</p>
-                    <button 
-                      onClick={handleSignOut} // Direct call to handleSignOut
-                      className="logout-button"
-                      disabled={isLoggingOut}
-                    >
-                      {isLoggingOut ? 'Signing Out...' : 'Sign Out'}
-                    </button>
-                  </div>
-                )}
-              </div>
-            )}
           </div>
         </div>
 
@@ -365,27 +282,74 @@ const Navigation: React.FC = () => {
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
-          {!user ? (
+          
+          {!isAuthenticated ? (
             <button 
-              className="join-btn" 
-              onClick={() => setShowSignInModal(true)}
+              className="auth-button primary" 
+              onClick={handleSignIn}
             >
-              Join Now
+              SIGN IN
             </button>
           ) : (
-            // User is logged in for desktop view
-            renderUserDropdown()
+            <div className="profile-dropdown-container" ref={profileDropdownRef}>
+              <button 
+                className="profile-button"
+                onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+                aria-expanded={showProfileDropdown}
+              >
+                <div className="profile-avatar">
+                  {getInitials()}
+                </div>
+                {!isMobileMenuOpen && (
+                  <span className="profile-name">{user?.firstName} {user?.lastName}</span>
+                )}
+                <ChevronDown size={16} className={`dropdown-arrow ${showProfileDropdown ? 'rotated' : ''}`} />
+              </button>
+              
+              {showProfileDropdown && (
+                <div className="profile-dropdown">
+                  <div className="dropdown-user-info">
+                    <div className="dropdown-name">{user?.firstName} {user?.lastName}</div>
+                    <div className="dropdown-email">{user?.email}</div>
+                    <div className="dropdown-role">{user?.role?.toUpperCase()}</div>
+                  </div>
+                  
+                  <div className="dropdown-divider"></div>
+                  
+                  <button 
+                    className="dropdown-item"
+                    onClick={() => navigateToDashboard(getDashboardPath())}
+                  >
+                    {getDashboardIcon()}
+                    <span>{getDashboardLabel()}</span>
+                  </button>
+                  
+                  <div className="dropdown-divider"></div>
+                  
+                  <button className="dropdown-item logout-item" onClick={handleLogout}>
+                    <LogOut size={16} />
+                    <span>Logout</span>
+                  </button>
+                </div>
+              )}
+            </div>
           )}
         </div>
       </div>
-      
-      {showSignInModal && (
-        <SignInModal 
-          onClose={() => setShowSignInModal(false)} 
-          onSignIn={handleModalSignIn}
-        />
+
+      {/* Auth Modal */}
+      {showAuthModal && (
+        <div className="auth-modal-overlay">
+          <div className="auth-modal-wrapper">
+            <AuthModal
+              mode={authMode}
+              onClose={handleCloseAuthModal}
+              onSwitchMode={(mode) => setAuthMode(mode)}
+            />
+          </div>
+        </div>
       )}
-      
+
       {showContactModal && <ContactModal onClose={() => setShowContactModal(false)} />}
     </nav>
   );

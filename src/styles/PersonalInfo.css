@@ -1,0 +1,110 @@
+/* PersonalInfo.css */
+.personal-info-container {
+  background: white;
+  border-radius: 8px;
+  padding: 32px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  flex: 1;
+}
+
+.personal-info-container h1 {
+  font-size: 24px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 32px;
+}
+
+.personal-info-avatar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.personal-info-avatar-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #b8733a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.personal-info-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.personal-info-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.personal-info-form-group {
+  margin-bottom: 16px;
+}
+
+.personal-info-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+.personal-info-form-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+.personal-info-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  margin: 24px 0 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.personal-info-phone-input {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0 12px;
+}
+
+.personal-info-flag-icon {
+  width: 20px;
+  height: 15px;
+  margin-right: 8px;
+}
+
+.personal-info-phone-input input {
+  border: none;
+  padding: 12px 0;
+  flex: 1;
+}
+
+.personal-info-submit-button {
+  background: #b8733a;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 24px;
+}
+
+.personal-info-submit-button:hover {
+  background: #9a5f2a;
+}

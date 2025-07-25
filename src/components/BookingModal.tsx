@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import type { Program } from '../data/programs';
 import '../styles/BookingModal.css';
 
@@ -24,40 +24,85 @@ const BookingModal: React.FC<BookingModalProps> = ({ program, onClose, onSuccess
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [formErrors, setFormErrors] = useState<Partial<BookingForm>>({});
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  // Memoized validation functions
+  const validateEmail = useCallback((email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }, []);
+
+  const validatePhone = useCallback((phone: string): boolean => {
+    const phoneRegex = /^[0-9]{10,15}$/;
+    return phoneRegex.test(phone);
+  }, []);
+
+  // Real-time field validation
+  const validateField = useCallback((name: keyof BookingForm, value: string): string | undefined => {
+    if (!value.trim()) return 'This field is required';
+    
+    switch (name) {
+      case 'email':
+        return !validateEmail(value) ? 'Please enter a valid email address' : undefined;
+      case 'phone':
+        return !validatePhone(value) ? 'Please enter a valid phone number (10-15 digits)' : undefined;
+      case 'preferredDate':
+        return !value ? 'Please select a date' : undefined;
+      default:
+        return undefined;
+    }
+  }, [validateEmail, validatePhone]);
+
+  // Handle input changes with validation
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
+    
+    // Validate the field as user types
+    if (name === 'email' || name === 'phone') {
+      const error = validateField(name as keyof BookingForm, value);
+      setFormErrors(prev => ({
+        ...prev,
+        [name]: error
+      }));
+    }
+    
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-  };
+  }, [validateField]);
 
-  const validateForm = () => {
-    const { name, email, phone, preferredDate } = formData;
-    if (!name.trim() || !email.trim() || !phone.trim() || !preferredDate.trim()) return false;
+  // Validate the entire form
+  const validateForm = useCallback((): boolean => {
+    const errors: Partial<BookingForm> = {};
+    let isValid = true;
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) return false;
+    Object.keys(formData).forEach(key => {
+      const fieldName = key as keyof BookingForm;
+      const error = validateField(fieldName, formData[fieldName]);
+      if (error) {
+        errors[fieldName] = error;
+        isValid = false;
+      }
+    });
 
-    const phoneRegex = /^[0-9]{10,15}$/;
-    if (!phoneRegex.test(phone)) return false;
+    setFormErrors(errors);
+    return isValid;
+  }, [formData, validateField]);
 
-    return true;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Handle form submission
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!validateForm()) {
-      alert('Please fill in all fields correctly.');
       return;
     }
 
     setIsSubmitting(true);
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
       console.log('Booking submitted:', {
         program: program.name,
@@ -66,16 +111,37 @@ const BookingModal: React.FC<BookingModalProps> = ({ program, onClose, onSuccess
 
       setShowConfirmation(true);
 
+      // Close modal after showing confirmation
       setTimeout(() => {
         onSuccess();
-      }, 3000);
+      }, 2000);
 
     } catch (error) {
       console.error('Booking failed:', error);
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }, [formData, program.name, validateForm, onSuccess]);
+
+  // Close modal on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
+  // Focus first input when modal opens
+  useEffect(() => {
+    const firstInput = document.querySelector('.form-input') as HTMLInputElement;
+    if (firstInput && !showConfirmation) {
+      firstInput.focus();
+    }
+  }, [showConfirmation]);
 
   return (
     <div className="booking-modal-overlay" onClick={onClose}>
@@ -84,7 +150,13 @@ const BookingModal: React.FC<BookingModalProps> = ({ program, onClose, onSuccess
           <>
             <div className="modal-header">
               <h2 className="modal-title">Book Your Experience</h2>
-              <button className="close-button" onClick={onClose}>×</button>
+              <button 
+                className="close-button" 
+                onClick={onClose}
+                aria-label="Close booking modal"
+              >
+                ×
+              </button>
             </div>
 
             <div className="modal-content">
@@ -102,7 +174,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ program, onClose, onSuccess
                 )}
               </div>
 
-              <form className="booking-form" onSubmit={handleSubmit}>
+              <form className="booking-form" onSubmit={handleSubmit} noValidate>
                 <div className="form-group">
                   <label htmlFor="name" className="form-label">Full Name *</label>
                   <input
@@ -115,6 +187,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ program, onClose, onSuccess
                     required
                     placeholder="Enter your full name"
                   />
+                  {formErrors.name && <span className="error-message">{formErrors.name}</span>}
                 </div>
 
                 <div className="form-group">
@@ -129,6 +202,7 @@ const BookingModal: React.FC<BookingModalProps> = ({ program, onClose, onSuccess
                     required
                     placeholder="Enter your email address"
                   />
+                  {formErrors.email && <span className="error-message">{formErrors.email}</span>}
                 </div>
 
                 <div className="form-group">
@@ -143,49 +217,64 @@ const BookingModal: React.FC<BookingModalProps> = ({ program, onClose, onSuccess
                     required
                     placeholder="Enter your phone number"
                   />
+                  {formErrors.phone && <span className="error-message">{formErrors.phone}</span>}
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="preferredDate" className="form-label">Preferred Date *</label>
                   {program.bookingOptions?.availableDates ? (
-                    <select
-                      id="preferredDate"
-                      name="preferredDate"
-                      value={formData.preferredDate}
-                      onChange={handleInputChange}
-                      className="form-input"
-                      required
-                    >
-                      <option value="">Select a date</option>
-                      {program.bookingOptions.availableDates.map((date, index) => (
-                        <option key={index} value={date}>
-                          {new Date(date).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                          })}
-                        </option>
-                      ))}
-                    </select>
+                    <>
+                      <select
+                        id="preferredDate"
+                        name="preferredDate"
+                        value={formData.preferredDate}
+                        onChange={handleInputChange}
+                        className="form-input"
+                        required
+                      >
+                        <option value="">Select a date</option>
+                        {program.bookingOptions.availableDates.map((date, index) => (
+                          <option key={index} value={date}>
+                            {new Date(date).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric'
+                            })}
+                          </option>
+                        ))}
+                      </select>
+                      {formErrors.preferredDate && <span className="error-message">{formErrors.preferredDate}</span>}
+                    </>
                   ) : (
-                    <input
-                      type="date"
-                      id="preferredDate"
-                      name="preferredDate"
-                      value={formData.preferredDate}
-                      onChange={handleInputChange}
-                      className="form-input"
-                      required
-                    />
+                    <>
+                      <input
+                        type="date"
+                        id="preferredDate"
+                        name="preferredDate"
+                        value={formData.preferredDate}
+                        onChange={handleInputChange}
+                        className="form-input"
+                        required
+                        min={new Date().toISOString().split('T')[0]} // Prevent past dates
+                      />
+                      {formErrors.preferredDate && <span className="error-message">{formErrors.preferredDate}</span>}
+                    </>
                   )}
                 </div>
 
                 <button
                   type="submit"
-                  className={`submit-button ${isSubmitting || !validateForm() ? 'disabled' : ''}`}
-                  disabled={isSubmitting || !validateForm()}
+                  className={`submit-button ${isSubmitting ? 'submitting' : ''}`}
+                  disabled={isSubmitting}
                 >
-                  {isSubmitting ? 'Processing...' : 'Book Now'}
+                  {isSubmitting ? (
+                    <>
+                      <span className="spinner" aria-hidden="true"></span>
+                      Processing...
+                    </>
+                  ) : (
+                    'Book Now'
+                  )}
                 </button>
               </form>
 
@@ -214,4 +303,4 @@ const BookingModal: React.FC<BookingModalProps> = ({ program, onClose, onSuccess
   );
 };
 
-export default BookingModal;
+export default React.memo(BookingModal);
