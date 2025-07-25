@@ -66,3 +66,32 @@ p, .subheading, .card-description {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* In your global CSS file (e.g., src/styles/global.css) */
+:root {
+  --primary: #4F46E5;
+  --primary-dark: #4338CA;
+  --primary-light: #EEF2FF;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --info: #3B82F6;
+  --text: #4B5563;
+  --text-dark: #1F2937;
+  --text-light: #6B7280;
+  --border: #E5E7EB;
+  --background-light: #F9FAFB;
+  --white: #FFFFFF;
+}

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {
   createBrowserRouter,
@@ -32,15 +33,18 @@ import ProgramDetailsPage from './pages/ProgramDetailsPage';
 import UserDashboard from './pages/dashboard/User/UserDashboard';
 import UserServices from './pages/dashboard/User/UserServices';
 import FacilityServices from './pages/dashboard/Facility/FacilityServices';
+import ServiceForm from './pages/dashboard/Facility/ServiceForm';
+import UserServiceForm from './pages/dashboard/User/UserServiceForm';
 import AdminPanel from './pages/dashboard/Admin/AdminPanel';
 import PersonalInfo from './pages/dashboard/Shared/PersonalInfo';
 import Payment from './pages/dashboard/Shared/Payment';
 import Preferences from './pages/dashboard/Shared/Preferences';
 
 // Styles
-// import './styles/index.css';
 import './styles/App.css';
 import './styles/global.css';
+import './styles/FacilityServices.css';
+import './styles/ServiceForm.css';
 
 // Protected Route Component with Role Checking
 const ProtectedRoute: React.FC<{ 
@@ -116,6 +120,8 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <UserDashboard /> },
           { path: 'services', element: <UserServices /> },
+          { path: 'services/new', element: <UserServiceForm /> },
+          { path: 'services/edit/:id', element: <UserServiceForm /> },
           { path: 'personal-info', element: <PersonalInfo role="user" /> },
           { path: 'payment', element: <Payment role="user" /> },
           { path: 'preferences', element: <Preferences role="user" /> }
@@ -134,6 +140,8 @@ const router = createBrowserRouter([
         ),
         children: [
           { index: true, element: <FacilityServices /> },
+          { path: 'services/new', element: <ServiceForm /> },
+          { path: 'services/edit/:id', element: <ServiceForm /> },
           { path: 'personal-info', element: <PersonalInfo role="facility" /> },
           { path: 'payment', element: <Payment role="facility" /> },
           { path: 'preferences', element: <Preferences role="facility" /> }

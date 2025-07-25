@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { User, CreditCard, Settings, LogOut, Home, Users, Shield } from 'lucide-react';
+import { User, CreditCard, Settings, LogOut, Home, Shield } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import '../../styles/Sidebar.css';
 interface SidebarProps {
@@ -58,13 +58,13 @@ const Sidebar: React.FC<SidebarProps> = ({ role }) => {
         label: 'Admin Panel', 
         path: '/dashboard/admin/panel',
         active: location.pathname.includes('/admin/panel')
-      },
-      { 
-        icon: Users, 
-        label: 'User Management', 
-        path: '/dashboard/admin/users',
-        active: location.pathname.includes('/admin/users')
-      }
+       }
+      // { 
+      //   icon: Users, 
+      //   label: 'User Management', 
+      //   path: '/dashboard/admin/users',
+      //   active: location.pathname.includes('/admin/users')
+      // }
     ]
   };
 
