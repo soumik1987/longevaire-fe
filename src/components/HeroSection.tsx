@@ -6,23 +6,23 @@ import '../styles/HeroSection.css';
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="hero-section">
-      <div className="hero-container">
-        <div className="hero-content">
-          <h1 className="hero-title">
+    <section className="hero-section-main">
+      <div className="hero-container-main">
+        <div className="hero-content-main">
+          <h1 className="hero-title-main">
             Discover the world's finest longevity experiences
           </h1>
-          <p className="hero-subtitle">
+          <p className="hero-subtitle-main">
             Your gateway to exclusive wellness retreats and elite health services.
           </p>
-          <div className="hero-buttons">
+          <div className="hero-buttons-main">
             <Link to="/explore" className="btn-primary">Explore now</Link>
             <Link to="#contact" className="btn-secondary">Contact us</Link>
           </div>
         </div>
         
-        <div className="hero-visual">
-          <div className="image-stack">
+        <div className="hero-visual-main">
+          <div className="image-stack-main">
             <img 
               src="https://images.pexels.com/photos/3757952/pexels-photo-3757952.jpeg" 
               alt="Luxury spa treatment" 

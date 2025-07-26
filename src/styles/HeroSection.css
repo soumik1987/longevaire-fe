@@ -1,5 +1,5 @@
 /* Base styles - desktop first */
-.hero-section {
+.hero-section-main{
   min-height: 80vh;
   background: linear-gradient(135deg, #F8F6F2 0%, #F5F4F0 100%);
   display: flex;
@@ -7,10 +7,11 @@
   padding: 80px 0; /* Vertical padding for desktop */
   margin-top: 65px; /* Space below a fixed/sticky header, if applicable */
   position: relative;
-  overflow: hidden; /* Helps contain children, important for animations */
+  overflow: hidden;
+  z-index: 1; /* Helps contain children, important for animations */
 }
 
-.hero-container {
+.hero-container-main {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 32px; /* Horizontal padding for desktop */
@@ -19,15 +20,15 @@
   gap: 60px;
   align-items: center;
   position: relative;
-  z-index: 2; /* Ensures content is above any background effects */
+  z-index: 1; /* Ensures content is above any background effects */
 }
 
-.hero-content {
+.hero-content-main {
   max-width: 500px;
   animation: fadeInUp 0.8s ease-out; /* Animation for content */
 }
 
-.hero-title {
+.hero-title-main {
   font-family: 'Baskervville', serif;
   /* Use clamp for flexible sizing, ensuring it shrinks significantly on small screens */
   font-size: clamp(2rem, 5vw, 2.8rem); /* Min 2rem, scales with 5vw, max 2.8rem */
@@ -39,7 +40,7 @@
   overflow-wrap: break-word; /* Modern alternative to word-break */
 }
 
-.hero-subtitle {
+.hero-subtitle-main {
   font-family: 'Source Sans 3', sans-serif;
   font-size: clamp(1rem, 2vw, 1.1rem); /* Min 1rem, scales with 2vw, max 1.1rem */
   color: #5A5A5A;
@@ -48,7 +49,7 @@
   font-weight: 400;
 }
 
-.hero-buttons {
+.hero-buttons-main {
   display: flex;
   gap: 16px;
 }
@@ -86,14 +87,14 @@
   transform: translateY(-2px); /* Subtle lift on hover */
 }
 
-.hero-visual {
+.hero-visual-main{
   position: relative;
   height: 400px; /* Fixed height for visual container on desktop */
   width: 100%;
   animation: fadeIn 0.8s ease-out 0.2s both; /* Animation for visual */
 }
 
-.image-stack {
+.image-stack-main {
   position: relative;
   width: 100%;
   height: 100%;
@@ -156,53 +157,53 @@
 
 /* Tablet and larger mobile (up to 992px) */
 @media (max-width: 992px) {
-  .hero-section {
+  .hero-section-main {
     min-height: auto; /* Allow height to adjust to content */
     padding: 60px 0; /* Reduced vertical padding */
   }
 
-  .hero-container {
+  .hero-container-main {
     gap: 40px; /* Reduced gap between columns */
     padding: 0 28px; /* Slightly reduced horizontal padding */
   }
 
-  .hero-visual {
+  .hero-visual-main {
     height: 350px; /* Slightly reduced visual height */
   }
 }
 
 /* Medium mobile devices (up to 768px) - Stacking layout */
 @media (max-width: 768px) {
-  .hero-section {
+  .hero-section-main {
     padding: 100px 0 50px 0; /* Adjust top padding for a fixed header (assuming it's around 60-70px tall) */
     margin-top: 0; /* Remove base margin-top as padding-top now accounts for header */
     min-height: auto; /* Ensure it's not trying to maintain 80vh */
   }
 
-  .hero-container {
+  .hero-container-main {
     grid-template-columns: 1fr; /* Stack content vertically */
     gap: 30px; /* Reduced gap between stacked sections */
     padding: 0 24px; /* Horizontal padding for mobile */
   }
 
-  .hero-content {
+  .hero-content-main {
     text-align: center; /* Center text content */
     margin: 0 auto; /* Center content block */
     order: 1; /* Ensure content comes first visually */
   }
 
-  .hero-title {
+  .hero-title-main {
     /* Critical adjustment: Make font much smaller on mobile */
     font-size: clamp(1.8rem, 8vw, 2.2rem); /* More aggressive scaling down */
     margin-bottom: 16px;
   }
 
-  .hero-subtitle {
+  .hero-subtitle-main {
     font-size: clamp(0.95rem, 2.5vw, 1rem);
     margin-bottom: 24px;
   }
 
-  .hero-buttons {
+  .hero-buttons-main {
     justify-content: center; /* Center buttons horizontally */
     flex-wrap: wrap; /* Allow buttons to wrap to next line if space is tight */
     gap: 12px; /* Slightly smaller gap between buttons on mobile */
@@ -214,7 +215,7 @@
     font-size: 0.9rem; /* Smaller font for buttons */
   }
 
-  .hero-visual {
+  .hero-visual-main {
     height: 280px; /* Adjusted height for mobile visual */
     order: 2; /* Visual comes after content */
     margin-top: 20px; /* Space above visual when stacked */
@@ -245,26 +246,27 @@
 
 /* Small mobile devices (up to 480px) */
 @media (max-width: 480px) {
-  .hero-section {
+  .hero-section-main {
     padding: 90px 0 40px 0; /* Further adjust top padding for smaller fixed header */
   }
 
-  .hero-container {
+  .hero-container-main {
     padding: 0 16px; /* Tighter horizontal padding */
     gap: 25px; /* Even smaller gap */
   }
 
-  .hero-title {
+  .hero-title-main {
     font-size: clamp(1.5rem, 9vw, 1.8rem); /* Even more aggressive font scaling */
   }
 
-  .hero-subtitle {
+  .hero-subtitle-main {
     font-size: clamp(0.85rem, 2.8vw, 0.95rem);
   }
 
-  .hero-buttons {
+  .hero-buttons-main {
     flex-direction: column; /* Stack buttons vertically */
     gap: 10px; /* Smallest gap */
+    align-items: center;
   }
 
   .btn-primary,
@@ -275,14 +277,14 @@
     font-size: 0.85rem;
   }
 
-  .hero-visual {
+  .hero-visual-main {
     height: 220px; /* Reduced height for smallest screens */
   }
 
   /* Further adjust image sizes for very small screens */
   .primary-image {
-    width: 80%;
-    height: 70%;
+    width: 60%;
+    height: 57%;
     left: 5%;
   }
 
@@ -303,11 +305,43 @@
 
 /* Reduced motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
-  .hero-content,
-  .hero-visual {
+  .hero-content-main,
+  .hero-visual-main {
     animation: none !important;
   }
   .stacked-image {
     transition: none !important;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

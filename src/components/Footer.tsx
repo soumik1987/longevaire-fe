@@ -10,6 +10,7 @@ const Footer: React.FC = () => {
   const companyLinks = ["About", "Team", "Careers", "Contact", "Legal"];
 
   return (
+    <div className="footer-wrapper">
     <footer className="footer">
       <div className="container">
         <div className="footer-content">
@@ -81,6 +82,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
     </footer>
+    </div>
   );
 };
 
