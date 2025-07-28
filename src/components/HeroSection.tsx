@@ -37,12 +37,12 @@ const HeroSection: React.FC = () => {
           <div className="hero-visual-main">
             <div className="image-stack-main">
               <img 
-                src="https://images.pexels.com/photos/3757952/pexels-photo-3757952.jpeg" 
+                src="https://pranissa-media.s3.us-east-1.amazonaws.com/images/balconyswim.png" 
                 alt="Luxury spa treatment" 
                 className="stacked-image primary-image"
               />
               <img 
-                src="https://pranissa-media.s3.us-east-1.amazonaws.com/images/balconyswim.png" 
+                src="https://images.pexels.com/photos/3757952/pexels-photo-3757952.jpeg"
                 alt="Wellness center" 
                 className="stacked-image secondary-image"
               />
