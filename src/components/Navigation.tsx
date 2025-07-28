@@ -1,22 +1,21 @@
 // src/components/Navigation.tsx
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  Star, ChevronDown, Menu, X, User, LogOut, Building, Shield
-} from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Menu, X, User, LogOut, Building, Shield } from 'lucide-react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import '../styles/Navigation.css';
 import ContactModal from './ContactModal';
 import { useAuth } from '../contexts/AuthContext';
 import AuthModal from './Auth/AuthModal';
+import logo from '../assets/logo.jpg';
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [showContactModal, setShowContactModal] = useState(false);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
+  const location = useLocation();
 
   const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
@@ -43,21 +42,6 @@ const Navigation: React.FC = () => {
           !mobileToggle.contains(event.target as Node)
         ) {
           setIsMobileMenuOpen(false);
-          setActiveDropdown(null);
-        }
-      }
-
-      if (activeDropdown) {
-        const dropdown = document.querySelector(`.dropdown-content.${activeDropdown}-dropdown`);
-        const trigger = document.querySelector(`[data-dropdown="${activeDropdown}"]`);
-
-        if (
-          dropdown &&
-          trigger &&
-          !dropdown.contains(event.target as Node) &&
-          !trigger.contains(event.target as Node)
-        ) {
-          setActiveDropdown(null);
         }
       }
 
@@ -72,18 +56,13 @@ const Navigation: React.FC = () => {
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isMobileMenuOpen, activeDropdown, showProfileDropdown]);
+  }, [isMobileMenuOpen, showProfileDropdown]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
     if (!isMobileMenuOpen) {
-      setActiveDropdown(null);
       setShowProfileDropdown(false);
     }
-  };
-
-  const handleDropdownToggle = (dropdown: string) => {
-    setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
   };
 
   const handleLogout = () => {
@@ -145,127 +124,72 @@ const Navigation: React.FC = () => {
     }
   };
 
+  const isDestinationsActive = location.pathname === '/explore' &&
+    location.state?.initialTab === 'destinations';
+  const isProgramsActive = location.pathname === '/explore' &&
+    (!location.state?.initialTab || location.state?.initialTab === 'programs');
+
+  const handleDestinationsClick = (_e: React.MouseEvent) => {
+    navigate('/explore', {
+      state: { initialTab: 'destinations', forceReload: true },
+      replace: false
+    });
+    setIsMobileMenuOpen(false);
+  };
+
+  const handleProgramsClick = (_e: React.MouseEvent) => {
+    navigate('/explore', {
+      state: { initialTab: 'programs', forceReload: true },
+      replace: false
+    });
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <>
       <nav className={`navigation ${isScrolled ? 'scrolled' : ''}`}>
         <div className="nav-container">
           <div className="nav-left">
             <Link to="/" className="logo">
-              <Star size={24} fill="currentColor" />
+              <img src={logo} alt="Logo" className="logo-icon" />
             </Link>
-            <span className="welcome-text">Welcome to your journey of rejuvenation</span>
+            <span className="welcome-text">Pranissa</span>
           </div>
 
           <div className={`nav-center ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
-          <div className="nav-item dropdown">
-            <button
-              className="dropdown-trigger"
-              onClick={() => handleDropdownToggle('discover')}
-              data-dropdown="discover"
-              aria-expanded={activeDropdown === 'discover'}
+            <Link
+              to="/explore"
+              className={`nav-item ${isDestinationsActive ? 'active' : ''}`}
+              onClick={handleDestinationsClick}
+              state={{ initialTab: 'destinations', forceReload: true }}
             >
-              Discover 
-              <ChevronDown size={16} className={`dropdown-arrow ${activeDropdown === 'discover' ? 'rotated' : ''}`} />
-            </button>
-            <div className={`dropdown-content discover-dropdown ${activeDropdown === 'discover' ? 'active' : ''}`}>
-              <div className="dropdown-header">
-                <h3>Clinic Access</h3>
-                <p>Connect with top clinics worldwide</p>
-              </div>
-              <div className="dropdown-grid">
-                <div className="dropdown-section">
-                  <h4>LONGEVITY PROGRAMS</h4>
-                  <a href="#wellness-retreats">
-                    <div>
-                      <strong>Wellness Retreats</strong>
-                      <p>Indulge in luxury spa escapes</p>
-                    </div>
-                  </a>
-                  <a href="#medical-concierge">
-                    <div>
-                      <strong>Medical Concierge</strong>
-                      <p>Tailored health plans just for you</p>
-                    </div>
-                  </a>
-                </div>
-                
-                <div className="dropdown-section">
-                  <h4>EXPERT GUIDANCE</h4>
-                  <a href="#consulting">
-                    <div>
-                      <strong>Consulting</strong>
-                      <p>Get strategic health advice</p>
-                    </div>
-                  </a>
-                </div>
-                
-                <div className="dropdown-section">
-                  <h4>PARTNERSHIPS</h4>
-                  <p className="partnerships-text">Collaborate with global leaders</p>
-                  
-                  <div className="membership-section">
-                    <h5>MEMBERSHIP</h5>
-                    <div className="membership-item">
-                      <div className="membership-bullet"></div>
-                      <div>
-                        <strong>Elite Access</strong>
-                        <p>Enjoy priority support</p>
-                      </div>
-                    </div>
-                    <div className="membership-item">
-                      <div className="membership-bullet"></div>
-                      <div>
-                        <strong>Events</strong>
-                        <p>Join global conferences</p>
-                      </div>
-                    </div>
-                    <div className="membership-item">
-                      <div className="membership-bullet"></div>
-                      <div>
-                        <strong>Resources</strong>
-                        <p>Access curated content</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="dropdown-footer">
-                <p>Elevate your longevity journey</p>
-                <p className="footer-subtext">Tailored solutions for optimal health</p>
-                <button className="dropdown-button">Learn more</button>
-              </div>
-            </div>
-          </div>
+              Destinations
+            </Link>
 
-            <a href="#about" className="nav-item">About</a>
-            <a href="#insights" className="nav-item">Insights</a>
+            <Link
+              to="/explore"
+              className={`nav-item ${isProgramsActive ? 'active' : ''}`}
+              onClick={handleProgramsClick}
+              state={{ initialTab: 'programs', forceReload: true }}
+            >
+              Wellness Programs
+            </Link>
 
-            <div className="nav-item dropdown">
-              <button
-                className="dropdown-trigger"
-                onClick={() => handleDropdownToggle('support')}
-                data-dropdown="support"
-                aria-expanded={activeDropdown === 'support'}
-              >
-                Support
-                <ChevronDown size={16} className={`dropdown-arrow ${activeDropdown === 'support' ? 'rotated' : ''}`} />
-              </button>
-              <div className={`dropdown-content support-dropdown ${activeDropdown === 'support' ? 'active' : ''}`}>
-                <a href="#faq">FAQ</a>
-                <a href="#help">Help Center</a>
-                <button
-                  className="contact-us-item"
-                  onClick={() => {
-                    setActiveDropdown(null);
-                    setShowContactModal(true);
-                    setIsMobileMenuOpen(false);
-                  }}
-                >
-                  Contact Us
-                </button>
-              </div>
-            </div>
+            <Link
+              to="/about"
+              className="nav-item"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              About
+            </Link>
+
+            <Link
+              to="/blogs"
+              className="nav-item"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Blogs
+            </Link>
           </div>
 
           <div className="nav-right">
@@ -278,9 +202,13 @@ const Navigation: React.FC = () => {
             </button>
 
             {!isAuthenticated ? (
-              <button className="auth-button primary" onClick={handleSignIn}>
-                JOIN NOW
-              </button>
+              <>
+              <div className="mobile-join">
+                <button className="join-btn" onClick={handleSignIn}>
+                  JOIN NOW
+                </button>
+                </div>
+              </>
             ) : (
               <div className="profile-dropdown-container" ref={profileDropdownRef}>
                 <button
@@ -289,8 +217,6 @@ const Navigation: React.FC = () => {
                   aria-expanded={showProfileDropdown}
                 >
                   <div className="profile-avatar">{getInitials()}</div>
-                  {/* {!isMobileMenuOpen && <span className="profile-name">{user?.firstName} {user?.lastName}</span>} */}
-                  {/* <ChevronDown size={16} className={`dropdown-arrow ${showProfileDropdown ? 'rotated' : ''}`} /> */}
                 </button>
 
                 {showProfileDropdown && (

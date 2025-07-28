@@ -1,7 +1,7 @@
 import React from 'react';
 import DashboardLayout from '../../../components/Layout/DashboardLayout';
 import { Plus, CreditCard } from 'lucide-react';
-
+import '../../../styles/Payment.css';
 interface PaymentProps {
   role: 'user' | 'facility' | 'admin';
 }

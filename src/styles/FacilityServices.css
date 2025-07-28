@@ -1,10 +1,12 @@
-/* Facility Services Page Styles */
+@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
 .facility-services {
   padding: 2rem;
   max-width: 1400px;
   margin: 2rem auto;
   font-family: 'Helvetica Neue', Arial, sans-serif;
   background-color: #f8f8f8;
+  overflow-x: hidden;
 }
 
 .facility-services__header {
@@ -43,63 +45,53 @@
 }
 
 .facility-services__add-btn:hover {
-  /* background-color: #333333; */
   transform: translateY(-2px);
-  background: #A93E2B; /* Darker reddish-orange for hover */
-  box-shadow: 0 12px 35px rgba(196, 76, 48, 0.4); /* Shadow adjusted for hover */
+  background: #A93E2B;
+  box-shadow: 0 12px 35px rgba(196, 76, 48, 0.4);
 }
 
+/* FIXED TABS (wrap properly) */
 .facility-services__tabs {
   display: flex;
-  gap: 0;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   margin-bottom: 2rem;
   border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.facility-services__tabs::-webkit-scrollbar {
-  display: none;
+  padding-bottom: 0.5rem;
+  justify-content: flex-start;
 }
 
 .facility-services__tab {
-  padding: 12px 24px;
+  padding: 10px 16px;
   border: none;
-  background: none;
+  background: #f0f0f0;
   cursor: pointer;
   font-weight: 500;
   color: #666666;
-  border-radius: 0;
-  transition: all 0.2s;
-  white-space: nowrap;
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  margin: 10px;
+  border-radius: 10px;
+  white-space: nowrap;
 }
 
 .facility-services__tab.active {
-  background-color:#C44C30;
+  background-color: #C44C30;
   color: white;
-  border-bottom: 2px solid #000000;
   font-weight: 600;
-  border-radius: 10px;
 }
 
 .facility-services__tab:hover:not(.active) {
   color: #000000;
 }
 
+/* Grid & Cards */
 .facility-services__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
   gap: 24px;
 }
 
-/* Card Styles - Exact match to the image */
 .facility-services__card {
   background-color: #ffffff;
   border-radius: 0;
@@ -124,7 +116,6 @@
   top: 16px;
   right: 16px;
   padding: 6px 12px;
-  border-radius: 0;
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
@@ -185,14 +176,13 @@
   border-bottom: 1px solid #e0e0e0;
 }
 
-.facilty-service__car-highlight-content{
-   border-radius: 20px;
-   border-style: solid;
-   padding: 5px;
-   width: fit-content;
-   background-color: #fef2f2;
-    color: #c48f8f;
-    
+.facilty-service__car-highlight-content {
+  border-radius: 20px;
+  border-style: solid;
+  padding: 5px;
+  width: fit-content;
+  background-color: #fef2f2;
+  color: #c48f8f;
 }
 
 .facility-services__card-highlight-text {
@@ -200,19 +190,18 @@
   font-size: 11px;
   font-weight: 600;
   margin: 0;
-    font-family: 'Baskervville', serif;
+  font-family: 'Baskervville', serif;
   line-height: 1.4;
 }
 
 .facility-services__card-description {
   margin-bottom: 24px;
-  
 }
 
 .facility-services__card-description-line {
   color: #000000;
   font-size: 15px;
-    font-family: 'Baskervville', serif;
+  font-family: 'Baskervville', serif;
   margin: 0 0 4px 0;
   line-height: 1.4;
   font-weight: 300;
@@ -236,19 +225,15 @@
 .facility-services__card-price {
   color: #000000;
   font-size: 14px;
-    font-family: 'sans-serif';
+  font-family: 'sans-serif';
   font-weight: 600;
-}
-
-.facility-services__card-terms {
-  margin-bottom: 24px;
 }
 
 .facility-services__card-term {
   color: #000000;
   font-size: 14px;
   margin: 0 0 8px 0;
-    font-family: 'Baskervville', serif;
+  font-family: 'Baskervville', serif;
   font-weight: 400;
 }
 
@@ -271,18 +256,43 @@
   color: #666666;
 }
 
-/* Responsive Styles */
-@media (max-width: 1024px) {
-  .facility-services {
-    padding: 24px;
-  }
+/* Media Queries for responsiveness */
 
+/* 1399px to 1200px */
+@media (max-width: 1399px) {
   .facility-services__grid {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
   }
 }
 
-@media (max-width: 768px) {
+/* 1199px to 1024px */
+@media (max-width: 1199px) {
+  .facility-services__grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+/* 1023px to 768px */
+@media (max-width: 1023px) {
+  .facility-services {
+    padding: 1.5rem;
+  }
+
+  .facility-services__grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+
+  .facility-services__card-title {
+    font-size: 22px;
+  }
+}
+
+/* 767px to 525px */
+@media (max-width: 767px) {
+  .facility-services {
+    padding: 1rem;
+  }
+
   .facility-services__header {
     flex-direction: column;
     align-items: flex-start;
@@ -295,17 +305,22 @@
   }
 
   .facility-services__grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+
+  .facility-services__card-title {
+    font-size: 20px;
+  }
+}
+
+/* 524px to 488px */
+@media (max-width: 524px) {
+  .facility-services__grid {
     grid-template-columns: 1fr;
   }
 
   .facility-services__card-title {
-    font-size: 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .facility-services {
-    padding: 16px;
+    font-size: 18px;
   }
 
   .facility-services__card-image-container {
@@ -315,4 +330,49 @@
   .facility-services__card-content {
     padding: 20px;
   }
+}
+
+/* 487px to 356px */
+@media (max-width: 487px) {
+  .facility-services__card-title {
+    font-size: 16px;
+  }
+
+  .facility-services__card-image-container {
+    height: 180px;
+  }
+
+  .facility-services__card-content {
+    padding: 16px;
+  }
+}
+
+/* Below 356px */
+@media (max-width: 355px) {
+  .facility-services {
+    padding: 12px;
+  }
+
+  .facility-services__card-title {
+    font-size: 15px;
+  }
+
+  .facility-services__add-btn {
+    font-size: 12px;
+    padding: 10px 20px;
+  }
+
+  .facility-services__card-image-container {
+    height: 160px;
+  }
+
+  .facility-services__card-content {
+    padding: 12px;
+  }
+}
+
+/* FORCE remove horizontal scroll globally */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden !important;
 }

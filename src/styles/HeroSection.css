@@ -1,48 +1,48 @@
-/* Base styles - desktop first */
-.hero-section-main{
+
+
+.hero-section-main {
   min-height: 80vh;
   background: linear-gradient(135deg, #F8F6F2 0%, #F5F4F0 100%);
   display: flex;
   align-items: center;
-  padding: 80px 0; /* Vertical padding for desktop */
-  margin-top: 65px; /* Space below a fixed/sticky header, if applicable */
+  padding: 80px 0;
+  margin-top: 0px;
   position: relative;
   overflow: hidden;
-  z-index: 1; /* Helps contain children, important for animations */
+  z-index: 1;
 }
 
 .hero-container-main {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 32px; /* Horizontal padding for desktop */
+  padding: 0 32px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
   align-items: center;
   position: relative;
-  z-index: 1; /* Ensures content is above any background effects */
+  z-index: 1;
 }
 
 .hero-content-main {
   max-width: 500px;
-  animation: fadeInUp 0.8s ease-out; /* Animation for content */
+  animation: fadeInUp 0.8s ease-out;
 }
 
 .hero-title-main {
   font-family: 'Baskervville', serif;
-  /* Use clamp for flexible sizing, ensuring it shrinks significantly on small screens */
-  font-size: clamp(2rem, 5vw, 2.8rem); /* Min 2rem, scales with 5vw, max 2.8rem */
+  font-size: clamp(2rem, 5vw, 2.8rem);
   font-weight: 700;
   line-height: 1.2;
   color: #3C3C3C;
   margin-bottom: 24px;
-  word-break: break-word; /* Allows long words to break to prevent overflow */
-  overflow-wrap: break-word; /* Modern alternative to word-break */
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .hero-subtitle-main {
   font-family: 'Source Sans 3', sans-serif;
-  font-size: clamp(1rem, 2vw, 1.1rem); /* Min 1rem, scales with 2vw, max 1.1rem */
+  font-size: clamp(1rem, 2vw, 1.1rem);
   color: #5A5A5A;
   margin-bottom: 32px;
   line-height: 1.6;
@@ -62,7 +62,7 @@
   font-weight: 500;
   text-decoration: none;
   transition: all 0.3s ease;
-  white-space: nowrap; /* Prevents buttons from wrapping text */
+  white-space: nowrap;
 }
 
 .btn-primary {
@@ -73,7 +73,7 @@
 
 .btn-primary:hover {
   background-color: #7A6D60;
-  transform: translateY(-2px); /* Subtle lift on hover */
+  transform: translateY(-2px);
 }
 
 .btn-secondary {
@@ -84,14 +84,14 @@
 
 .btn-secondary:hover {
   background-color: rgba(139, 124, 110, 0.1);
-  transform: translateY(-2px); /* Subtle lift on hover */
+  transform: translateY(-2px);
 }
 
-.hero-visual-main{
+.hero-visual-main {
   position: relative;
-  height: 400px; /* Fixed height for visual container on desktop */
+  height: 400px;
   width: 100%;
-  animation: fadeIn 0.8s ease-out 0.2s both; /* Animation for visual */
+  animation: fadeIn 0.8s ease-out 0.2s both;
 }
 
 .image-stack-main {
@@ -107,10 +107,9 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   border: 3px solid #F8F6F2;
-  will-change: transform; /* Hint for browser optimization */
+  will-change: transform;
 }
 
-/* Key image positions for overlay (desktop) */
 .primary-image {
   width: 65%;
   height: 65%;
@@ -135,14 +134,12 @@
   z-index: 1;
 }
 
-/* Hover effects for images */
 .stacked-image:hover {
   transform: scale(1.05);
-  z-index: 10 !important; /* Ensure hover image is always on top */
+  z-index: 10 !important;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Animation keyframes */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -153,148 +150,123 @@
   to { opacity: 1; }
 }
 
-/* --- Responsive Styles --- */
+/* ===============================
+   Responsive Styles
+   =============================== */
 
-/* Tablet and larger mobile (up to 992px) */
 @media (max-width: 992px) {
   .hero-section-main {
-    min-height: auto; /* Allow height to adjust to content */
-    padding: 60px 0; /* Reduced vertical padding */
+    min-height: auto;
+    padding: 60px 0;
   }
-
   .hero-container-main {
-    gap: 40px; /* Reduced gap between columns */
-    padding: 0 28px; /* Slightly reduced horizontal padding */
+    gap: 40px;
+    padding: 0 28px;
   }
-
   .hero-visual-main {
-    height: 350px; /* Slightly reduced visual height */
+    height: 350px;
   }
 }
 
-/* Medium mobile devices (up to 768px) - Stacking layout */
 @media (max-width: 768px) {
   .hero-section-main {
-    padding: 100px 0 50px 0; /* Adjust top padding for a fixed header (assuming it's around 60-70px tall) */
-    margin-top: 0; /* Remove base margin-top as padding-top now accounts for header */
-    min-height: auto; /* Ensure it's not trying to maintain 80vh */
+    padding: 100px 0 50px 0;
+    margin-top: 0;
+    min-height: auto;
   }
-
   .hero-container-main {
-    grid-template-columns: 1fr; /* Stack content vertically */
-    gap: 30px; /* Reduced gap between stacked sections */
-    padding: 0 24px; /* Horizontal padding for mobile */
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 0 24px;
   }
-
   .hero-content-main {
-    text-align: center; /* Center text content */
-    margin: 0 auto; /* Center content block */
-    order: 1; /* Ensure content comes first visually */
+    text-align: center;
+    margin: 0 auto;
+    order: 1;
   }
-
   .hero-title-main {
-    /* Critical adjustment: Make font much smaller on mobile */
-    font-size: clamp(1.8rem, 8vw, 2.2rem); /* More aggressive scaling down */
+    font-size: clamp(1.8rem, 8vw, 2.2rem);
     margin-bottom: 16px;
   }
-
   .hero-subtitle-main {
     font-size: clamp(0.95rem, 2.5vw, 1rem);
     margin-bottom: 24px;
   }
-
   .hero-buttons-main {
-    justify-content: center; /* Center buttons horizontally */
-    flex-wrap: wrap; /* Allow buttons to wrap to next line if space is tight */
-    gap: 12px; /* Slightly smaller gap between buttons on mobile */
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
   }
-
   .btn-primary,
   .btn-secondary {
-    padding: 10px 20px; /* Slightly smaller button padding */
-    font-size: 0.9rem; /* Smaller font for buttons */
+    padding: 10px 20px;
+    font-size: 0.9rem;
   }
-
   .hero-visual-main {
-    height: 280px; /* Adjusted height for mobile visual */
-    order: 2; /* Visual comes after content */
-    margin-top: 20px; /* Space above visual when stacked */
+    height: 280px;
+    order: 2;
+    margin-top: 20px;
   }
-
-  /* Adjust image stack positions for mobile */
   .primary-image {
-    width: 70%;
+    width: 50%;
     height: 60%;
     top: 5%;
     left: 10%;
   }
-
   .secondary-image {
-    width: 55%;
+    width: 50%;
     height: 45%;
     top: 30%;
     left: 40%;
   }
-
   .accent-image {
     width: 40%;
     height: 30%;
-    bottom: 0%; /* Adjusted to be slightly above the bottom */
+    bottom: 0%;
     left: 20%;
   }
 }
 
-/* Small mobile devices (up to 480px) */
 @media (max-width: 480px) {
   .hero-section-main {
-    padding: 90px 0 40px 0; /* Further adjust top padding for smaller fixed header */
+    padding: 90px 0 40px 0;
   }
-
   .hero-container-main {
-    padding: 0 16px; /* Tighter horizontal padding */
-    gap: 25px; /* Even smaller gap */
+    padding: 0 16px;
+    gap: 25px;
   }
-
   .hero-title-main {
-    font-size: clamp(1.5rem, 9vw, 1.8rem); /* Even more aggressive font scaling */
+    font-size: clamp(1.5rem, 9vw, 1.8rem);
   }
-
   .hero-subtitle-main {
     font-size: clamp(0.85rem, 2.8vw, 0.95rem);
   }
-
   .hero-buttons-main {
-    flex-direction: column; /* Stack buttons vertically */
-    gap: 10px; /* Smallest gap */
+    flex-direction: column;
+    gap: 10px;
     align-items: center;
   }
-
   .btn-primary,
   .btn-secondary {
-    width: 90%; /* Make buttons nearly full width */
-    max-width: 250px; /* Limit max width */
-    padding: 8px 16px; /* Smallest padding for buttons */
+    width: 90%;
+    max-width: 250px;
+    padding: 8px 16px;
     font-size: 0.85rem;
   }
-
   .hero-visual-main {
-    height: 220px; /* Reduced height for smallest screens */
+    height: 220px;
   }
-
-  /* Further adjust image sizes for very small screens */
   .primary-image {
     width: 60%;
     height: 57%;
     left: 5%;
   }
-
   .secondary-image {
     width: 60%;
     height: 50%;
     top: 30%;
     left: 30%;
   }
-
   .accent-image {
     width: 45%;
     height: 35%;
@@ -303,7 +275,6 @@
   }
 }
 
-/* Reduced motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   .hero-content-main,
   .hero-visual-main {
@@ -313,35 +284,3 @@
     transition: none !important;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

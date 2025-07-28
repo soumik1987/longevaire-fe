@@ -1,27 +1,38 @@
+// src/pages/ExplorePage.tsx
 import React, { useEffect, useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { fetchProgramCategories, fetchDestinations } from '../api';
 import '../styles/ExplorePage.css';
 import type { Destination } from '../data/destinations';
 import type { ProgramCategory } from '../data/programs';
 
 const ExplorePage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'programs' | 'destinations'>('programs');
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState<'programs' | 'destinations'>(
+    (location.state?.initialTab === 'destinations' ? 'destinations' : 'programs')
+  );
   const [selectedDestination, setSelectedDestination] = useState<string | null>(null);
   const [programCategories, setProgramCategories] = useState<ProgramCategory[]>([]);
   const [destinations, setDestinations] = useState<Destination[]>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  // Reset tab when location state changes (from navigation)
+  useEffect(() => {
+    if (location.state?.forceReload) {
+      setActiveTab(location.state?.initialTab === 'destinations' ? 'destinations' : 'programs');
+    }
+  }, [location.state]);
+
   // Memoized data loading function
   const loadData = useCallback(async () => {
     try {
+      setLoading(true);
       const [categories, dests] = await Promise.all([
         fetchProgramCategories(),
         fetchDestinations()
       ]);
       
-      // Only update state if component is still mounted
       setProgramCategories(categories);
       setDestinations(dests);
     } catch (error) {
@@ -100,7 +111,7 @@ const ExplorePage: React.FC = () => {
           </div>
         </div>
       </div>
-
+        
       {/* Cards Section */}
       <div className="cards-section">
         <div className="container">

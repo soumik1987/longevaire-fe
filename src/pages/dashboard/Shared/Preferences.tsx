@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import DashboardLayout from '../../../components/Layout/DashboardLayout';
-
+import '../../../styles/Preferences.css';
 interface PreferencesProps {
   role: 'user' | 'facility' | 'admin';
 }
@@ -8,14 +8,14 @@ interface PreferencesProps {
 const Preferences: React.FC<PreferencesProps> = ({ role }) => {
   const [preferences, setPreferences] = useState({
     notifications: true,
-    darkMode: false,
     language: 'en'
   });
+  const [showMessageBox, setShowMessageBox] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
-    const checked = (e.target as HTMLInputElement).checked;
-    
+    const checked = (e.target as HTMLInputElement).checked; // Type assertion for checkbox
+
     setPreferences({
       ...preferences,
       [name]: type === 'checkbox' ? checked : value
@@ -24,7 +24,10 @@ const Preferences: React.FC<PreferencesProps> = ({ role }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Preferences saved!');
+    setShowMessageBox(true);
+    setTimeout(() => {
+      setShowMessageBox(false);
+    }, 2000);
   };
 
   return (
@@ -45,18 +48,6 @@ const Preferences: React.FC<PreferencesProps> = ({ role }) => {
             </label>
           </div>
           
-          <div className="form-group checkbox">
-            <label>
-              <input
-                type="checkbox"
-                name="darkMode"
-                checked={preferences.darkMode}
-                onChange={handleChange}
-              />
-              Dark Mode
-            </label>
-          </div>
-          
           <div className="form-group">
             <label>Language</label>
             <select
@@ -74,6 +65,14 @@ const Preferences: React.FC<PreferencesProps> = ({ role }) => {
             Save Preferences
           </button>
         </form>
+
+        {showMessageBox && (
+          <div className="message-box-overlay">
+            <div className="message-box">
+              <p>Preferences saved successfully!</p>
+            </div>
+          </div>
+        )}
       </div>
     </DashboardLayout>
   );

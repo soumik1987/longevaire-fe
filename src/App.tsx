@@ -13,7 +13,7 @@ import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Navigation from './components/Navigation';
 import HeroSection from './components/HeroSection';
 import LongevityGrid from './components/LongevityGrid';
-import ElevateSection from './components/ElevateSection';
+// import ElevateSection from './components/ElevateSection';
 import Slideshow from './components/Slideshow';
 import ExpertiseSection from './components/ExpertiseSection';
 import FAQSection from './components/FAQSection';
@@ -69,9 +69,10 @@ const HomePage: React.FC = () => {
   return (
     <>
       <HeroSection />
-      <ElevateSection />
-      <LongevityGrid />
       <Slideshow />
+      {/* <ElevateSection /> */}
+      {/* <ExplorePage/> */}
+      <LongevityGrid />
       <ExpertiseSection />
       <FAQSection />
       <WellnessInsightsSection />

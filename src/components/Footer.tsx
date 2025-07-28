@@ -1,7 +1,7 @@
 import React from 'react';
-import { Instagram, Twitter, Facebook, Linkedin, Star } from 'lucide-react';
+import { Instagram, Twitter, Facebook, Linkedin } from 'lucide-react';
 import '../styles/Footer.css';
-
+import logo from '../assets/logo.jpg';
 
 const Footer: React.FC = () => {
   const destinationLinks=["Clinics","Resorts","Spas","Retreats","Partners"];
@@ -17,8 +17,8 @@ const Footer: React.FC = () => {
           <div className="footer-main">
             <div className="footer-brand">
               <div className="footer-logo">
-                <Star size={32} fill="currentColor" />
-                <span className="brand-name">LONGENOMICS</span>
+                <img src={logo} alt="Logo" className="logo-icon" />
+                <span className="brand-name">PRANISSA</span>
               </div>
               <p className="footer-tagline">Your gateway to timeless wellness</p>
             </div>
