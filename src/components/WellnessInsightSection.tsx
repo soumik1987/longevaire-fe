@@ -16,7 +16,7 @@ const WellnessInsightsSection: React.FC = () => {
       id: 1,
       label: "New",
       heading: "Premier center spotlight",
-      description: "Discover our latest elite destination.",
+      description: "Explore our most sought-after wellness destinations—carefully selected for their innovation, outcomes, and environments that inspire renewal and clarity.",
       image: "https://pranissa-media.s3.us-east-1.amazonaws.com/images/camp1.png"
     },
     {
