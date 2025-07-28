@@ -31,14 +31,14 @@ const WellnessInsightsSection: React.FC = () => {
       label: "Education",
       heading: "Professional advisory access",
       description: "Gain access to leading experts and educational resources.",
-      image: "https://images.pexels.com/photos/6787202/pexels-photo-6787202.jpeg?auto=compress&cs=tinysrgb&w=800"
+      image: "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
       id: 4,
       label: "Update",
       heading: "Global center launches",
       description: "See new openings in key markets.",
-      image: "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&w=800"
+      image: "https://pranissa-media.s3.us-east-1.amazonaws.com/images/hotel1.png800"
     },
     {
       id: 5,
