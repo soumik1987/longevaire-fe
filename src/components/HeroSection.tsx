@@ -49,7 +49,7 @@ const HeroSection: React.FC = () => {
               <img 
                 src="https://pranissa-media.s3.us-east-1.amazonaws.com/images/sunriseyoga.png" 
                 alt="Meditation space" 
-                className="stacked-image primary-image"
+                className="stacked-image accent-image"
               />
             </div>
           </div>
