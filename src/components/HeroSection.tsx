@@ -14,7 +14,7 @@ const HeroSection: React.FC = () => {
         <div className="hero-container-main">
           <div className="hero-content-main">
             <h1 className="hero-title-main">
-              Discover the world's finest longevity experiences
+              Experience Beyond Ordinary Wellness
             </h1>
             <p className="hero-subtitle-main">
               Your gateway to exclusive wellness retreats and elite health services.
@@ -42,14 +42,14 @@ const HeroSection: React.FC = () => {
                 className="stacked-image primary-image"
               />
               <img 
-                src="https://images.pexels.com/photos/6787202/pexels-photo-6787202.jpeg" 
+                src="https://pranissa-media.s3.us-east-1.amazonaws.com/images/balconyswim.png" 
                 alt="Wellness center" 
                 className="stacked-image secondary-image"
               />
               <img 
-                src="https://images.pexels.com/photos/3865575/pexels-photo-3865575.jpeg" 
+                src="https://pranissa-media.s3.us-east-1.amazonaws.com/images/sunriseyoga.png" 
                 alt="Meditation space" 
-                className="stacked-image accent-image"
+                className="stacked-image primary-image"
               />
             </div>
           </div>

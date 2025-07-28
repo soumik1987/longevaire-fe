@@ -12,7 +12,7 @@ interface Slide {
 const slides: Slide[] = [
   {
     id: 1,
-    image: 'https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&fit=crop',
+    image: 'https://pranissa-media.s3.us-east-1.amazonaws.com/images/snowbath.png',
     title: 'Discover Inner Peace',
     description: 'Find balance and tranquility through our wellness programs'
   },
@@ -24,13 +24,13 @@ const slides: Slide[] = [
   },
   {
     id: 3,
-    image: 'https://images.pexels.com/photos/3823495/pexels-photo-3823495.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&fit=crop',
+    image: 'https://pranissa-media.s3.us-east-1.amazonaws.com/images/5starhotel.png',
     title: 'Mindful Living',
     description: 'Transform your daily routine with mindfulness practices'
   },
   {
     id: 4,
-    image: 'https://images.pexels.com/photos/3822864/pexels-photo-3822864.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&fit=crop',
+    image: 'https://pranissa-media.s3.us-east-1.amazonaws.com/images/yoga.png',
     title: 'Natural Healing',
     description: 'Embrace the power of nature in your wellness journey'
   },
