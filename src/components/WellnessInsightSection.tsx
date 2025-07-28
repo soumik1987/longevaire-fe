@@ -38,7 +38,7 @@ const WellnessInsightsSection: React.FC = () => {
       label: "Update",
       heading: "Global center launches",
       description: "See new openings in key markets.",
-      image: "https://pranissa-media.s3.us-east-1.amazonaws.com/images/hotel1.png800"
+      image: "https://pranissa-media.s3.us-east-1.amazonaws.com/images/hotel1.png"
     },
     {
       id: 5,
