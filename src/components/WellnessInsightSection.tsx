@@ -23,7 +23,7 @@ const WellnessInsightsSection: React.FC = () => {
       id: 2,
       label: "Insight",
       heading: "Market intelligence report",
-      description: "Track emerging luxury wellness trends.",
+      description: "Track What’s Next in High-Performance Health",
       image: "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
@@ -37,7 +37,7 @@ const WellnessInsightsSection: React.FC = () => {
       id: 4,
       label: "Update",
       heading: "Global center launches",
-      description: "See new openings in key markets.",
+      description: "Be First to Discover New Flagship Centers",
       image: "https://pranissa-media.s3.us-east-1.amazonaws.com/images/hotel1.png"
     },
     {
