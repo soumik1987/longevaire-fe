@@ -5,8 +5,8 @@ import '../styles/PricingSection.css';
 const Pricing: React.FC = () => {
   const plans = [
     {
-      name: "Beginner",
-      price: 299,
+      name: "Core",
+      price: 0,
       description: "Perfect for those starting their wellness journey",
       features: [
         "Initial health assessment",
@@ -19,8 +19,8 @@ const Pricing: React.FC = () => {
       cta: "Get Started"
     },
     {
-      name: "Core",
-      price: 599,
+      name: "Premium",
+      price: 50,
       description: "Comprehensive wellness program for committed individuals",
       features: [
         "Everything in Beginner",
@@ -35,7 +35,7 @@ const Pricing: React.FC = () => {
     },
     {
       name: "Group",
-      price: 399,
+      price: 200,
       description: "Wellness programs designed for small groups and families",
       features: [
         "Group assessments (up to 4 people)",
@@ -49,7 +49,7 @@ const Pricing: React.FC = () => {
     },
     {
       name: "Corporate",
-      price: 999,
+      price: "Contact Sales",
       description: "Enterprise wellness solutions for teams and organizations",
       features: [
         "Team wellness assessments",
