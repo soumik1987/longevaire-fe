@@ -38,7 +38,7 @@ const sectionData: SectionData[] = [
   },
   {
     id: 'global-leaders',
-    backgroundUrl: 'https://images.pexels.com/photos/3822864/pexels-photo-3822864.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+    backgroundUrl: 'https://pranissa-media.s3.us-east-1.amazonaws.com/images/6starhotel.png',
     cardContent: {
       label: 'TOP PRACTITIONERS',
       heading: 'Global wellness leaders',

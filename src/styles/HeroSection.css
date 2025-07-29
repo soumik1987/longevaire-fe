@@ -119,16 +119,16 @@
 }
 
 .secondary-image {
-  width: 50%;
-  height: 50%;
+  width: 70%;
+  height: 70%;
   top: 30%;
   left: 50%;
   z-index: 2;
 }
 
 .accent-image {
-  width: 35%;
-  height: 35%;
+  width: 65%;
+  height: 65%;
   bottom: -5%;
   left: 25%;
   z-index: 1;

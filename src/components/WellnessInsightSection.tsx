@@ -16,14 +16,14 @@ const WellnessInsightsSection: React.FC = () => {
       id: 1,
       label: "New",
       heading: "Premier center spotlight",
-      description: "Discover our latest elite destination.",
-      image: "https://images.pexels.com/photos/3757952/pexels-photo-3757952.jpeg?auto=compress&cs=tinysrgb&w=800"
+      description: "Explore our most sought-after wellness destinations—carefully selected for their innovation, outcomes, and environments that inspire renewal and clarity.",
+      image: "https://pranissa-media.s3.us-east-1.amazonaws.com/images/camp1.png"
     },
     {
       id: 2,
       label: "Insight",
       heading: "Market intelligence report",
-      description: "Track emerging luxury wellness trends.",
+      description: "Track What’s Next in High-Performance Health",
       image: "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
@@ -31,14 +31,14 @@ const WellnessInsightsSection: React.FC = () => {
       label: "Education",
       heading: "Professional advisory access",
       description: "Gain access to leading experts and educational resources.",
-      image: "https://images.pexels.com/photos/6787202/pexels-photo-6787202.jpeg?auto=compress&cs=tinysrgb&w=800"
+      image: "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
       id: 4,
       label: "Update",
       heading: "Global center launches",
-      description: "See new openings in key markets.",
-      image: "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&w=800"
+      description: "Be First to Discover New Flagship Centers",
+      image: "https://pranissa-media.s3.us-east-1.amazonaws.com/images/hotel1.png"
     },
     {
       id: 5,
