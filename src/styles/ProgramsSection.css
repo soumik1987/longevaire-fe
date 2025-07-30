@@ -1,7 +1,7 @@
 
 /* Programs Section Styles */
 .programs-section-container {
-  height: 100%;
+  height: 100vw;
   padding: 1rem 2rem;
   background-color: #fafbfc;
   overflow-y: auto;
@@ -11,8 +11,9 @@
   max-width: 1200px;
   margin: 0 auto;
   height: 100%;
-  display: flex;
+  display: absolute;
   flex-direction: column;
+  margin-top: 4000px;
 }
 
 .programs-grid {
@@ -210,5 +211,333 @@
   
   .program-card-image {
     height: 150px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Programs Section Styles */
+.programs-section-container {
+  padding: 4rem 2rem;
+  background-color: #000;
+  color: #fff;
+  overflow: hidden;
+}
+
+.section-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.section-subtitle {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #aaa;
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.programs-grid-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.programs-grid {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
+  scroll-behavior: smooth;
+  overflow-x: auto;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+}
+
+.programs-grid::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome/Safari */
+}
+
+/* Program Card Styles */
+.program-card {
+  background: #111;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  min-width: 350px;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.program-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+.program-card-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  z-index: 2;
+  text-transform: uppercase;
+}
+
+.program-card-image {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  position: relative;
+}
+
+.program-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
+}
+
+.program-card:hover .program-card-image img {
+  transform: scale(1.05);
+}
+
+.program-card-content {
+  padding: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.program-card-location {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ccc;
+  letter-spacing: 1px;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+}
+
+.program-card-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+
+.program-card-subtitle {
+  font-size: 1rem;
+  color: #aaa;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.program-card-date {
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Navigation Controls */
+.programs-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.programs-nav-btn {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.programs-nav-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+.programs-pagination {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.programs-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: #555;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.programs-dot-active {
+  background: #fff;
+}
+
+.programs-dot:hover {
+  background: #ccc;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .programs-grid {
+    gap: 1.5rem;
+  }
+  
+  .program-card {
+    min-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .programs-section-container {
+    padding: 3rem 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .programs-grid {
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+  
+  .program-card {
+    min-width: 280px;
+  }
+  
+  .program-card-image {
+    height: 220px;
+  }
+  
+  .program-card-content {
+    padding: 1.2rem;
+  }
+  
+  .program-card-title {
+    font-size: 1.2rem;
+  }
+  
+  .programs-nav-btn {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .programs-section-container {
+    padding: 2rem 1rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .program-card {
+    min-width: 260px;
+  }
+  
+  .program-card-image {
+    height: 200px;
+  }
+  
+  .program-card-title {
+    font-size: 1.1rem;
+  }
+  
+  .program-card-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .programs-navigation {
+    gap: 1rem;
   }
 }

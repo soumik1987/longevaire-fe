@@ -554,3 +554,470 @@
 
 
 
+/* src/styles/ChatboxPage.css */
+.chatbox-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #8B7C6E;
+  padding-top: 30px; 
+  /*Space for navbar*/
+}
+
+/* Chat Section Styles */
+.chat-section {
+  background: white;
+  border-bottom: 1px solid #e1e5e9;
+}
+
+.chat-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.chat-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.chat-title {
+  font-family: 'Baskervville', 'Times New Roman', serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 400;
+  color: #2c3e50;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.chat-messages-container {
+  height: 400px;
+  overflow-y: auto;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #e1e5e9;
+  border-radius: 8px;
+  background: #f8f9fa;
+}
+
+.chat-message {
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.chat-message.user {
+  justify-content: flex-end;
+}
+
+.chat-message.assistant {
+  justify-content: flex-start;
+}
+
+.message-content {
+  max-width: 75%;
+  padding: 1rem 1.25rem;
+  border-radius: 18px;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.chat-message.user .message-content {
+  background: #d4a574;
+  color: white;
+  border-bottom-right-radius: 6px;
+}
+
+.chat-message.assistant .message-content {
+  background: #f8f9fa;
+  color: #2c3e50;
+  border-bottom-left-radius: 6px;
+  border: 1px solid #e1e5e9;
+}
+
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #8e9ba5;
+  animation: typing-bounce 1.4s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes typing-bounce {
+  0%, 80%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.chat-input-container {
+  padding: 1rem 0;
+}
+
+.chat-input-form {
+  width: 100%;
+}
+
+.input-bar {
+  display: flex;
+  align-items: center;
+  background: #f8f9fa;
+  border: 1px solid #e1e5e9;
+  border-radius: 25px;
+  padding: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.input-bar:focus-within {
+  border-color: #d4a574;
+  box-shadow: 0 2px 15px rgba(212, 165, 116, 0.15);
+  background: white;
+}
+
+.text-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  background: transparent;
+  color: #2c3e50;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.text-input::placeholder {
+  color: #8e9ba5;
+}
+
+.plus-btn,
+.mic-btn,
+.send-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.plus-btn,
+.mic-btn {
+  background: transparent;
+  color: #6c757d;
+}
+
+.plus-btn:hover,
+.mic-btn:hover {
+  background: #e9ecef;
+  color: #2c3e50;
+}
+
+.send-btn {
+  background: #d4a574;
+  color: white;
+}
+
+.send-btn:hover:not(:disabled) {
+  background: #c19960;
+}
+
+.send-btn:disabled {
+  background: #e9ecef;
+  color: #adb5bd;
+  cursor: not-allowed;
+}
+
+/* Programs Section Styles */
+.programs-section {
+  padding: 3rem 0;
+  background-color: #fafbfc;
+}
+
+.programs-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Program Card Styles */
+.program-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.program-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+.program-card-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #d4a574;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  z-index: 2;
+  text-transform: uppercase;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.program-card-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.program-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.program-card:hover .program-card-image img {
+  transform: scale(1.05);
+}
+
+.program-card-content {
+  padding: 1.5rem;
+}
+
+.program-card-location {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #8e9ba5;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.program-card-title {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+  text-transform: capitalize;
+}
+
+.program-card-subtitle {
+  font-size: 1rem;
+  color: #6c757d;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.program-card-date {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #8e9ba5;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.program-card-date svg {
+  color: #d4a574;
+}
+
+/* Navigation Controls */
+.programs-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.programs-nav-btn {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #d4a574;
+  border-radius: 50%;
+  background: transparent;
+  color: #d4a574;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.programs-nav-btn:hover {
+  background: #d4a574;
+  color: white;
+  transform: scale(1.05);
+}
+
+.programs-pagination {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.programs-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: #c19960;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.programs-dot-active {
+  background: white;
+  border: 2px solid #d4a574;
+  transform: scale(1.2);
+}
+
+.programs-dot:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .chat-container {
+    padding: 1.5rem;
+  }
+  
+  .programs-container {
+    padding: 0 1.5rem;
+  }
+  
+  .program-card-title {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .chatbox-page {
+    padding-top: 70px;
+  }
+  
+  .chat-container {
+    padding: 1rem;
+  }
+  
+  .chat-messages-container {
+    height: 300px;
+  }
+  
+  .programs-container {
+    padding: 0 1rem;
+  }
+  
+  .programs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .program-card-content {
+    padding: 1rem;
+  }
+  
+  .program-card-image {
+    height: 180px;
+  }
+}
+
+@media (max-width: 576px) {
+  .chat-title {
+    font-size: 1.3rem;
+  }
+  
+  .input-bar {
+    padding: 0.3rem;
+  }
+  
+  .text-input {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .plus-btn,
+  .mic-btn,
+  .send-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .programs-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .program-card-title {
+    font-size: 1.1rem;
+  }
+  
+  .program-card-image {
+    height: 160px;
+  }
+  
+  .programs-nav-btn {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  .chat-title {
+    font-size: 1.2rem;
+  }
+  
+  .program-card-image {
+    height: 140px;
+  }
+  
+  .program-card-date {
+    font-size: 0.8rem;
+  }
+  
+  .programs-dot {
+    width: 10px;
+    height: 10px;
+  }
+}

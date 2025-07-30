@@ -14,7 +14,7 @@ import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Navigation from './components/Navigation';
 import HeroSection from './components/HeroSection';
 import ChatBarSection from './components/ChatBarSection';
-import ChatBarPage from './components/ChatBarPage';
+// import ChatBoxPage from './components/ChatBoxPage';
 import LongevityGrid from './components/LongevityGrid';
 import Slideshow from './components/Slideshow';
 import ExpertiseSection from './components/ExpertiseSection';
@@ -44,6 +44,7 @@ import Preferences from './pages/dashboard/Shared/Preferences';
 // Styles
 import './styles/App.css';
 import './styles/global.css';
+import ChatboxPage from './components/ChatBoxPage';
 
 // Protected Route Component with Role Checking
 const ProtectedRoute: React.FC<{ 
@@ -103,13 +104,13 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { 
-        path: 'chat',
-        element: <ChatBarPage />,
-        loader: async ({ request }) => {
-          const url = new URL(request.url);
-          const searchParams = new URLSearchParams(url.search);
-          const message = searchParams.get('message');
-          return { initialMessage: message || "I'd like to learn about wellness programs" };
+         path: '/chat',
+  element: <ChatboxPage />,
+  loader: async ({ request }) => {
+    const url = new URL(request.url);
+    const searchParams = new URLSearchParams(url.search);
+    const message = searchParams.get('message');
+    return { initialMessage: message || "I'd like to learn about wellness programs" };
         }
       },
       { path: 'explore', element: <ExplorePage /> },
