@@ -119,8 +119,8 @@
 }
 
 .secondary-image {
-  width: 70%;
-  height: 70%;
+  width: 55%;
+  height: 60%;
   top: 30%;
   left: 50%;
   z-index: 2;
@@ -128,10 +128,11 @@
 
 .accent-image {
   width: 65%;
-  height: 65%;
+  height: 45%;
   bottom: -5%;
-  left: 25%;
+  left: 12%;
   z-index: 1;
+  top: 70%;
 }
 
 .stacked-image:hover {
@@ -209,7 +210,7 @@
   }
   .primary-image {
     width: 50%;
-    height: 60%;
+    height: 45%;
     top: 5%;
     left: 10%;
   }
@@ -221,9 +222,10 @@
   }
   .accent-image {
     width: 40%;
-    height: 30%;
-    bottom: 0%;
+    height: 40%;
+    bottom: 20%;
     left: 20%;
+    top:63%;
   }
 }
 
@@ -257,7 +259,7 @@
     height: 220px;
   }
   .primary-image {
-    width: 60%;
+    width: 50%;
     height: 57%;
     left: 5%;
   }

@@ -16,6 +16,10 @@ export interface Program {
     availableDates: string[];
     pricePerPerson: string;
   };
+  status?: 'active' | 'inactive' | 'pending' | 'draft';
+  highlights?: string[];
+  terms?: string[];
+  price?: string;
 }
 
 export interface ProgramCategory {
@@ -64,7 +68,10 @@ export const programCategories: ProgramCategory[] = [
         bookingOptions: {
           availableDates: ["2025-03-15", "2025-05-20", "2025-10-10"],
           pricePerPerson: "$4,200"
-        }
+        },
+        status: "active",
+        highlights: ["$1,000 in Daily Spa Services"],
+        terms: ["Book by September 15,2025", "Stay by September 30,2025"]
       },
       {
         name: "Advanced Cellular Detox",
@@ -93,7 +100,10 @@ export const programCategories: ProgramCategory[] = [
         bookingOptions: {
           availableDates: ["2025-08-15", "2025-10-20", "2025-12-05"],
           pricePerPerson: "$4,200"
-        }
+        },
+        status: "active",
+        highlights: ["Comprehensive cellular cleanse", "Personalized detox protocols"],
+        terms: ["Book by July 30,2025", "Stay by December 15,2025"]
       }
     ]
   },
@@ -129,7 +139,10 @@ export const programCategories: ProgramCategory[] = [
         bookingOptions: {
           availableDates: ["2025-04-10", "2025-06-15", "2025-09-20"],
           pricePerPerson: "$5,800"
-        }
+        },
+        status: "active",
+        highlights: ["Cutting-edge stem cell treatments", "Desert-enhanced therapies"],
+        terms: ["Book by March 15,2025", "Stay by November 30,2025"]
       },
       {
         name: "Stem Cell Revive",
@@ -158,7 +171,11 @@ export const programCategories: ProgramCategory[] = [
         bookingOptions: {
           availableDates: ["2025-09-01", "2025-11-10", "2026-01-25"],
           pricePerPerson: "$6,500"
-        }
+        },
+        status: "inactive",
+        highlights: ["Personalized stem cell therapy", "Joint pain relief"],
+        terms: ["Book by August 1,2025", "Stay by March 31,2026"],
+        price: "$6,500"
       }
     ]
   },
@@ -196,10 +213,14 @@ export const programCategories: ProgramCategory[] = [
         bookingOptions: {
           availableDates: ["2025-02-15", "2025-04-20", "2025-11-10"],
           pricePerPerson: "$3,900"
-        }
+        },
+        status: "pending",
+        highlights: ["Metabolic testing", "Desert superfood nutrition"],
+        terms: ["Book by January 15,2025", "Stay by December 15,2025"],
+        price: "From $3,900 per guest"
       },
       {
-        name: "Metabolic Reset",
+        name: "Mountain Wellness Retreat",
         location: "Aspen - USA",
         details: "Optimize your metabolism and reset your body's natural rhythms.",
         duration: "6 Days / 5 Nights",
@@ -225,7 +246,73 @@ export const programCategories: ProgramCategory[] = [
         bookingOptions: {
           availableDates: ["2025-08-22", "2025-10-18", "2025-12-01"],
           pricePerPerson: "$3,900"
-        }
+        },
+        status: "draft",
+        highlights: ["Daily yoga sessions", "Guided mountain hikes"],
+        terms: ["Book by August 30,2025", "Stay by December 15,2025"],
+        price: "$2,800"
+      }
+    ]
+  },
+  {
+    type: "Spa & Relaxation",
+    description: "Rejuvenating spa experiences for ultimate relaxation",
+    badge: "Pampering & Rejuvenation",
+    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+    programs: [
+      {
+        name: "All You Can Spa",
+        location: "Tucson & Lenox - USA",
+        details: "Unlimited spa services in our luxury resorts",
+        duration: "2 night minimum",
+        includes: [
+          { title: "Unlimited spa services", description: "Choose from our extensive treatment menu" },
+          { title: "Exclusive secret spa menu", description: "Special treatments revealed upon arrival" },
+          { title: "Private spa access", description: "Dedicated facilities for program guests" },
+          { title: "Personal wellness consultation", description: "Tailor your spa experience to your needs" }
+        ],
+        description: "Indulge in unlimited spa services from a list of our guest-favorite treatments and gain exclusive access to our first-ever secret spa menu-revealed upon arrival and available solely to All You Can Spa guests.",
+        imageGallery: [
+          "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+          "https://images.pexels.com/photos/3825593/pexels-photo-3825593.jpeg",
+          "https://images.pexels.com/photos/3825595/pexels-photo-3825595.jpeg",
+          "https://images.pexels.com/photos/3825597/pexels-photo-3825597.jpeg"
+        ],
+        bookingOptions: {
+          availableDates: ["2025-05-01", "2025-07-15", "2025-09-30"],
+          pricePerPerson: "$1,500"
+        },
+        status: "active",
+        highlights: ["$1,000 in Daily Spa Services"],
+        terms: ["Book by September 15,2025", "Stay by September 30,2025"],
+        price: "From $1,500 per guest/night*"
+      },
+      {
+        name: "Desert Detox Program",
+        location: "Sedona - USA",
+        details: "Purify your body and mind with ancient healing techniques",
+        duration: "7 Days / 6 Nights",
+        includes: [
+          { title: "Daily meditation sessions", description: "Guided practices for mental clarity" },
+          { title: "Nutrition counseling", description: "Personalized detox meal plans" },
+          { title: "Traditional healing therapies", description: "Ancient techniques adapted for modern needs" },
+          { title: "Nature immersion", description: "Healing through connection with the desert" }
+        ],
+        description: "Purify your body and mind with our desert detox program featuring ancient healing techniques adapted for modern wellness seekers in the magical red rocks of Sedona.",
+        imageGallery: [
+          "https://images.pexels.com/photos/3825589/pexels-photo-3825589.jpeg",
+          "https://images.pexels.com/photos/3825599/pexels-photo-3825599.jpeg",
+          "https://images.pexels.com/photos/3825601/pexels-photo-3825601.jpeg",
+          "https://images.pexels.com/photos/3825603/pexels-photo-3825603.jpeg"
+        ],
+        bookingOptions: {
+          availableDates: ["2025-06-10", "2025-08-25", "2025-11-15"],
+          pricePerPerson: "$3,500"
+        },
+        status: "pending",
+        highlights: ["Daily meditation", "Nutrition counseling"],
+        terms: ["Book by October 15,2025", "Stay by March 30,2026"],
+        price: "$3,500"
       }
     ]
   }
@@ -245,6 +332,10 @@ export function getAllPrograms(): Program[] {
 
 export function getProgramByName(name: string): Program | undefined {
   return getAllPrograms().find(program => program.name === name);
+}
+
+export function getProgramsByStatus(status: 'active' | 'inactive' | 'pending' | 'draft'): Program[] {
+  return getAllPrograms().filter(program => program.status === status);
 }
 
 export function getProgramsByLocation(country: string, city?: string): Program[] {

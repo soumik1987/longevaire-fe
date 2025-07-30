@@ -1,0 +1,249 @@
+.chatbar-section {
+  padding: 2rem 0;
+  background: linear-gradient(135deg, #fff8f0 0%, #f0f8ff 100%);
+  text-align: center;
+}
+
+.chatbar-content {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.chatbar-heading {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+
+.chatbar-input-form {
+  width: 100%;
+}
+
+.chatbar-input-bar {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border-radius: 25px;
+  padding: 0.5rem;
+}
+
+.chatbar-text-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  background: white;
+  color: #2c3e50;
+  border-radius: 25px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.chatbar-text-input:focus {
+  box-shadow: 0 4px 25px rgba(212, 165, 116, 0.2);
+}
+
+.chatbar-text-input::placeholder {
+  color: #8e9ba5;
+}
+
+.chatbar-plus-btn,
+.chatbar-mic-btn,
+.chatbar-send-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: white;
+  margin: 0 0.25rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.chatbar-plus-btn,
+.chatbar-mic-btn {
+  color: #6c757d;
+}
+
+.chatbar-plus-btn:hover,
+.chatbar-mic-btn:hover {
+  background: #f8f9fa;
+  color: #2c3e50;
+}
+
+.chatbar-send-btn {
+  background: #d4a574;
+  color: white;
+}
+
+.chatbar-send-btn:hover:not(:disabled) {
+  background: #c19960;
+  transform: scale(1.05);
+}
+
+.chatbar-send-btn:disabled {
+  background: #e9ecef;
+  color: #adb5bd;
+  cursor: not-allowed;
+}
+
+/* 1299px Breakpoint */
+@media (max-width: 1299px) {
+  .chatbar-content {
+    max-width: 650px;
+  }
+  
+  .chatbar-heading {
+    font-size: 1.8rem;
+  }
+}
+
+/* 1029px Breakpoint */
+@media (max-width: 1029px) {
+  .chatbar-content {
+    max-width: 600px;
+  }
+  
+  .chatbar-heading {
+    font-size: 1.7rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .chatbar-text-input {
+    padding: 0.9rem 1.25rem;
+  }
+}
+
+/* 768px Breakpoint */
+@media (max-width: 768px) {
+  .chatbar-section {
+    padding: 1.75rem 0;
+  }
+  
+  .chatbar-content {
+    max-width: 550px;
+    padding: 0 1.5rem;
+  }
+  
+  .chatbar-heading {
+    font-size: 1.6rem;
+    margin-bottom: 1.1rem;
+  }
+  
+  .chatbar-text-input {
+    padding: 0.8rem 1.1rem;
+    font-size: 0.95rem;
+  }
+  
+  .chatbar-plus-btn,
+  .chatbar-mic-btn,
+  .chatbar-send-btn {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+/* 567px Breakpoint */
+@media (max-width: 567px) {
+  .chatbar-section {
+    padding: 1.5rem 0;
+  }
+  
+  .chatbar-content {
+    max-width: 450px;
+    padding: 0 1.25rem;
+  }
+  
+  .chatbar-heading {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .chatbar-text-input {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .chatbar-plus-btn,
+  .chatbar-mic-btn,
+  .chatbar-send-btn {
+    width: 40px;
+    height: 40px;
+    margin: 0 0.15rem;
+  }
+}
+
+/* 465px Breakpoint */
+@media (max-width: 465px) {
+  .chatbar-section {
+    padding: 1.25rem 0;
+  }
+  
+  .chatbar-content {
+    max-width: 380px;
+    padding: 0 1rem;
+  }
+  
+  .chatbar-heading {
+    font-size: 1.3rem;
+    margin-bottom: 0.9rem;
+  }
+  
+  .chatbar-text-input {
+    padding: 0.65rem 0.9rem;
+    font-size: 0.85rem;
+  }
+  
+  .chatbar-plus-btn,
+  .chatbar-mic-btn,
+  .chatbar-send-btn {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* 355px Breakpoint */
+@media (max-width: 355px) {
+  .chatbar-section {
+    padding: 1rem 0;
+  }
+  
+  .chatbar-content {
+    max-width: 320px;
+    padding: 0 0.75rem;
+  }
+  
+  .chatbar-heading {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .chatbar-text-input {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .chatbar-plus-btn,
+  .chatbar-mic-btn,
+  .chatbar-send-btn {
+    width: 36px;
+    height: 36px;
+    margin: 0 0.1rem;
+  }
+  
+  .chatbar-plus-btn svg,
+  .chatbar-mic-btn svg,
+  .chatbar-send-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+}

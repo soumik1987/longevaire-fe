@@ -116,7 +116,14 @@ const FacilityServices: React.FC = () => {
     navigate('/dashboard/facility/services/new');
   };
 
-  const handleEditService = (id: number) => {
+  const handleViewService = (programName: string) => {
+    navigate('/program-details', {
+      state: { programName }
+    });
+  };
+
+  const handleEditService = (id: number, e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent the card click event from firing
     navigate(`/dashboard/facility/services/edit/${id}`);
   };
 
@@ -160,7 +167,11 @@ const FacilityServices: React.FC = () => {
         
         <div className="facility-services__grid">
           {filteredServices.map(program => (
-            <div key={program.id} className="facility-services__card">
+            <div 
+              key={program.id} 
+              className="facility-services__card"
+              onClick={() => handleViewService(program.name)}
+            >
               <div className="facility-services__card-image-container">
                 <img 
                   src={program.image} 
@@ -211,7 +222,7 @@ const FacilityServices: React.FC = () => {
 
                 <button 
                   className="facility-services__card-edit-btn"
-                  onClick={() => handleEditService(program.id)}
+                  onClick={(e) => handleEditService(program.id, e)}
                 >
                   EDIT PROGRAM
                 </button>
