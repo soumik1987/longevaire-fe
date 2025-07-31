@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import '../styles/ImmersiveScrollingSection.css';
+import { useNavigate } from 'react-router-dom';
+
 
 interface CardContent {
   label: string;
@@ -67,7 +69,7 @@ interface ScrollCardSectionProps {
 const ScrollCardSection: React.FC<ScrollCardSectionProps> = ({ section, isActive, onIntersect }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
-
+  const navigate = useNavigate(); 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -112,14 +114,15 @@ const ScrollCardSection: React.FC<ScrollCardSectionProps> = ({ section, isActive
         <div className="card-label">{section.cardContent.label}</div>
         <h2 className="card-heading">{section.cardContent.heading}</h2>
         <p className="card-description">{section.cardContent.description}</p>
-        <motion.a 
-          href="#" 
-          className="card-action"
-          whileHover={{ x: 5 }}
-          transition={{ type: "spring", stiffness: 400, damping: 10 }}
-        >
-          {section.cardContent.actionText}
-        </motion.a>
+        <motion.button
+  className="card-action"
+  onClick={() => navigate('/explore')}
+  whileHover={{ x: 5 }}
+  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+>
+  {section.cardContent.actionText}
+</motion.button>
+
       </motion.div>
     </div>
   );

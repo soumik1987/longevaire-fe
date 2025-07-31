@@ -223,9 +223,9 @@ const ProgramListPage: React.FC = () => {
     <div className="program-list-page">
       <div className="program-list-header">
         <div className="container">
-          <button className="back-button" onClick={handleBackClick}>
+          {/* <button className="back-button" onClick={handleBackClick}>
             ← Back to Explore
-          </button>
+          </button> */}
           <h1 className="page-title">{pageTitle}</h1>
           <p className="page-subtitle">{pageSubtitle}</p>
         </div>

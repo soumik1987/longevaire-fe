@@ -218,6 +218,10 @@
   background-color: #fafbfc;
 }
 
+.programs-section-title{
+  font-size: 8rem;
+}
+
 .programs-grid-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -234,43 +238,28 @@
   align-content: start;
 }
 
-/* Program Card Styles */
+/* Program Card Styles - Updated to match the image */
 .program-card {
-  background: white;
-  border-radius: 15px;
+  background: transparent;
+  border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
   position: relative;
-  height: fit-content;
+  height: 400px;
+  cursor: pointer;
 }
 
 .program-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
-}
-
-.program-card-badge {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  background: #d4a574;
-  color: white;
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  z-index: 2;
-  text-transform: uppercase;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
 }
 
 .program-card-image {
   width: 100%;
-  height: 200px;
-  overflow: hidden;
+  height: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 .program-card-image img {
@@ -284,50 +273,93 @@
   transform: scale(1.05);
 }
 
+.program-card-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  z-index: 1;
+}
+
+.program-card-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #B8860B;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  z-index: 3;
+  text-transform: uppercase;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
 .program-card-content {
-  padding: 1.5rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  z-index: 2;
+  color: white;
 }
 
 .program-card-location {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #8e9ba5;
-  letter-spacing: 1px;
-  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 2px;
+  margin-bottom: 0.75rem;
   text-transform: uppercase;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
 .program-card-title {
   font-family: 'Georgia', 'Times New Roman', serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #2c3e50;
-  line-height: 1.3;
+  font-size: 1.75rem;
+  font-weight: 400;
+  color: white;
+  line-height: 1.2;
   margin-bottom: 0.75rem;
-  text-transform: capitalize;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .program-card-subtitle {
   font-size: 1rem;
-  color: #6c757d;
+  color: rgba(255, 255, 255, 0.95);
   line-height: 1.4;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .program-card-date {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #8e9ba5;
+  color: rgba(255, 255, 255, 0.95);
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 400;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
 .program-card-date svg {
-  color: #d4a574;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.learn-more-link {
+  display: none;
 }
 
 /* Navigation Controls */
@@ -402,8 +434,16 @@
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .program-card-image {
-    height: 180px;
+  .program-card {
+    height: 350px;
+  }
+  
+  .program-card-content {
+    padding: 1.5rem;
+  }
+  
+  .program-card-title {
+    font-size: 1.5rem;
   }
 }
 
@@ -437,12 +477,16 @@
     grid-template-columns: 1fr;
   }
   
+  .program-card {
+    height: 320px;
+  }
+  
   .program-card-content {
-    padding: 1rem;
+    padding: 1.25rem;
   }
   
   .program-card-title {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
 }
 
@@ -467,8 +511,20 @@
     height: 36px;
   }
   
-  .program-card-image {
-    height: 160px;
+  .program-card {
+    height: 280px;
+  }
+  
+  .program-card-content {
+    padding: 1rem;
+  }
+  
+  .program-card-title {
+    font-size: 1.2rem;
+  }
+  
+  .program-card-subtitle {
+    font-size: 0.9rem;
   }
   
   .programs-nav-btn {
@@ -487,12 +543,16 @@
     font-size: 1.3rem;
   }
   
+  .program-card {
+    height: 260px;
+  }
+  
   .program-card-title {
     font-size: 1.1rem;
   }
   
   .program-card-subtitle {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 }
 
@@ -505,8 +565,12 @@
     font-size: 0.85rem;
   }
   
-  .program-card-image {
-    height: 140px;
+  .program-card {
+    height: 240px;
+  }
+  
+  .program-card-content {
+    padding: 0.75rem;
   }
   
   .program-card-date {
@@ -523,36 +587,6 @@
     height: 10px;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* src/styles/ChatboxPage.css */
 .chatbox-page {
@@ -762,106 +796,152 @@
   padding: 0 2rem;
 }
 
+.programs-section-title {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: -0.01em;
+}
+
 .programs-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
   margin-bottom: 2rem;
 }
 
-/* Program Card Styles */
+/* Program Card Styles - Updated to match the image exactly */
 .program-card {
-  background: white;
-  border-radius: 15px;
+  background: transparent;
+  border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
   position: relative;
+  height: 450px;
+  cursor: pointer;
 }
 
 .program-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
-}
-
-.program-card-badge {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  background: #d4a574;
-  color: white;
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  z-index: 2;
-  text-transform: uppercase;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
 }
 
 .program-card-image {
   width: 100%;
-  height: 200px;
-  overflow: hidden;
+  height: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 .program-card-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease;
 }
 
 .program-card:hover .program-card-image img {
-  transform: scale(1.05);
+  transform: scale(1.08);
+}
+
+.program-card-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.2) 40%,
+    rgba(0, 0, 0, 0.6) 80%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  z-index: 1;
+}
+
+.program-card-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #B8860B;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  z-index: 3;
+  text-transform: uppercase;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .program-card-content {
-  padding: 1.5rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2.5rem;
+  z-index: 2;
+  color: white;
 }
 
 .program-card-location {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #8e9ba5;
-  letter-spacing: 1px;
-  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 2.5px;
+  margin-bottom: 1rem;
   text-transform: uppercase;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
 .program-card-title {
   font-family: 'Georgia', 'Times New Roman', serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #2c3e50;
-  line-height: 1.3;
-  margin-bottom: 0.75rem;
-  text-transform: capitalize;
+  font-size: 2rem;
+  font-weight: 400;
+  color: white;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .program-card-subtitle {
   font-size: 1rem;
-  color: #6c757d;
+  color: rgba(255, 255, 255, 0.95);
   line-height: 1.4;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-weight: 300;
 }
 
 .program-card-date {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  color: #8e9ba5;
+  gap: 0.6rem;
+  color: rgba(255, 255, 255, 0.95);
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 400;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
 .program-card-date svg {
-  color: #d4a574;
+  color: rgba(255, 255, 255, 0.9);
+  width: 16px;
+  height: 16px;
+}
+
+.learn-more-link {
+  display: none;
 }
 
 /* Navigation Controls */
@@ -869,8 +949,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  padding: 1rem 0;
+  gap: 1.5rem;
+  padding: 2rem 0;
 }
 
 .programs-nav-btn {
@@ -929,14 +1009,27 @@
     padding: 0 1.5rem;
   }
   
+  .programs-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .program-card {
+    height: 400px;
+  }
+  
   .program-card-title {
-    font-size: 1.2rem;
+    font-size: 1.7rem;
+  }
+  
+  .program-card-content {
+    padding: 2rem;
   }
 }
 
 @media (max-width: 768px) {
   .chatbox-page {
-    padding-top: 70px;
+    padding-top: 60px;
   }
   
   .chat-container {
@@ -952,15 +1045,20 @@
   }
   
   .programs-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .program-card {
+    height: 380px;
   }
   
   .program-card-content {
-    padding: 1rem;
+    padding: 1.8rem;
   }
   
-  .program-card-image {
-    height: 180px;
+  .program-card-title {
+    font-size: 1.6rem;
   }
 }
 
@@ -985,16 +1083,20 @@
     height: 36px;
   }
   
-  .programs-grid {
-    grid-template-columns: 1fr;
+  .program-card {
+    height: 320px;
+  }
+  
+  .program-card-content {
+    padding: 1.5rem;
   }
   
   .program-card-title {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
   }
   
-  .program-card-image {
-    height: 160px;
+  .program-card-subtitle {
+    font-size: 0.9rem;
   }
   
   .programs-nav-btn {
@@ -1005,11 +1107,20 @@
 
 @media (max-width: 400px) {
   .chat-title {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+  margin-top: 0px;
   }
   
-  .program-card-image {
-    height: 140px;
+  .program-card {
+    height: 280px;
+  }
+  
+  .program-card-content {
+    padding: 1.2rem;
+  }
+  
+  .program-card-title {
+    font-size: 1.2rem;
   }
   
   .program-card-date {

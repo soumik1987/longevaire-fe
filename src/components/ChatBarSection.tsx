@@ -70,7 +70,7 @@ const ChatBarSection: React.FC = () => {
   return (
     <div className="chatbar-section">
       <div className="chatbar-content">
-        <h2 className="chatbar-heading">Let's build a personalised wellness program for you</h2>
+        <h2 className="chatbar-heading">Let's find your optimal wellness program</h2>
         <form onSubmit={handleSubmit} className="chatbar-input-form">
           <div className="chatbar-input-bar">
             <button type="button" className="chatbar-plus-btn">

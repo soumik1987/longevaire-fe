@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/LuxuryRetreats.css';
+import { Link } from 'react-router-dom';
 
 
 const LuxuryRetreats: React.FC = () => {
@@ -9,7 +10,7 @@ const LuxuryRetreats: React.FC = () => {
         <div className="container">
           <div className="retreats-content fade-in-up">
             <h2 className="retreats-title">Discover luxury retreats for a longer life</h2>
-            <a href="#explore" className="btn-primary retreats-btn">Explore now</a>
+            <Link to="/explore" className="btn-primary retreats-btn">Explore now</Link>
           </div>
         </div>
       </div>
