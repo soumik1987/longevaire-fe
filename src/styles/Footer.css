@@ -581,3 +581,272 @@
   width: 100%;
   overflow-x: hidden; /* ✅ Restricts horizontal scroll only for the footer */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .footer {
+  background: #1a1a1a;
+  color: white;
+  padding: 4rem 0 2rem;
+  width: 100%;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 5rem;
+  margin-bottom: 3rem;
+}
+
+.footer-brand {
+  max-width: 300px;
+}
+
+.footer-logo {
+  margin-bottom: 1.25rem;
+}
+
+.brand-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.footer-tagline {
+  font-size: 1.1rem;
+  color: #b0b0b0;
+  line-height: 1.6;
+}
+
+.footer-links-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5rem;
+}
+
+.link-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.link-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  color: white;
+}
+
+.link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.link-list li {
+  margin-bottom: 0.75rem;
+}
+
+.link-list a {
+  color: #b0b0b0;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.link-list a:hover {
+  color: #8B5CF6;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2.5rem;
+  border-top: 1px solid #333;
+}
+
+.social-links {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.social-link {
+  color: #b0b0b0;
+  transition: all 0.3s ease;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.social-link:hover {
+  color: #8B5CF6;
+  background: rgba(139, 92, 246, 0.1);
+  transform: translateY(-2px);
+}
+
+.footer-copyright {
+  color: #b0b0b0;
+  font-size: 0.9rem;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 1024px) {
+  .footer-grid {
+    gap: 3rem;
+  }
+  
+  .footer-links-grid {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 3rem 0 1.5rem;
+  }
+  
+  .footer-container {
+    padding: 0 1.5rem;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .footer-links-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .footer-brand {
+    max-width: 100%;
+  }
+}
+
+/* Footer.css - Mobile Grid (320px-450px) */
+
+/* Base Mobile Grid (applies to 450px and below) */
+@media (max-width: 450px) {
+  .footer {
+    display: grid;
+    grid-template-areas:
+      "brand"
+      "links"
+      "social"
+      "copyright";
+    grid-template-rows: auto auto auto auto;
+    padding: 2rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .footer-container {
+    padding: 0;
+    grid-template-rows: unset;
+    gap: 1.5rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "brand"
+      "links";
+    gap: 2rem;
+  }
+
+  .footer-brand {
+    grid-area: brand;
+    max-width: 100%;
+    justify-items: center;
+    text-align: center;
+    grid-template-rows: auto auto;
+    gap: 0.75rem;
+  }
+
+  .footer-links-grid {
+    grid-area: links;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .link-group {
+    grid-template-rows: auto auto;
+    gap: 0.5rem;
+    justify-items: center;
+  }
+
+  .link-list {
+    grid-template-rows: repeat(5, minmax(1.5rem, auto));
+    gap: 0.4rem;
+  }
+
+  .footer-bottom {
+    grid-area: social / copyright;
+    grid-template-areas:
+      "social"
+      "copyright";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 1rem;
+    padding-top: 0;
+    border: none;
+  }
+
+  .social-links {
+    grid-area: social;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .footer-copyright {
+    grid-area: copyright;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+}
+
+/* Ultra-Compact Mobile (320px-375px) */
+@media (max-width: 375px) {
+  .footer {
+    gap: 1.25rem;
+    padding: 1.5rem 0.75rem;
+  }
+
+  .footer-grid {
+    gap: 1.5rem;
+  }
+
+  .footer-links-grid {
+    gap: 1rem;
+  }
+
+  .link-list {
+    grid-template-rows: repeat(5, minmax(1.25rem, auto));
+    gap: 0.3rem;
+  }
+
+  .social-links {
+    gap: 0.75rem;
+  }
+
+  .social-link svg {
+    width: 18px;
+    height: 18px;
+  }
+}

@@ -168,3 +168,217 @@
     padding: 8px;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.slideshow {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slide-wrapper {
+  position: relative;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
+  z-index: 0;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(60, 60, 60, 0.4);
+}
+
+.slide-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 16px;
+}
+
+.slide-title {
+  font-family: 'Baskervville', serif;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  animation: fade-in-up 1s ease forwards;
+  opacity: 0;
+  color: #FFFFFF;
+}
+
+.slide-description {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 1.25rem;
+  animation: fade-in-up 1s ease forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+  color: #F5F5DC;
+  margin-bottom: 2rem;
+}
+
+.slideshow-book-btn {
+  background: #C44C30;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  animation: fade-in-up 1s ease forwards;
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+.slideshow-book-btn:hover {
+  background: #A93E2B;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(196, 76, 48, 0.3);
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border: none;
+  padding: 12px;
+  border-radius: 999px;
+  color: white;
+  z-index: 2;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.nav-button.left {
+  left: 16px;
+}
+
+.nav-button.right {
+  right: 16px;
+}
+
+.dot-indicators {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 2;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.dot:hover {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.active-dot {
+  background-color: white;
+  transform: scale(1.25);
+}
+
+.progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: 2;
+}
+
+.progress {
+  height: 100%;
+  background-color: white;
+  transition: width 5s linear;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .slide-title {
+    font-size: 2rem;
+  }
+
+  .slide-description {
+    font-size: 1rem;
+  }
+
+  .slideshow-book-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .nav-button {
+    padding: 8px;
+  }
+}
