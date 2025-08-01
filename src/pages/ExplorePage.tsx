@@ -1,4 +1,5 @@
 
+
 import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { fetchProgramCategories, fetchDestinations } from '../api';
@@ -74,8 +75,8 @@ const ExplorePage: React.FC = () => {
   if (loading) {
     return (
       <div className="explore-page">
-        <div className="container loading-container">
-          <div className="loading-spinner"></div>
+        <div className="explore-container explore-loading-container">
+          <div className="explore-loading-spinner"></div>
           <p>Loading wellness experiences...</p>
         </div>
       </div>
@@ -86,37 +87,39 @@ const ExplorePage: React.FC = () => {
     <div className="explore-page">
       {/* Header Section */}
       <div className="explore-header">
-        <div className="container">
+        <div className="explore-container">
           <h1 className="explore-title">Explore Wellness Experiences</h1>
           <p className="explore-subtitle">
             Discover transformative programs and destinations designed for your optimal well-being
           </p>
           
-          {/* Toggle Buttons */}
-          <div className="toggle-container">
-            <button
-              className={`toggle-btn ${activeTab === 'programs' ? 'active' : ''}`}
-              onClick={() => setActiveTab('programs')}
-              aria-label="View program types"
-            >
-              Program Types
-            </button>
-            <button
-              className={`toggle-btn ${activeTab === 'destinations' ? 'active' : ''}`}
-              onClick={() => setActiveTab('destinations')}
-              aria-label="View destinations"
-            >
-              Destinations
-            </button>
+          {/* Tab Navigation */}
+          <div className="explore-tab-container">
+            <div className="explore-tab-navigation">
+              <button
+                className={`explore-tab-btn ${activeTab === 'programs' ? 'active' : ''}`}
+                onClick={() => setActiveTab('programs')}
+                aria-label="View program types"
+              >
+                Program Types
+              </button>
+              <button
+                className={`explore-tab-btn ${activeTab === 'destinations' ? 'active' : ''}`}
+                onClick={() => setActiveTab('destinations')}
+                aria-label="View destinations"
+              >
+                Destinations
+              </button>
+            </div>
           </div>
         </div>
       </div>
         
       {/* Cards Section */}
-      <div className="cards-section">
-        <div className="container">
+      <div className="explore-cards-section">
+        <div className="explore-container">
           {activeTab === 'programs' ? (
-            <div className="cards-grid">
+            <div className="explore-cards-grid">
               {programCategories.map((category) => (
                 <ProgramCard 
                   key={category.type}
@@ -126,7 +129,7 @@ const ExplorePage: React.FC = () => {
               ))}
             </div>
           ) : (
-            <div className="cards-grid">
+            <div className="explore-cards-grid">
               {destinations.map((destination) => (
                 <DestinationCard
                   key={destination.country}
@@ -152,20 +155,20 @@ const ProgramCard = React.memo(({
   category: ProgramCategory; 
   onClick: (type: string) => void 
 }) => (
-  <div className="program-card" onClick={() => onClick(category.type)}>
-    <div className="card-image-container">
+  <div className="explore-program-card" onClick={() => onClick(category.type)}>
+    <div className="explore-card-image-container">
       <img 
         src={category.image} 
         alt={category.type} 
-        className="card-image" 
+        className="explore-card-image" 
         loading="lazy"
       />
-      <div className="card-overlay">
-        <div className="card-badge">{category.badge}</div>
-        <div className="card-content">
-          <h3 className="card-title">{category.type}</h3>
-          <p className="card-description" style={{ color: '#f5f5f5' }}>{category.description}</p>
-          <button className="card-cta">Explore Programs</button>
+      <div className="explore-card-overlay">
+        <div className="explore-card-badge">{category.badge}</div>
+        <div className="explore-card-content">
+          <h3 className="explore-card-title">{category.type}</h3>
+          <p className="explore-card-description">{category.description}</p>
+          <button className="explore-card-cta">Explore Programs</button>
         </div>
       </div>
     </div>
@@ -184,22 +187,22 @@ const DestinationCard = React.memo(({
   onDestinationClick: (country: string) => void;
   onCityClick: (country: string, city: string) => void;
 }) => (
-  <div className={`destination-card ${isExpanded ? 'expanded' : ''}`}>
-    <div className="destination-card-inner">
-      <div className="destination-image-container">
+  <div className={`explore-destination-card ${isExpanded ? 'expanded' : ''}`}>
+    <div className="explore-destination-card-inner">
+      <div className="explore-destination-image-container">
         <img 
           src={destination.image} 
           alt={destination.country} 
-          className="destination-image" 
+          className="explore-destination-image" 
           loading="lazy"
         />
-        <div className="destination-overlay">
-          <div className="destination-badge">Exclusive Retreat</div>
-          <div className="destination-content">
-            <h3 className="destination-title">{destination.country}</h3>
-            <p className="destination-description">Explore destinations in {destination.country}</p>
+        <div className="explore-destination-overlay">
+          <div className="explore-destination-badge">Exclusive Retreat</div>
+          <div className="explore-destination-content">
+            <h3 className="explore-destination-title">{destination.country}</h3>
+            <p className="explore-destination-description">Explore destinations in {destination.country}</p>
             <button 
-              className="destination-cta"
+              className="explore-destination-cta"
               onClick={(e) => {
                 e.stopPropagation();
                 onDestinationClick(destination.country);
@@ -214,13 +217,13 @@ const DestinationCard = React.memo(({
       
       {/* Cities Grid - Only rendered when expanded */}
       {isExpanded && (
-        <div className="cities-grid visible">
+        <div className="explore-cities-grid visible">
           <h4>Choose Your City</h4>
-          <div className="cities-list">
+          <div className="explore-cities-list">
             {destination.cities.map((city) => (
               <button
                 key={city}
-                className="city-link"
+                className="explore-city-link"
                 onClick={(e) => {
                   e.stopPropagation();
                   onCityClick(destination.country, city);

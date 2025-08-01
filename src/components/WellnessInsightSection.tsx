@@ -1,7 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import '../styles/WellnessInsightsSection.css';
-import { useNavigate } from 'react-router-dom';
 
 interface InsightCard {
   id: number;
@@ -12,20 +11,19 @@ interface InsightCard {
 }
 
 const WellnessInsightsSection: React.FC = () => {
-  const navigate = useNavigate();
   const insightCards: InsightCard[] = [
     {
       id: 1,
       label: "New",
       heading: "Premier center spotlight",
-      description: "Explore our most sought-after wellness destinations—carefully selected for their innovation, outcomes, and environments that inspire renewal and clarity.",
-      image: "https://pranissa-media.s3.us-east-1.amazonaws.com/images/camp1.png"
+      description: "Discover our latest elite destination.",
+      image: "https://images.pexels.com/photos/3757952/pexels-photo-3757952.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
       id: 2,
       label: "Insight",
       heading: "Market intelligence report",
-      description: "Track What’s Next in High-Performance Health",
+      description: "Track emerging luxury wellness trends.",
       image: "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
@@ -33,14 +31,14 @@ const WellnessInsightsSection: React.FC = () => {
       label: "Education",
       heading: "Professional advisory access",
       description: "Gain access to leading experts and educational resources.",
-      image: "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&w=800"
+      image: "https://images.pexels.com/photos/6787202/pexels-photo-6787202.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
       id: 4,
       label: "Update",
       heading: "Global center launches",
-      description: "Be First to Discover New Flagship Centers",
-      image: "https://pranissa-media.s3.us-east-1.amazonaws.com/images/hotel1.png"
+      description: "See new openings in key markets.",
+      image: "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
       id: 5,
@@ -62,20 +60,19 @@ const WellnessInsightsSection: React.FC = () => {
     console.log(`Clicked card ${cardId}`);
   };
 
-
   const handleExploreClick = () => {
-    navigate('/explore');
+    console.log('Explore insights clicked');
   };
 
   return (
     <section className="wellness-insights-section">
       <div className="wellness-insights-container">
-        <div className="wellness-insights-left-content-block">
-          <div className="wellness-insights-left-content-inner">
-            <h2 className="wellness-insights-main-heading">
+        <div className="left-content-block">
+          <div className="left-content-inner">
+            <h2 className="main-heading">
               Curated wellness insights, delivered
             </h2>
-            <p className="wellness-insights-sub-text">
+            <p className="sub-text">
               Explore global centers, trends, and expertise.
             </p>
             <button 
@@ -88,31 +85,31 @@ const WellnessInsightsSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="wellness-insights-cards-container">
-          <div className="wellness-insights-cards-grid">
+        <div className="cards-container">
+          <div className="cards-grid">
             {insightCards.map((card) => (
               <div
                 key={card.id}
                 onClick={() => handleCardClick(card.id)}
-                className="wellness-insights-insight-card"
+                className="insight-card"
               >
-                <div className="wellness-insights-card-image-container">
+                <div className="card-image-container">
                   <img
                     src={card.image}
                     alt={card.heading}
-                    className="wellness-insights-card-image"
+                    className="card-image"
                   />
-                  <div className="wellness-insights-card-label">
-                    <span className="wellness-insights-label-text">
+                  <div className="card-label">
+                    <span className="label-text">
                       {card.label}
                     </span>
                   </div>
                 </div>
-                <div className="wellness-insights-card-content">
-                  <h3 className="wellness-insights-card-heading">
+                <div className="card-content">
+                  <h3 className="card-heading">
                     {card.heading}
                   </h3>
-                  <p className="wellness-insights-card-description">
+                  <p className="card-description">
                     {card.description}
                   </p>
                 </div>

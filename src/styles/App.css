@@ -1,4 +1,4 @@
-app.css content below
+/* app.css content below */
 body {
   font-family: 'Source Sans 3', sans-serif;
   line-height: 1.6;
@@ -125,12 +125,3 @@ html {
 
 
 
-
-
-/* html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden; /* ✅ Prevents horizontal scroll issues */
-  /* box-sizing: border-box;
-} */ 

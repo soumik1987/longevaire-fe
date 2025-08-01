@@ -11,7 +11,7 @@ import { AuthProvider, useAuth } from './contexts/AuthContext';
 
 // Global Layout Components
 import Navigation from './components/Navigation';
-import HeroSection from './components/HeroSection';
+// import HeroSection from './components/HeroSection';
 import ChatBarSection from './components/ChatBarSection';
 import ChatboxPage from './components/ChatBoxPage';
 // import LongevityGrid from './components/LongevityGrid';
@@ -47,6 +47,7 @@ import Preferences from './pages/dashboard/Shared/Preferences';
 // Styles
 import './styles/App.css';
 import './styles/global.css';
+import HomeProgramPage from './components/HomeProgramPage';
 
 
 // Protected Route Component with Role Checking
@@ -73,7 +74,7 @@ const HomePage: React.FC = () => {
     <>
       <Slideshow />
       <ChatBarSection />
-      <HeroSection />
+      <HomeProgramPage/>
       <WellnessInsightSection />
       <ImmersiveScrollSection />
       <PricingSection />
