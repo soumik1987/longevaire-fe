@@ -1,6 +1,6 @@
 // pages/PricingPage.tsx
 import React from 'react';
-import { Check, Star, Crown } from 'lucide-react';
+import { Check, Star} from 'lucide-react';
 import '../styles/PricingSection.css';
 
 const PricingPage: React.FC = () => {
@@ -120,10 +120,7 @@ const PricingPage: React.FC = () => {
         ))}
       </div>
       
-      <div className="pricing-guarantee">
-        <Crown size={24} />
-        <p>30-day money-back guarantee on all plans</p>
-      </div>
+      
     </section>
   );
 };

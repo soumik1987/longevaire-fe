@@ -1,7 +1,9 @@
 /* Custom Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 /* Baskervville for serif, Source Sans 3 for sans-serif */
-
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Recoleta' ,'Futura'!important;
+}
 .immersive-scroll-container {
   width: 100%;
   position: relative;

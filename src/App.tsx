@@ -48,6 +48,7 @@ import Preferences from './pages/dashboard/Shared/Preferences';
 import './styles/App.css';
 import './styles/global.css';
 import HomeProgramPage from './components/HomeProgramPage';
+import ProgramsSection from './components/ProgramsSection';
 
 
 // Protected Route Component with Role Checking
@@ -75,6 +76,7 @@ const HomePage: React.FC = () => {
       <Slideshow />
       <ChatBarSection />
       <HomeProgramPage/>
+      <ProgramsSection/>
       <WellnessInsightSection />
       <ImmersiveScrollSection />
       <PricingSection />

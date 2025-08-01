@@ -1,7 +1,9 @@
-
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Recoleta' ,'Futura'!important;
+}
 .slideshow {
   position: relative;
-  height: 70vh;
+  height: 80vh;
   overflow: hidden;
 }
 

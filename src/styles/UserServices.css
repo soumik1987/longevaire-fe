@@ -1,4 +1,7 @@
 /* src/styles/UserServices.css */
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Recoleta' ,'Futura'!important;
+}
 .user-services {
   padding: 2rem;
   max-width: 1400px;

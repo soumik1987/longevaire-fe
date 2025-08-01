@@ -1,4 +1,8 @@
 /* components/PricingTeaser.css */
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Recoleta' ,'Futura'!important;
+}
+
 .pricing-teaser {
   background-color: #F8F6F2;
   padding: 80px 20px;

@@ -130,6 +130,7 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     z-index: 1001;
+    margin-top: 50%;
 }
 
 .sidebar-toggle.left {

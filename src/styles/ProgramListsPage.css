@@ -1,4 +1,8 @@
 /* Program List Page Styles */
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Recoleta' ,'Futura'!important;
+}
+
 .program-list-page {
   min-height: 100vh;
   background: #F8F6F2; /* Warm off-white/cream background */

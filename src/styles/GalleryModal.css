@@ -1,4 +1,8 @@
 /* src/styles/GalleryModal.css */
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Recoleta' ,'Futura'!important;
+}
+
 .gallery-modal-overlay {
   position: fixed;
   top: 0;
