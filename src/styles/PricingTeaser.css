@@ -1,0 +1,60 @@
+/* components/PricingTeaser.css */
+.pricing-teaser {
+  background-color: #F8F6F2;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.teaser-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.teaser-title {
+  font-family: 'Baskervville', serif;
+  font-size: 2.5rem;
+  color: #3C3C3C;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.teaser-subtitle {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 1.2rem;
+  color: #5A5A5A;
+  margin-bottom: 40px;
+}
+
+.teaser-button {
+  display: inline-block;
+  padding: 16px 40px;
+  background: linear-gradient(135deg, #c74427, #c74427);
+  color: white;
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.teaser-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(199, 68, 39, 0.3);
+}
+
+@media (max-width: 768px) {
+  .pricing-teaser {
+    padding: 60px 20px;
+  }
+  
+  .teaser-title {
+    font-size: 2rem;
+  }
+  
+  .teaser-subtitle {
+    font-size: 1rem;
+  }
+}

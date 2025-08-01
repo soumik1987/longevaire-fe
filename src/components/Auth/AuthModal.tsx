@@ -1,198 +1,3 @@
-// // src/components/Auth/AuthModal.tsx
-// import React, { useState } from 'react';
-// import { X } from 'lucide-react';
-// import { useAuth } from '../../contexts/AuthContext';
-// import { useNavigate } from 'react-router-dom';
-// import '../../styles/AuthModal.css';
-
-// interface AuthModalProps {
-//   mode: 'signin' | 'signup';
-//   onClose: () => void;
-//   onSwitchMode: (mode: 'signin' | 'signup') => void;
-// }
-
-// const AuthModal: React.FC<AuthModalProps> = ({ mode, onClose, onSwitchMode }) => {
-//   const { signIn, signUp } = useAuth();
-//   const navigate = useNavigate();
-
-//   const [signInData, setSignInData] = useState({ email: '', password: '' });
-//   const [signUpData, setSignUpData] = useState({
-//     firstName: '',
-//     lastName: '',
-//     email: '',
-//     phone: '',
-//     password: '',
-//     confirmPassword: '',
-//     role: 'user' as 'user' | 'facility' | 'admin'
-//   });
-
-//   const [error, setError] = useState('');
-//   const [loading, setLoading] = useState(false);
-
-//   const handleSignInSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault();
-//     setError('');
-//     setLoading(true);
-//     try {
-//       const success = await signIn(signInData.email, signInData.password);
-//       if (success) {
-//         onClose();
-//         navigate('/dashboard/services');
-//       } else {
-//         setError('Invalid email or password.');
-//       }
-//     } catch {
-//       setError('An error occurred. Please try again.');
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   const handleSignUpSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault();
-//     setError('');
-//     if (signUpData.password !== signUpData.confirmPassword) {
-//       setError('Passwords do not match');
-//       return;
-//     }
-//     if (signUpData.password.length < 6) {
-//       setError('Password must be at least 6 characters');
-//       return;
-//     }
-//     setLoading(true);
-//     try {
-//       const { confirmPassword, ...userData } = signUpData;
-//       const success = await signUp(userData);
-//       if (success) {
-//         onClose();
-//         navigate('/dashboard/services');
-//       } else {
-//         setError('User with this email already exists');
-//       }
-//     } catch {
-//       setError('An error occurred. Please try again.');
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   const handleChangeSignIn = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     setSignInData({ ...signInData, [e.target.name]: e.target.value });
-//   };
-
-//   const handleChangeSignUp = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-//     setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
-//   };
-
-//   return (
-//     <div className="auth-popup-overlay" onClick={onClose}>
-//       <div className="auth-popup-box" onClick={(e) => e.stopPropagation()}>
-//         <button className="auth-popup-close" onClick={onClose}>
-//           <X size={20} />
-//         </button>
-//         <h2 className="auth-popup-heading">LONGENOMICS</h2>
-//         <p className="auth-popup-subtext">
-//           {mode === 'signin' ? 'Sign in to continue your journey' : 'Create your account'}
-//         </p>
-
-//         {mode === 'signin' ? (
-//           <form onSubmit={handleSignInSubmit} className="auth-popup-form">
-//             <div className="auth-popup-field">
-//               <label>Email</label>
-//               <input type="email" name="email" value={signInData.email} onChange={handleChangeSignIn} required />
-//             </div>
-//             <div className="auth-popup-field">
-//               <label>Password</label>
-//               <input type="password" name="password" value={signInData.password} onChange={handleChangeSignIn} required />
-//             </div>
-//             {error && <div className="auth-popup-error">{error}</div>}
-//             <button className="auth-popup-button" disabled={loading}>
-//               {loading ? 'Signing In...' : 'SIGN IN'}
-//             </button>
-//             <p className="auth-popup-footer">
-//               Don’t have an account?{' '}
-//               <button type="button" className="auth-popup-link" onClick={() => onSwitchMode('signup')}>
-//                 Sign up
-//               </button>
-//             </p>
-//           </form>
-//         ) : (
-//           <form onSubmit={handleSignUpSubmit} className="auth-popup-form">
-//             <div className="auth-popup-row">
-//               <div className="auth-popup-field">
-//                 <label>First Name</label>
-//                 <input type="text" name="firstName" value={signUpData.firstName} onChange={handleChangeSignUp} required />
-//               </div>
-//               <div className="auth-popup-field">
-//                 <label>Last Name</label>
-//                 <input type="text" name="lastName" value={signUpData.lastName} onChange={handleChangeSignUp} required />
-//               </div>
-//             </div>
-//             <div className="auth-popup-field">
-//               <label>Email</label>
-//               <input type="email" name="email" value={signUpData.email} onChange={handleChangeSignUp} required />
-//             </div>
-//             <div className="auth-popup-field">
-//               <label>Phone</label>
-//               <input type="tel" name="phone" value={signUpData.phone} onChange={handleChangeSignUp} required />
-//             </div>
-//             <div className="auth-popup-field">
-//               <label>Account Type</label>
-//               <select name="role" value={signUpData.role} onChange={handleChangeSignUp}>
-//                 <option value="user">Program Creator</option>
-//                 <option value="facility">Facility Owner</option>
-//                 <option value="admin">Administrator</option>
-//               </select>
-//             </div>
-//             <div className="auth-popup-row">
-//               <div className="auth-popup-field">
-//                 <label>Password</label>
-//                 <input type="password" name="password" value={signUpData.password} onChange={handleChangeSignUp} required />
-//               </div>
-//               <div className="auth-popup-field">
-//                 <label>Confirm</label>
-//                 <input type="password" name="confirmPassword" value={signUpData.confirmPassword} onChange={handleChangeSignUp} required />
-//               </div>
-//             </div>
-//             {error && <div className="auth-popup-error">{error}</div>}
-//             <button className="auth-popup-button" disabled={loading}>
-//               {loading ? 'Creating...' : 'Create Account'}
-//             </button>
-//             <p className="auth-popup-footer">
-//               Already have an account?{' '}
-//               <button type="button" className="auth-popup-link" onClick={() => onSwitchMode('signin')}>
-//                 Sign in
-//               </button>
-//             </p>
-//           </form>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default AuthModal;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // src/components/AuthModal.tsx
 import React, { useState } from 'react';
@@ -300,21 +105,21 @@ const AuthModal: React.FC<AuthModalProps> = ({ mode, onClose, onSwitchMode }) =>
     alert('Google authentication is not implemented in this demo');
   };
 
-  const handleTestAccount = (email: string) => {
-    if (mode === 'signin') {
-      setSignInData({
-        email: email,
-        password: 'password'
-      });
-    } else {
-      setSignUpData({
-        ...signUpData,
-        email: email,
-        password: 'password',
-        confirmPassword: 'password'
-      });
-    }
-  };
+  // const handleTestAccount = (email: string) => {
+  //   if (mode === 'signin') {
+  //     setSignInData({
+  //       email: email,
+  //       password: 'password'
+  //     });
+  //   } else {
+  //     setSignUpData({
+  //       ...signUpData,
+  //       email: email,
+  //       password: 'password',
+  //       confirmPassword: 'password'
+  //     });
+  //   }
+  // };
 
   return (
     <div className="auth-modal-overlay" onClick={onClose}>
@@ -382,12 +187,12 @@ const AuthModal: React.FC<AuthModalProps> = ({ mode, onClose, onSwitchMode }) =>
                   
                   <div className="auth-modal-footer">
                     <p>Don't have an account? <button type="button" className="auth-link-button" onClick={() => onSwitchMode('signup')}>Sign up here</button></p>
-                    <div className="auth-test-accounts">
+                    {/* <div className="auth-test-accounts">
                       <p><strong>Test Accounts:</strong></p>
                       <p>Facility: <button className="auth-test-account" onClick={() => handleTestAccount('test@facility.com')}>test@facility.com</button> / password</p>
                       <p>User: <button className="auth-test-account" onClick={() => handleTestAccount('test@user.com')}>test@user.com</button> / password</p>
                       <p>Admin: <button className="auth-test-account" onClick={() => handleTestAccount('test@admin.com')}>test@admin.com</button> / password</p>
-                    </div>
+                    </div> */}
                   </div>
                 </>
               ) : (

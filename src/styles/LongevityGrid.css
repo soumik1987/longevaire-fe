@@ -23,14 +23,23 @@
 }
 
 .longevity-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+  display: flex;
+  gap: 32px;
+  overflow-x: auto;
+  padding: 1rem 0 2rem;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+.longevity-grid::-webkit-scrollbar {
+  display: none;
+}
+
 .grid-item {
+  flex: 0 0 400px;
   display: flex;
   flex-direction: column;
   background: white; /* Keep white for grid items */
@@ -112,8 +121,11 @@
   }
   
   .longevity-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 24px;
+  }
+  
+  .grid-item {
+    flex: 0 0 350px;
   }
 }
 
@@ -123,7 +135,11 @@
   }
   
   .longevity-grid {
-    gap: 28px;
+    gap: 20px;
+  }
+  
+  .grid-item {
+    flex: 0 0 320px;
   }
 }
 
@@ -148,6 +164,10 @@
   .item-description {
     font-size: 0.95rem;
   }
+  
+  .grid-item {
+    flex: 0 0 300px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -157,5 +177,9 @@
   
   .item-content {
     padding: 20px;
+  }
+  
+  .grid-item {
+    flex: 0 0 280px;
   }
 }

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchProgramByName, fetchRelatedPrograms } from '../api';
@@ -17,13 +18,12 @@ const ProgramDetailsPage: React.FC = () => {
   const [isNavSticky, setIsNavSticky] = useState(false);
   const [currentIncludedIndex, setCurrentIncludedIndex] = useState(0);
   const [relatedPrograms, setRelatedPrograms] = useState<Program[]>([]);
-  const [currentEventSlide, setCurrentEventSlide] = useState(0);
   const [currentMobileIncludedSlide, setCurrentMobileIncludedSlide] = useState(0);
   const [currentMobileEventSlide, setCurrentMobileEventSlide] = useState(0);
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
   const [lastScrollPosition, setLastScrollPosition] = useState(0);
+  // const [scrollThumbWidth, setScrollThumbWidth] = useState(20);
   
-  // Initialize refs with proper null values
   const sectionNavRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const overviewRef = useRef<HTMLDivElement>(null);
@@ -35,6 +35,7 @@ const ProgramDetailsPage: React.FC = () => {
   const locationRef = useRef<HTMLDivElement>(null);
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const scrollRequestRef = useRef<number | null>(null);
+  const eventsContainerRef = useRef<HTMLDivElement>(null);
 
   const sectionRefs = useRef({
     overview: overviewRef,
@@ -88,7 +89,26 @@ const ProgramDetailsPage: React.FC = () => {
     return <Utensils size={20} />;
   }, []);
 
-  // Load program data
+const updateScrollIndicator = useCallback(() => {
+  if (eventsContainerRef.current) {
+    const container = eventsContainerRef.current;
+    const scrollWidth = container.scrollWidth;
+    const clientWidth = container.clientWidth;
+    const scrollLeft = container.scrollLeft;
+    
+    if (scrollWidth > clientWidth) {
+      const thumbWidth = Math.max((clientWidth / scrollWidth) * 100, 10);
+      const thumbPosition = (scrollLeft / (scrollWidth - clientWidth)) * (100 - thumbWidth);
+      
+      const thumbElement = document.querySelector('.events-scroll-thumb') as HTMLElement;
+      if (thumbElement) {
+        thumbElement.style.width = `${thumbWidth}%`;
+        thumbElement.style.transform = `translateX(${thumbPosition * (100 / thumbWidth)}%)`;
+      }
+    }
+  }
+}, []);
+
   useEffect(() => {
     const state = location.state as { programName: string };
     if (!state?.programName) {
@@ -101,13 +121,11 @@ const ProgramDetailsPage: React.FC = () => {
         const foundProgram = await fetchProgramByName(state.programName);
         if (foundProgram) {
           setProgram(foundProgram);
-          // Preload images as soon as we have the program data
           if (foundProgram.imageGallery) {
             preloadImages(foundProgram.imageGallery);
           }
           const related = await fetchRelatedPrograms(foundProgram);
           setRelatedPrograms(related);
-          // Preload related program images
           related.forEach(p => {
             if (p.imageGallery?.[0]) {
               preloadImages([p.imageGallery[0]]);
@@ -145,7 +163,6 @@ const ProgramDetailsPage: React.FC = () => {
           setIsNavSticky(shouldBeSticky);
         }
 
-        // Smooth transition for the sticky nav
         if (scrollDirection === 'down' && shouldBeSticky) {
           sectionNavRef.current.style.transform = 'translateY(0)';
           sectionNavRef.current.style.opacity = '1';
@@ -189,6 +206,18 @@ const ProgramDetailsPage: React.FC = () => {
     }, 4000);
     return () => clearInterval(interval);
   }, [program]);
+
+  useEffect(() => {
+    updateScrollIndicator();
+    if (eventsContainerRef.current) {
+      eventsContainerRef.current.addEventListener('scroll', updateScrollIndicator);
+      return () => {
+        if (eventsContainerRef.current) {
+          eventsContainerRef.current.removeEventListener('scroll', updateScrollIndicator);
+        }
+      };
+    }
+  }, [updateScrollIndicator, relatedPrograms]);
 
   const scrollToSection = useCallback((sectionId: string) => {
     if (scrollTimeoutRef.current) {
@@ -240,26 +269,6 @@ const ProgramDetailsPage: React.FC = () => {
       prev === 0 ? relatedPrograms.length - 1 : prev - 1
     );
   }, [relatedPrograms]);
-
-  const nextEventSlide = useCallback(() => {
-    if (!relatedPrograms.length) return;
-    const cardsPerView = window.innerWidth <= 576 ? 1 : window.innerWidth <= 1024 ? 3 : 4;
-    setCurrentEventSlide(prev => 
-      prev >= relatedPrograms.length - cardsPerView ? 0 : prev + 1
-    );
-  }, [relatedPrograms]);
-
-  const prevEventSlide = useCallback(() => {
-    if (!relatedPrograms.length) return;
-    const cardsPerView = window.innerWidth <= 576 ? 1 : window.innerWidth <= 1024 ? 3 : 4;
-    setCurrentEventSlide(prev => 
-      prev === 0 ? relatedPrograms.length - cardsPerView : prev - 1
-    );
-  }, [relatedPrograms]);
-
-  const goToEventSlide = useCallback((index: number) => {
-    setCurrentEventSlide(index);
-  }, []);
 
   const handleEventCardClick = useCallback((programName: string) => {
     window.scrollTo({
@@ -562,35 +571,26 @@ const ProgramDetailsPage: React.FC = () => {
           </div>
 
           <div className="desktop-events-view">
-            <div className="events-slider-container">
-              <button
-                className="slider-nav-btn slider-nav-prev"
-                onClick={prevEventSlide}
+            <div className="events-scroll-container">
+              <div 
+                ref={eventsContainerRef}
+                className="events-horizontal-scroll"
               >
-                <ChevronLeft size={24} />
-              </button>
-              <div className="events-slider-wrapper">
-                <div
-                  className={`events-slider ${relatedPrograms.length <= 2 ? 'display-two-cards-desktop' : 'display-five-cards-desktop'}`}
-                  style={{
-                    transform: `translateX(-${currentEventSlide * (100 / (relatedPrograms.length <= 2 ? 2 : 5))}%)`,
-                    transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
-                  }}
-                >
-                  {relatedPrograms.map((program, index) => (
-                    <div 
-                      key={index} 
-                      className="event-slide-card"
-                      onClick={() => handleEventCardClick(program.name)}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      <div className="event-card-image">
-                        <img src={program.imageGallery?.[0] || "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=400"} alt={program.name} loading="lazy" decoding="async" />
-                        <div className="event-card-overlay">
-                          <div className="event-badge" style={{ backgroundColor: index % 2 === 0 ? '#D97706' : '#DC2626' }}>
-                            {index % 2 === 0 ? 'GUEST EXPERT' : 'SIGNATURE EVENT'}
-                          </div>
-                          <div className="event-location">{program.location.split(' - ')[0].toUpperCase()}</div>
+                {relatedPrograms.map((program, index) => (
+                  <div 
+                    key={index} 
+                    className="event-slide-card"
+                    onClick={() => handleEventCardClick(program.name)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <div className="event-card-image">
+                      <img src={program.imageGallery?.[0] || "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=400"} alt={program.name} loading="lazy" decoding="async" />
+                      <div className="event-badge" style={{ backgroundColor: index % 2 === 0 ? '#D97706' : '#DC2626' }}>
+                        {index % 2 === 0 ? 'GUEST EXPERT' : 'SIGNATURE EVENT'}
+                      </div>
+                      <div className="event-card-overlay">
+                        <div className="event-location">{program.location.split(' - ')[0].toUpperCase()}</div>
+                        <div className="event-content-bottom">
                           <h3 className="event-title">{program.name.toUpperCase()}</h3>
                           <p className="event-description">{program.description || 'A transformative wellness experience'}</p>
                           <div className="event-date">
@@ -600,24 +600,12 @@ const ProgramDetailsPage: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
-              <button
-                className="slider-nav-btn slider-nav-next"
-                onClick={nextEventSlide}
-              >
-                <ChevronRight size={24} />
-              </button>
-            </div>
-            <div className="slider-pagination">
-              {Array.from({ length: Math.ceil(relatedPrograms.length / (relatedPrograms.length <= 2 ? 2 : 5)) }).map((_, index) => (
-                <button
-                  key={index}
-                  className={`slider-dot ${Math.floor(currentEventSlide / (relatedPrograms.length <= 2 ? 2 : 5)) === index ? 'active' : ''}`}
-                  onClick={() => goToEventSlide(index * (relatedPrograms.length <= 2 ? 2 : 5))}
-                />
-              ))}
+              <div className="events-scroll-indicator">
+                <div className="events-scroll-thumb"></div>
+              </div>
             </div>
           </div>
 
@@ -653,11 +641,13 @@ const ProgramDetailsPage: React.FC = () => {
                                 {index % 2 === 0 ? 'GUEST EXPERT' : 'SIGNATURE EVENT'}
                               </div>
                               <div className="mobile-events-location">{program.location.split(' - ')[0].toUpperCase()}</div>
-                              <h3 className="mobile-events-title">{program.name.toUpperCase()}</h3>
-                              <p className="mobile-events-description">{program.description || 'A transformative wellness experience'}</p>
-                              <div className="mobile-events-date">
-                                <Calendar size={16} />
-                                <span>{program.duration || 'Contact for details'}</span>
+                              <div className="mobile-events-content-bottom">
+                                <h3 className="mobile-events-title">{program.name.toUpperCase()}</h3>
+                                <p className="mobile-events-description">{program.description || 'A transformative wellness experience'}</p>
+                                <div className="mobile-events-date">
+                                  <Calendar size={16} />
+                                  <span>{program.duration || 'Contact for details'}</span>
+                                </div>
                               </div>
                             </div>
                           </div>

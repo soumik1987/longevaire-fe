@@ -70,12 +70,12 @@ const WellnessInsightsSection: React.FC = () => {
   return (
     <section className="wellness-insights-section">
       <div className="wellness-insights-container">
-        <div className="left-content-block">
-          <div className="left-content-inner">
-            <h2 className="main-heading">
+        <div className="wellness-insights-left-content-block">
+          <div className="wellness-insights-left-content-inner">
+            <h2 className="wellness-insights-main-heading">
               Curated wellness insights, delivered
             </h2>
-            <p className="sub-text">
+            <p className="wellness-insights-sub-text">
               Explore global centers, trends, and expertise.
             </p>
             <button 
@@ -88,31 +88,31 @@ const WellnessInsightsSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="cards-container">
-          <div className="cards-grid">
+        <div className="wellness-insights-cards-container">
+          <div className="wellness-insights-cards-grid">
             {insightCards.map((card) => (
               <div
                 key={card.id}
                 onClick={() => handleCardClick(card.id)}
-                className="insight-card"
+                className="wellness-insights-insight-card"
               >
-                <div className="card-image-container">
+                <div className="wellness-insights-card-image-container">
                   <img
                     src={card.image}
                     alt={card.heading}
-                    className="card-image"
+                    className="wellness-insights-card-image"
                   />
-                  <div className="card-label">
-                    <span className="label-text">
+                  <div className="wellness-insights-card-label">
+                    <span className="wellness-insights-label-text">
                       {card.label}
                     </span>
                   </div>
                 </div>
-                <div className="card-content">
-                  <h3 className="card-heading">
+                <div className="wellness-insights-card-content">
+                  <h3 className="wellness-insights-card-heading">
                     {card.heading}
                   </h3>
-                  <p className="card-description">
+                  <p className="wellness-insights-card-description">
                     {card.description}
                   </p>
                 </div>

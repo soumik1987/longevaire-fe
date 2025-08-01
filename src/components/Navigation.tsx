@@ -1,3 +1,4 @@
+
 // // src/components/Navigation.tsx
 // import React, { useState, useEffect, useRef } from 'react';
 // import { Menu, X, User, LogOut, Building, Shield } from 'lucide-react';
@@ -6,7 +7,7 @@
 // import ContactModal from './ContactModal';
 // import { useAuth } from '../contexts/AuthContext';
 // import AuthModal from './Auth/AuthModal';
-// import logo from '../assets/logo.jpg';
+// import premiyaLogo from '../assets/premiya_logo.jpg';
 
 // const Navigation: React.FC = () => {
 //   const [isScrolled, setIsScrolled] = useState(false);
@@ -124,10 +125,13 @@
 //     }
 //   };
 
+//   const isHomeActive = location.pathname === '/';
 //   const isDestinationsActive = location.pathname === '/explore' &&
 //     location.state?.initialTab === 'destinations';
 //   const isProgramsActive = location.pathname === '/explore' &&
 //     (!location.state?.initialTab || location.state?.initialTab === 'programs');
+//   const isAboutActive = location.pathname === '/about';
+//   const isBlogsActive = location.pathname === '/blogs';
 
 //   const handleDestinationsClick = (_e: React.MouseEvent) => {
 //     navigate('/explore', {
@@ -151,12 +155,19 @@
 //         <div className="nav-container">
 //           <div className="nav-left">
 //             <Link to="/" className="logo">
-//               <img src={logo} alt="Logo" className="logo-icon" />
+//               <img src={premiyaLogo} alt="Premiya Beyond Wellness" className="logo-image" />
 //             </Link>
-//             <span className="welcome-text">Pranissa</span>
 //           </div>
 
 //           <div className={`nav-center ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+//             <Link
+//               to="/"
+//               className={`nav-item ${isHomeActive ? 'active' : ''}`}
+//               onClick={() => setIsMobileMenuOpen(false)}
+//             >
+//               Home
+//             </Link>
+
 //             <Link
 //               to="/explore"
 //               className={`nav-item ${isDestinationsActive ? 'active' : ''}`}
@@ -177,7 +188,7 @@
 
 //             <Link
 //               to="/about"
-//               className="nav-item"
+//               className={`nav-item ${isAboutActive ? 'active' : ''}`}
 //               onClick={() => setIsMobileMenuOpen(false)}
 //             >
 //               About
@@ -185,7 +196,7 @@
 
 //             <Link
 //               to="/blogs"
-//               className="nav-item"
+//               className={`nav-item ${isBlogsActive ? 'active' : ''}`}
 //               onClick={() => setIsMobileMenuOpen(false)}
 //             >
 //               Blogs
@@ -267,8 +278,6 @@
 
 
 
-
-
 // src/components/Navigation.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, User, LogOut, Building, Shield } from 'lucide-react';
@@ -303,13 +312,13 @@ const Navigation: React.FC = () => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (isMobileMenuOpen) {
-        const navCenter = document.querySelector('.nav-center');
+        const mobileSidebar = document.querySelector('.mobile-sidebar');
         const mobileToggle = document.querySelector('.mobile-menu-toggle');
 
         if (
-          navCenter &&
+          mobileSidebar &&
           mobileToggle &&
-          !navCenter.contains(event.target as Node) &&
+          !mobileSidebar.contains(event.target as Node) &&
           !mobileToggle.contains(event.target as Node)
         ) {
           setIsMobileMenuOpen(false);
@@ -429,11 +438,11 @@ const Navigation: React.FC = () => {
             </Link>
           </div>
 
-          <div className={`nav-center ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+          {/* Desktop Navigation Center */}
+          <div className="nav-center">
             <Link
               to="/"
               className={`nav-item ${isHomeActive ? 'active' : ''}`}
-              onClick={() => setIsMobileMenuOpen(false)}
             >
               Home
             </Link>
@@ -459,7 +468,6 @@ const Navigation: React.FC = () => {
             <Link
               to="/about"
               className={`nav-item ${isAboutActive ? 'active' : ''}`}
-              onClick={() => setIsMobileMenuOpen(false)}
             >
               About
             </Link>
@@ -467,13 +475,13 @@ const Navigation: React.FC = () => {
             <Link
               to="/blogs"
               className={`nav-item ${isBlogsActive ? 'active' : ''}`}
-              onClick={() => setIsMobileMenuOpen(false)}
             >
               Blogs
             </Link>
           </div>
 
           <div className="nav-right">
+            {/* Mobile Menu Toggle (only visible on mobile) */}
             <button
               className="mobile-menu-toggle"
               onClick={toggleMobileMenu}
@@ -482,14 +490,11 @@ const Navigation: React.FC = () => {
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
 
+            {/* Desktop Auth/Profile Section */}
             {!isAuthenticated ? (
-              <>
-              <div className="mobile-join">
-                <button className="join-btn" onClick={handleSignIn}>
-                  JOIN NOW
-                </button>
-                </div>
-              </>
+              <button className="desktop-join-btn" onClick={handleSignIn}>
+                JOIN NOW
+              </button>
             ) : (
               <div className="profile-dropdown-container" ref={profileDropdownRef}>
                 <button
@@ -522,9 +527,108 @@ const Navigation: React.FC = () => {
               </div>
             )}
           </div>
+
+          {/* Mobile Sidebar */}
+          <div className={`mobile-sidebar ${isMobileMenuOpen ? 'open' : ''}`}>
+            <div className="sidebar-content">
+              {isAuthenticated && (
+                <div className="mobile-profile-info">
+                  <div className="profile-avatar">{getInitials()}</div>
+                  <div>
+                    <div className="dropdown-name">{user?.firstName} {user?.lastName}</div>
+                    <div className="dropdown-email">{user?.email}</div>
+                  </div>
+                </div>
+              )}
+
+              <div className="mobile-nav-items">
+                <Link
+                  to="/"
+                  className={`mobile-nav-item ${isHomeActive ? 'active' : ''}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Home
+                </Link>
+
+                <Link
+                  to="/explore"
+                  className={`mobile-nav-item ${isDestinationsActive ? 'active' : ''}`}
+                  onClick={handleDestinationsClick}
+                  state={{ initialTab: 'destinations', forceReload: true }}
+                >
+                  Destinations
+                </Link>
+
+                <Link
+                  to="/explore"
+                  className={`mobile-nav-item ${isProgramsActive ? 'active' : ''}`}
+                  onClick={handleProgramsClick}
+                  state={{ initialTab: 'programs', forceReload: true }}
+                >
+                  Wellness Programs
+                </Link>
+
+                <Link
+                  to="/about"
+                  className={`mobile-nav-item ${isAboutActive ? 'active' : ''}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  About
+                </Link>
+
+                <Link
+                  to="/blogs"
+                  className={`mobile-nav-item ${isBlogsActive ? 'active' : ''}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Blogs
+                </Link>
+
+                {isAuthenticated && (
+                  <>
+                    <button 
+                      className="mobile-nav-item dashboard-item"
+                      onClick={() => {
+                        navigateToDashboard(getDashboardPath());
+                        setIsMobileMenuOpen(false);
+                      }}
+                    >
+                      {getDashboardIcon()}
+                      <span>{getDashboardLabel()}</span>
+                    </button>
+                    <button 
+                      className="mobile-nav-item logout-item"
+                      onClick={handleLogout}
+                    >
+                      <LogOut size={16} />
+                      <span>Logout</span>
+                    </button>
+                  </>
+                )}
+              </div>
+
+              {!isAuthenticated && (
+                <button 
+                  className="mobile-join-btn"
+                  onClick={handleSignIn}
+                >
+                  JOIN NOW
+                </button>
+              )}
+            </div>
+          </div>
         </div>
       </nav>
 
+      {/* Backdrop for mobile sidebar */}
+      {isMobileMenuOpen && (
+        <div 
+          className="mobile-sidebar-backdrop"
+          onClick={toggleMobileMenu}
+        />
+      )}
+
+      {/* Keep the modals the same */}
       {showAuthModal && (
         <AuthModal
           mode={authMode}

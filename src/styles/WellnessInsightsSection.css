@@ -13,13 +13,13 @@
   align-items: start;
 }
 
-.left-content-block {
+.wellness-insights-left-content-block {
   position: sticky;
   top: 100px;
   align-self: start;
 }
 
-.main-heading {
+.wellness-insights-main-heading {
   font-family: 'Baskervville', serif;
   font-size: 3rem;
   font-weight: 800;
@@ -28,7 +28,7 @@
   line-height: 1.2;
 }
 
-.sub-text {
+.wellness-insights-sub-text {
   font-family: 'Source Sans 3', sans-serif;
   color: #5A5A5A;
   font-size: 1.125rem;
@@ -62,14 +62,14 @@
   height: 18px;
 }
 
-.cards-grid {
+.wellness-insights-cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
   padding-bottom: 40px;
 }
 
-.insight-card {
+.wellness-insights-insight-card {
   background: white;
   border-radius: 16px;
   overflow: hidden;
@@ -81,30 +81,30 @@
   flex-direction: column;
 }
 
-.insight-card:hover {
+.wellness-insights-insight-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
-.card-image-container {
+.wellness-insights-card-image-container {
   position: relative;
   width: 100%;
   height: 180px;
   overflow: hidden;
 }
 
-.card-image {
+.wellness-insights-card-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
 
-.insight-card:hover .card-image {
+.wellness-insights-insight-card:hover .card-image {
   transform: scale(1.05);
 }
 
-.card-label {
+.wellness-insights-card-label {
   position: absolute;
   top: 12px;
   left: 12px;
@@ -119,7 +119,7 @@
   backdrop-filter: blur(8px);
 }
 
-.card-content {
+.wellness-insights-card-content {
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -127,7 +127,7 @@
   flex-grow: 1;
 }
 
-.card-heading {
+.wellness-insights-card-heading {
   font-family: 'Baskervville', serif;
   font-size: 1.25rem;
   color: #3C3C3C;
@@ -136,7 +136,7 @@
   line-height: 1.3;
 }
 
-.card-description {
+.wellness-insights-card-description {
   font-family: 'Source Sans 3', sans-serif;
   color: #5A5A5A;
   font-size: 0.95rem;
@@ -150,16 +150,16 @@
     gap: 40px;
   }
 
-  .left-content-block {
+  .wellness-insights-left-content-block {
     position: static;
     text-align: center;
   }
 
-  .cards-grid {
+  .wellness-insights-cards-grid {
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   }
 
-  .main-heading {
+  .wellness-insights-main-heading {
     font-size: 2.5rem;
   }
 }
@@ -174,31 +174,73 @@
     gap: 32px;
   }
 
-  .main-heading {
+  .wellness-insights-main-heading {
     font-size: 2rem;
   }
 
-  .sub-text {
+  .wellness-insights-sub-text {
     font-size: 1rem;
   }
 
-  .cards-grid {
+  .wellness-insights-cards-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
 
-  .card-image-container {
+  .wellness-insights-card-image-container {
     height: 160px;
   }
 
-  .card-content {
+  .wellness-insights-card-content {
     padding: 16px;
   }
 
-  .card-heading {
+  .wellness-insights-card-heading {
     font-size: 1.125rem;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

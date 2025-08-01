@@ -59,7 +59,7 @@ const ProgramListPage: React.FC = () => {
     return (
       <div className="program-list-card" onClick={onClick}>
         <div 
-          className="program-image" 
+          className="program-list-program-image" 
           style={{ 
             backgroundImage: imageLoaded ? `url(${program.imageUrl})` : 'none',
             backgroundColor: !imageLoaded ? '#f5f5f5' : 'transparent'
@@ -72,32 +72,32 @@ const ProgramListPage: React.FC = () => {
             onLoad={() => setImageLoaded(true)}
             onError={() => setImageLoaded(false)}
           />
-          {!imageLoaded && <div className="image-placeholder"></div>}
+          {!imageLoaded && <div className="program-list-image-placeholder"></div>}
         </div>
         
-        <div className="program-card-content">
-          <div className="program-location">{program.location}</div>
-          <h3 className="program-name">{program.name}</h3>
+        <div className="program-list-program-card-content">
+          <div className="program-list-program-location">{program.location}</div>
+          <h3 className="program-list-program-name">{program.name}</h3>
           
           {program.specialOffer && (
-            <div className="special-offer-tag">
+            <div className="program-list-special-offer-tag">
               {program.specialOffer}
             </div>
           )}
           
-          <p className="program-description">{program.details}</p>
+          <p className="program-list-program-description">{program.details}</p>
           
-          <div className="program-details">
-            <div className="detail-item">
-              <span className="detail-icon">🛏️</span>
+          <div className="program-list-program-details">
+            <div className="program-list-detail-item">
+              <span className="program-list-detail-icon">🛏️</span>
               <span>{program.nights}</span>
             </div>
-            <div className="detail-item">
-              <span className="detail-icon">💰</span>
+            <div className="program-list-detail-item">
+              <span className="program-list-detail-icon">💰</span>
               <span>{program.pricing}</span>
             </div>
-            <div className="detail-item">
-              <span className="detail-icon">📅</span>
+            <div className="program-list-detail-item">
+              <span className="program-list-detail-icon">📅</span>
               <span>Book by {program.bookingDate}, Stay by {program.stayDate}</span>
             </div>
           </div>
@@ -173,24 +173,24 @@ const ProgramListPage: React.FC = () => {
   const programsGrid = useMemo(() => {
     if (error) {
       return (
-        <div className="no-programs">
+        <div className="program-list-no-programs">
           <h3>Error Loading Programs</h3>
           <p>{error}</p>
-          <button className="back-button" onClick={handleBackClick}>
+          {/* <button className="program-list-back-button" onClick={handleBackClick}>
             Back to Explore
-          </button>
+          </button> */}
         </div>
       );
     }
 
     if (programs.length === 0 && !loading) {
       return (
-        <div className="no-programs">
+        <div className="program-list-no-programs">
           <h3>No programs found</h3>
           <p>We couldn't find any programs matching your criteria.</p>
-          <button className="back-button" onClick={handleBackClick}>
+          {/* <button className="program-list-back-button" onClick={handleBackClick}>
             Back to Explore
-          </button>
+          </button> */}
         </div>
       );
     }
@@ -211,8 +211,8 @@ const ProgramListPage: React.FC = () => {
   if (loading) {
     return (
       <div className="program-list-page">
-        <div className="container loading-container">
-          <div className="loading-spinner"></div>
+        <div className="program-list-container program-list-loading-container">
+          <div className="program-list-loading-spinner"></div>
           <p>Loading programs...</p>
         </div>
       </div>
@@ -222,17 +222,17 @@ const ProgramListPage: React.FC = () => {
   return (
     <div className="program-list-page">
       <div className="program-list-header">
-        <div className="container">
-          {/* <button className="back-button" onClick={handleBackClick}>
+        <div className="program-list-container">
+          {/* <button className="prgoram-list-back-button" onClick={handleBackClick}>
             ← Back to Explore
           </button> */}
-          <h1 className="page-title">{pageTitle}</h1>
-          <p className="page-subtitle">{pageSubtitle}</p>
+          <h1 className="program-list-page-title">{pageTitle}</h1>
+          <p className="program-list-page-subtitle">{pageSubtitle}</p>
         </div>
       </div>
 
-      <div className="programs-section">
-        <div className="container">
+      <div className="program-list-programs-section">
+        <div className="program-list-container">
           {programsGrid}
         </div>
       </div>
