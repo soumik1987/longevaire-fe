@@ -1,16 +1,17 @@
-/* Programs Section Styles */
-h1,h2,h3,h4,h5,h6{
-  font-family: 'Recoleta' ,'Futura'!important;
+/* Base Fonts */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Recoleta', 'Futura', sans-serif !important;
 }
 
+/* Container */
 .programs-section-container {
   padding: 4rem 2rem 2rem;
-  /* background: linear-gradient(135deg, #2c3e50 0%, #3a4d5c 100%); */
   background-color: rgb(60, 55, 55);
   color: white;
   min-height: 100vh;
 }
 
+/* Header */
 .programs-header {
   text-align: center;
   margin-bottom: 3rem;
@@ -37,9 +38,9 @@ h1,h2,h3,h4,h5,h6{
   font-weight: 300;
 }
 
-.programs-scroll-container {
+/* Scroll Wrapper */
+.programs-scroll-wrapper {
   position: relative;
-  overflow: hidden;
 }
 
 .programs-horizontal-scroll {
@@ -56,7 +57,34 @@ h1,h2,h3,h4,h5,h6{
   display: none;
 }
 
-/* Program Card Styles */
+.scroll-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(6px);
+  border: none;
+  padding: 0.6rem;
+  cursor: pointer;
+  border-radius: 50%;
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.scroll-arrow:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.scroll-arrow.left {
+  left: -10px;
+}
+
+.scroll-arrow.right {
+  right: -10px;
+}
+
+/* Program Card */
 .program-card {
   flex: 0 0 320px;
   height: 480px;
@@ -125,7 +153,6 @@ h1,h2,h3,h4,h5,h6{
   letter-spacing: 2px;
   margin-bottom: 0.5rem;
   text-transform: uppercase;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   opacity: 0.9;
 }
 
@@ -145,7 +172,6 @@ h1,h2,h3,h4,h5,h6{
   color: #e8e8e8;
   line-height: 1.4;
   margin-bottom: 1rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   font-weight: 300;
 }
 
@@ -156,7 +182,6 @@ h1,h2,h3,h4,h5,h6{
   color: #ffffff;
   font-size: 0.9rem;
   font-weight: 500;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
 .program-card-date svg {
@@ -164,56 +189,127 @@ h1,h2,h3,h4,h5,h6{
   opacity: 0.8;
 }
 
-@media (max-width: 768px) {
-  .programs-section-container {
-    padding: 2rem 1rem;
-  }
-  
-  .programs-main-title {
-    font-size: 2rem;
-    letter-spacing: 2px;
-  }
-  
-  .programs-subtitle {
-    font-size: 1rem;
-  }
-  
+.programs-horizontal-scroll {
+  gap: 1.5rem;
+}
+
+/* ---------- RESPONSIVE BREAKPOINTS ---------- */
+
+/* 1299px to 1024px */
+@media (max-width: 1299px) {
   .program-card {
-    flex: 0 0 280px;
-    height: 420px;
+    flex: 0 0 300px;
+    height: 460px;
   }
-  
-  .program-card-content {
-    padding: 2.5rem 1.25rem 1.25rem;
-  }
-  
+
   .program-card-title {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
-  
-  .programs-horizontal-scroll {
-    gap: 1rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+
+  .programs-main-title {
+    font-size: 2.2rem;
   }
 }
 
-@media (max-width: 480px) {
-  .programs-main-title {
-    font-size: 1.6rem;
-    letter-spacing: 1px;
+/* 1024px to 768px */
+@media (max-width: 1024px) {
+  .programs-section-container {
+    padding: 3rem 1.5rem;
   }
-  
+
   .program-card {
-    flex: 0 0 250px;
-    height: 380px;
+    flex: 0 0 280px;
+    height: 440px;
   }
-  
+
+  .program-card-title {
+    font-size: 1.2rem;
+  }
+
+  .programs-main-title {
+    font-size: 2rem;
+  }
+
+  .programs-subtitle {
+    font-size: 1rem;
+  }
+}
+
+/* 768px to 568px */
+@media (max-width: 768px) {
+  .programs-section-container {
+    padding: 2.5rem 1rem;
+  }
+
+  .program-card {
+    flex: 0 0 260px;
+    height: 420px;
+  }
+
   .program-card-title {
     font-size: 1.1rem;
   }
-  
+
+  .program-card-subtitle {
+    font-size: 0.9rem;
+  }
+
   .program-card-content {
-    padding: 2rem 1rem 1rem;
+    padding: 2.5rem 1rem 1rem;
+  }
+}
+
+/* 568px to 456px */
+@media (max-width: 568px) {
+  .program-card {
+    flex: 0 0 240px;
+    height: 400px;
+  }
+
+  .program-card-title {
+    font-size: 1rem;
+  }
+
+  .program-card-subtitle {
+    font-size: 0.85rem;
+  }
+}
+
+/* 456px to 320px */
+@media (max-width: 456px) {
+  .program-card {
+    flex: 0 0 220px;
+    height: 380px;
+  }
+
+  .program-card-title {
+    font-size: 0.95rem;
+  }
+
+  .program-card-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .program-card-content {
+    padding: 2rem 0.75rem 0.75rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .program-card {
+    flex: 0 0 200px;
+    height: 360px;
+  }
+
+  .program-card-title {
+    font-size: 0.9rem;
+  }
+
+  .programs-main-title {
+    font-size: 1.4rem;
+  }
+
+  .programs-subtitle {
+    font-size: 0.9rem;
   }
 }

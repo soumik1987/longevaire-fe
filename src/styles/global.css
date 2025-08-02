@@ -1,3 +1,5 @@
+
+
 /* GLOBAL FONT RESET */
 @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 
@@ -10,6 +12,7 @@
 
 /* HEADINGS (H1-H6) */
 h1, h2, h3, h4, h5, h6 {
+  /* font-family: 'Baskervville', serif; */
   font-family: 'Recoleta' ,'Futura'!important;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -66,18 +69,6 @@ p, .subheading, .card-description {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-
-
-
-
-button{
-  border-color: #8B7C6E !important;
-}
-
-
-
-
-
 
 
 

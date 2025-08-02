@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 import '../styles/WellnessInsightsSection.css';
 
@@ -11,6 +11,7 @@ interface InsightCard {
 }
 
 const WellnessInsightsSection: React.FC = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
   const insightCards: InsightCard[] = [
     {
       id: 1,
@@ -64,52 +65,78 @@ const WellnessInsightsSection: React.FC = () => {
     console.log('Explore insights clicked');
   };
 
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = 280; // Fixed scroll amount for mobile
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
-    <section className="wellness-insights-section">
-      <div className="wellness-insights-container">
-        <div className="left-content-block">
-          <div className="left-content-inner">
-            <h2 className="main-heading">
+    <section className="wellness-insight-section">
+      <div className="wellness-insight-container">
+        <div className="wellness-insight-left-content-wrapper">
+          <div className="wellness-insight-left-content-block">
+            <h2 className="wellness-insight-main-heading">
               Curated wellness insights, delivered
             </h2>
-            <p className="sub-text">
+            <p className="wellness-insight-sub-text">
               Explore global centers, trends, and expertise.
             </p>
             <button 
               onClick={handleExploreClick}
-              className="explore-button"
+              className="wellness-insight-explore-button"
             >
               Explore Insights
-              <ArrowRight className="button-icon" />
+              <ArrowRight className="wellness-insight-button-icon" />
             </button>
           </div>
         </div>
 
-        <div className="cards-container">
-          <div className="cards-grid">
+        <div className="wellness-insight-right-content-wrapper">
+          {/* Mobile arrows - only visible on mobile */}
+          <div className="mobile-scroll-controls">
+            <button 
+              className="wellness-insight-scroll-arrow left" 
+              onClick={() => scroll('left')}
+              aria-label="Scroll left"
+            >
+              &#8249;
+            </button>
+            <button 
+              className="wellness-insight-scroll-arrow right" 
+              onClick={() => scroll('right')}
+              aria-label="Scroll right"
+            >
+              &#8250;
+            </button>
+          </div>
+          
+          <div className="wellness-insight-cards-grid" ref={scrollRef}>
             {insightCards.map((card) => (
               <div
                 key={card.id}
                 onClick={() => handleCardClick(card.id)}
-                className="insight-card"
+                className="wellness-insight-card"
               >
-                <div className="card-image-container">
+                <div className="wellness-insight-card-image-container">
                   <img
                     src={card.image}
                     alt={card.heading}
-                    className="card-image"
+                    className="wellness-insight-card-image"
                   />
-                  <div className="card-label">
-                    <span className="label-text">
-                      {card.label}
-                    </span>
+                  <div className="wellness-insight-card-label">
+                    {card.label}
                   </div>
                 </div>
-                <div className="card-content">
-                  <h3 className="card-heading">
+                <div className="wellness-insight-card-content">
+                  <h3 className="wellness-insight-card-heading">
                     {card.heading}
                   </h3>
-                  <p className="card-description">
+                  <p className="wellness-insight-card-description">
                     {card.description}
                   </p>
                 </div>

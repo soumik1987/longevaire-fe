@@ -281,66 +281,66 @@ const AdminPanel: React.FC = () => {
       <div className="admin-panel-container">
         <h1>ADMIN PANEL</h1>
         
-        <div className="admin-tabs">
+        <div className="admin-panel-admin-tabs">
           <button 
-            className={`tab ${activeTab === 'programs' ? 'active' : ''}`}
+            className={`admin-panel-tab ${activeTab === 'programs' ? 'active' : ''}`}
             onClick={() => setActiveTab('programs')}
           >
             <ClipboardList size={16} />
-            <span className="tab-label">Programs</span>
+            <span className="admin-panel-tab-label">Programs</span>
           </button>
           <button 
-            className={`tab ${activeTab === 'facilities' ? 'active' : ''}`}
+            className={`admin-panel-tab ${activeTab === 'facilities' ? 'active' : ''}`}
             onClick={() => setActiveTab('facilities')}
           >
             <Home size={16} />
-            <span className="tab-label">Facilities</span>
+            <span className="admin-panel-tab-label">Facilities</span>
           </button>
           <button 
-            className={`tab ${activeTab === 'users' ? 'active' : ''}`}
+            className={`admin-panel-tab ${activeTab === 'users' ? 'active' : ''}`}
             onClick={() => setActiveTab('users')}
           >
             <Users size={16} />
-            <span className="tab-label">Users</span>
+            <span className="admin-panel-tab-label">Users</span>
           </button>
         </div>
         
-        <div className="search-container">
-          <Search size={18} className="search-icon" />
+        <div className="admin-panel-search-container">
+          <Search size={18} className="admin-panel-search-icon" />
           <input
             type="text"
             placeholder={`Search ${activeTab}...`}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="search-input"
+            className="admin-panel-search-input"
           />
         </div>
         
-        <div className="tab-content">
+        <div className="admin-panel-tab-content">
           {activeTab === 'programs' && (
-            <div className="programs-section">
+            <div className="admin-panel-programs-section">
               <h2>Program Approval</h2>
-              <div className="programs-list">
+              <div className="admin-panel-programs-list">
                 {filteredPrograms.filter(p => p.status === 'pending').length > 0 ? (
                   filteredPrograms.filter(p => p.status === 'pending').map(program => (
-                    <div key={program.id} className="program-item">
-                      <div className="program-header" onClick={() => openProgramDetails(program)}>
+                    <div key={program.id} className="admin-panel-program-item">
+                      <div className="admin-panel-program-header" onClick={() => openProgramDetails(program)}>
                         <h3>{program.title}</h3>
                         <p>Creator: {program.creator}</p>
-                        <span className={`status ${program.status}`}>
+                        <span className={`admin-panel-status ${program.status}`}>
                           {program.status.toUpperCase()}
                         </span>
                       </div>
                       {program.status === 'pending' && (
-                        <div className="actions">
+                        <div className="admin-panel-actions">
                           <button 
-                            className="approve-button"
+                            className="admin-panel-approve-button"
                             onClick={() => handleApprove(program.id)}
                           >
                             <Check size={16} /> <span>Approve</span>
                           </button>
                           <button 
-                            className="reject-button"
+                            className="admin-panel-reject-button"
                             onClick={() => handleReject(program.id)}
                           >
                             <X size={16} /> <span>Reject</span>
@@ -350,28 +350,28 @@ const AdminPanel: React.FC = () => {
                     </div>
                   ))
                 ) : (
-                  <p className="no-programs">No programs pending approval</p>
+                  <p className="admin-panel-no-programs">No programs pending approval</p>
                 )}
               </div>
               
-              <div className="programs-status">
-                <div className="status-section">
+              <div className="admin-panel-programs-status">
+                <div className="admin-panel-status-section">
                   <h3 data-count={filteredPrograms.filter(p => p.status === 'approved').length}>
                     Approved Programs
                   </h3>
                   {filteredPrograms.filter(p => p.status === 'approved').map(program => (
-                    <div key={program.id} className="status-item approved" onClick={() => openProgramDetails(program)}>
+                    <div key={program.id} className="admin-panel-status-item approved" onClick={() => openProgramDetails(program)}>
                       {program.title} <span>by {program.creator}</span>
                     </div>
                   ))}
                 </div>
                 
-                <div className="status-section">
+                <div className="admin-panel-status-section">
                   <h3 data-count={filteredPrograms.filter(p => p.status === 'rejected').length}>
                     Rejected Programs
                   </h3>
                   {filteredPrograms.filter(p => p.status === 'rejected').map(program => (
-                    <div key={program.id} className="status-item rejected" onClick={() => openProgramDetails(program)}>
+                    <div key={program.id} className="admin-panel-status-item rejected" onClick={() => openProgramDetails(program)}>
                       {program.title} <span>by {program.creator}</span>
                     </div>
                   ))}
@@ -381,10 +381,10 @@ const AdminPanel: React.FC = () => {
           )}
           
           {activeTab === 'facilities' && (
-            <div className="facilities-section">
+            <div className="admin-panel-facilities-section">
               <h2>Facility Services ({filteredServices.length})</h2>
-              <div className="table-responsive">
-                <table className="facilities-table">
+              <div className="admin-panel-table-responsive">
+                <table className="admin-panel-facilities-table">
                   <thead>
                     <tr>
                       <th>Service Name</th>
@@ -400,7 +400,7 @@ const AdminPanel: React.FC = () => {
                         <td>{service.name}</td>
                         <td>{service.category}</td>
                         <td>
-                          <span className={`service-status ${service.status}`}>
+                          <span className={`admin-panel-service-status ${service.status}`}>
                             {service.status}
                           </span>
                         </td>
@@ -408,7 +408,7 @@ const AdminPanel: React.FC = () => {
                         <td>
                           {service.status !== 'pending' && (
                             <button 
-                              className={`status-toggle ${service.status === 'active' ? 'deactivate' : 'activate'}`}
+                              className={`admin-panel-status-toggle ${service.status === 'active' ? 'deactivate' : 'activate'}`}
                               onClick={() => toggleServiceStatus(service.id)}
                             >
                               {service.status === 'active' ? 'Deactivate' : 'Activate'}
@@ -420,18 +420,18 @@ const AdminPanel: React.FC = () => {
                   </tbody>
                 </table>
               </div>
-              <button className="add-service-button">
+              <button className="admin-panel-add-service-button">
                 + ADD NEW SERVICE
               </button>
             </div>
           )}
           
           {activeTab === 'users' && (
-            <div className="users-section">
-              <div className="users-management">
+            <div className="admin-panel-users-section">
+              <div className="admin-panel-users-management">
                 <h2>User Management ({filteredUsers.length})</h2>
-                <div className="table-responsive">
-                  <table className="users-table">
+                <div className="admin-panel-table-responsive">
+                  <table className="admin-panel-users-table">
                     <thead>
                       <tr>
                         <th>Name</th>
@@ -450,13 +450,13 @@ const AdminPanel: React.FC = () => {
                           <td>{user.role}</td>
                           <td>{new Date(user.joinDate).toLocaleDateString()}</td>
                           <td>
-                            <span className={`user-status ${user.status}`}>
+                            <span className={`admin-panel-user-status ${user.status}`}>
                               {user.status}
                             </span>
                           </td>
                           <td>
                             <button 
-                              className={`status-toggle ${user.status === 'active' ? 'deactivate' : 'activate'}`}
+                              className={`admin-panel-status-toggle ${user.status === 'active' ? 'deactivate' : 'activate'}`}
                               onClick={() => toggleUserStatus(user.id)}
                             >
                               {user.status === 'active' ? 'Deactivate' : 'Activate'}
@@ -469,28 +469,28 @@ const AdminPanel: React.FC = () => {
                 </div>
               </div>
               
-              <div className="analytics-section">
+              <div className="admin-panel-analytics-section">
                 <h2>Platform Analytics</h2>
-                <div className="analytics-grid">
-                  <div className="analytics-card">
+                <div className="admin-panel-analytics-grid">
+                  <div className="admin-panel-analytics-card">
                     <h3>TOTAL PROGRAMS</h3>
-                    <p className="value">{programs.length}</p>
+                    <p className="admin-panel-value">{programs.length}</p>
                   </div>
-                  <div className="analytics-card">
+                  <div className="admin-panel-analytics-card">
                     <h3>APPROVAL RATE</h3>
-                    <p className="value">
+                    <p className="admin-panel-value">
                       {programs.length > 0 
                         ? `${Math.round((programs.filter(p => p.status === 'approved').length / programs.length) * 100)}%` 
                         : '0%'}
                     </p>
                   </div>
-                  <div className="analytics-card">
+                  <div className="admin-panel-analytics-card">
                     <h3>ACTIVE USERS</h3>
-                    <p className="value">{users.filter(u => u.status === 'active').length}</p>
+                    <p className="admin-panel-value">{users.filter(u => u.status === 'active').length}</p>
                   </div>
-                  <div className="analytics-card">
+                  <div className="admin-panel-analytics-card">
                     <h3>REVENUE (MTD)</h3>
-                    <p className="value">$12,450</p>
+                    <p className="admin-panel-value">$12,450</p>
                   </div>
                 </div>
               </div>
@@ -500,8 +500,8 @@ const AdminPanel: React.FC = () => {
       </div>
       
       {selectedProgram && (
-        <div className="modal-overlay">
-          <div className="program-details-modal" ref={modalRef}>
+        <div className="admin-panel-modal-overlay">
+          <div className="admin-panel-program-details-modal" ref={modalRef}>
             <ProgramDetailsModal 
               program={selectedProgram} 
               onClose={closeProgramDetails} 

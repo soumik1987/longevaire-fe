@@ -1,51 +1,51 @@
-/* Custom Fonts (Add if this is a standalone file, otherwise import in global app.css) */
-/* @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap'); */
-h1,h2,h3,h4,h5,h6{
-  font-family: 'Recoleta' ,'Futura'!important;
-}
-.wellness-insights-section {
-  background-color: #F8F6F2; /* Light Cream/Off-White */
-  padding: 80px 0;
+/* WellnessInsightsSection.css */
+.wellness-insight-section {
+  background-color: #F8F6F2;
+  padding: 100px 0;
 }
 
-.wellness-insights-container {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+.wellness-insight-container {
+  display: flex;
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 24px;
   gap: 64px;
-  align-items: start;
 }
 
-/* Sticky Left Block */
-.left-content-block {
+/* LEFT SIDE STICKY */
+.wellness-insight-left-content-wrapper {
+  flex: 0 0 35%;
+}
+
+.wellness-insight-left-content-block {
   position: sticky;
-  top: 100px; /* Adjust if navigation height changes */
-  align-self: start;
+  top: 120px;
+  align-self: flex-start;
 }
 
-.main-heading {
-  font-family: 'Baskervville', serif; /* Serif font for main heading */
+.wellness-insight-main-heading {
+  font-family: 'Baskervville', serif;
   font-size: 3rem;
   font-weight: 800;
-  color: #3C3C3C; /* Dark Brown/Charcoal */
+  color: #3C3C3C;
   margin-bottom: 20px;
+  line-height: 1.2;
 }
 
-.sub-text {
-  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font for sub-text */
-  color: #5A5A5A; /* Slightly lighter dark text */
+.wellness-insight-sub-text {
+  font-family: 'Source Sans 3', sans-serif;
+  color: #5A5A5A;
   font-size: 1.125rem;
   margin-bottom: 32px;
+  line-height: 1.6;
 }
 
-.explore-button {
-  background-color: #c74427; /* Muted Brown/Sepia */
+.wellness-insight-explore-button {
+  background-color: #c74427;
   color: white;
   padding: 14px 28px;
   border-radius: 9999px;
-  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  font-family: 'Source Sans 3', sans-serif;
   font-weight: 600;
   font-size: 1rem;
   border: none;
@@ -56,119 +56,287 @@ h1,h2,h3,h4,h5,h6{
   transition: background 0.3s ease;
 }
 
-.explore-button:hover {
-  background-color: #7B6C5E; /* Darker Muted Brown/Sepia */
+.wellness-insight-explore-button:hover {
+  background-color: #7B6C5E;
 }
 
-.button-icon {
+.wellness-insight-button-icon {
   width: 18px;
   height: 18px;
 }
 
-/* Grid for Cards */
-.cards-grid {
+/* RIGHT SIDE */
+.wellness-insight-right-content-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.wellness-insight-scroll-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Scroll Arrows */
+.wellness-insight-scroll-arrow {
+  background-color: #3c3834 !important;
+  border-radius: 100% !important;
+  font-size: 2rem;
+  color: white !important;
+  cursor: pointer;
+  z-index: 10;
+  padding: 10px;
+  transition: all 0.3s;
+  border: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.wellness-insight-scroll-arrow.left {
+  left: -25px;
+}
+
+.wellness-insight-scroll-arrow.right {
+  right: -25px;
+}
+
+.wellness-insight-scroll-arrow:hover {
+  background-color: #2a2724 !important;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.wellness-insight-scroll-wrapper:hover .wellness-insight-scroll-arrow {
+  opacity: 1;
+}
+
+/* Cards Grid */
+.wellness-insight-cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px 0 30px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-/* Card Styling */
-.insight-card {
-  background: white; /* Keep white for cards */
+.wellness-insight-cards-grid::-webkit-scrollbar {
+  display: none;
+}
+
+/* CARD STYLES */
+.wellness-insight-card {
+  background: white;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  border: 1px solid #E9ECEF; /* Light Gray border */
+  border: 1px solid #E9ECEF;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
 }
 
-.insight-card:hover {
+.wellness-insight-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
-.card-image-container {
+.wellness-insight-card-image-container {
   position: relative;
   width: 100%;
   height: 180px;
   overflow: hidden;
 }
 
-.card-image {
+.wellness-insight-card-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-.card-label {
+.wellness-insight-card:hover .wellness-insight-card-image {
+  transform: scale(1.05);
+}
+
+.wellness-insight-card-label {
   position: absolute;
   top: 12px;
   left: 12px;
   padding: 4px 12px;
-  background: white; /* Keep white label background */
-  color: #8B7C6E; /* Muted Brown/Sepia */
-  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  background: white;
+  color: #8B7C6E;
+  font-family: 'Source Sans 3', sans-serif;
   font-size: 0.75rem;
   font-weight: 600;
   border-radius: 9999px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
-.card-content {
+.wellness-insight-card-content {
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  flex-grow: 1;
 }
 
-.card-heading {
-  font-family: 'Baskervville', serif; /* Serif font for card heading */
+.wellness-insight-card-heading {
+  font-family: 'Baskervville', serif;
   font-size: 1.25rem;
-  color: #3C3C3C; /* Dark Brown/Charcoal */
+  color: #3C3C3C;
   font-weight: bold;
   margin: 0;
 }
 
-.card-description {
-  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font for card description */
-  color: #5A5A5A; /* Slightly lighter dark text */
+.wellness-insight-card-description {
+  font-family: 'Source Sans 3', sans-serif;
+  color: #5A5A5A;
   font-size: 0.95rem;
   margin: 0;
+  line-height: 1.5;
 }
 
-/* Responsive */
+/* RESPONSIVE */
 @media (max-width: 1024px) {
-  .wellness-insights-container {
-    grid-template-columns: 1fr;
+  .wellness-insight-container {
+    flex-direction: column;
+    padding: 80px 24px;
+    gap: 40px;
   }
 
-  .left-content-block {
+  .wellness-insight-left-content-block {
     position: static;
     text-align: center;
+    margin-bottom: 0;
   }
 
-  .cards-grid {
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  }
-
-  .main-heading {
+  .wellness-insight-main-heading {
     font-size: 2.5rem;
+  }
+
+  .wellness-insight-right-content-wrapper {
+    width: 100%;
+    padding: 0 40px;
+  }
+
+  .wellness-insight-scroll-arrow {
+    opacity: 1;
   }
 }
 
 @media (max-width: 768px) {
-  .main-heading {
+  .wellness-insight-section {
+    padding: 60px 0;
+  }
+
+  .wellness-insight-container {
+    padding: 0 16px;
+  }
+
+  .wellness-insight-main-heading {
     font-size: 2rem;
   }
 
-  .card-image-container {
+  .wellness-insight-right-content-wrapper {
+    padding: 0 30px;
+  }
+
+  .wellness-insight-cards-grid {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0 25px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .wellness-insight-card {
+    min-width: 280px;
+    scroll-snap-align: start;
+  }
+
+  .wellness-insight-card-image-container {
     height: 160px;
   }
 
-  .card-content {
+  .wellness-insight-card-content {
     padding: 16px;
+  }
+
+  .wellness-insight-scroll-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+
+  .wellness-insight-scroll-arrow.left {
+    left: -10px;
+  }
+
+  .wellness-insight-scroll-arrow.right {
+    right: -10px;
+  }
+
+  /* Show scrollbar on mobile */
+  .wellness-insight-cards-grid {
+    scrollbar-width: thin;
+    scrollbar-color: #a38b6f #f5f5f0;
+  }
+
+  .wellness-insight-cards-grid::-webkit-scrollbar {
+    height: 4px;
+    display: block;
+  }
+
+  .wellness-insight-cards-grid::-webkit-scrollbar-track {
+    background: #f5f5f0;
+  }
+
+  .wellness-insight-cards-grid::-webkit-scrollbar-thumb {
+    background-color: #a38b6f;
+    border-radius: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wellness-insight-section {
+    padding: 40px 0;
+  }
+
+  .wellness-insight-main-heading {
+    font-size: 1.8rem;
+  }
+
+  .wellness-insight-right-content-wrapper {
+    padding: 0 20px;
+  }
+
+  .wellness-insight-card {
+    min-width: 260px;
+  }
+
+  .wellness-insight-scroll-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .wellness-insight-card {
+    min-width: 240px;
   }
 }

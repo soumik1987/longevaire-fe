@@ -113,15 +113,27 @@ html {
   transform: translateY(-2px);
 }
 
+/* Responsive design */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 24px;
+  }
+}
 
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
 
+  .btn-primary,
+  .btn-secondary {
+    padding: 14px 24px;
+    font-size: 14px;
+  }
+}
 
-
-
-
-
-
-
-
-
-
+@media (max-width: 480px) {
+  .container {
+    padding: 0 12px;
+  }
+}
