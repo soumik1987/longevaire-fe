@@ -162,25 +162,25 @@ const slides: Slide[] = [
   },
   {
     id: 2,
-    image: 'https://images.pexels.com/photos/3984339/pexels-photo-3984339.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&fit=crop',
+    image: 'https://pranissa-media.s3.us-east-1.amazonaws.com/images/5starhotel.png',
     title: 'Holistic Health Solutions',
     description: 'Comprehensive wellness approaches for mind, body, and spirit'
   },
   {
     id: 3,
-    image: 'https://pranissa-media.s3.us-east-1.amazonaws.com/images/5starhotel.png',
+    image: 'https://pranissa-media.s3.us-east-1.amazonaws.com/images/pexels-thelazyartist-5807813.jpg?auto=compress&cs=tinysrgb&w=1920&h=1280',
     title: 'Mindful Living',
     description: 'Transform your daily routine with mindfulness practices'
   },
   {
     id: 4,
-    image: 'https://pranissa-media.s3.us-east-1.amazonaws.com/images/yoga.png',
+    image: 'https://pranissa-media.s3.us-east-1.amazonaws.com/images/sunriseyoga.png',
     title: 'Natural Healing',
     description: 'Embrace the power of nature in your wellness journey'
   },
   {
     id: 5,
-    image: 'https://images.pexels.com/photos/3759657/pexels-photo-3759657.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&fit=crop',
+    image: 'https://pranissa-media.s3.us-east-1.amazonaws.com/images/pexels-quang-nguyen-vinh-222549-14210302.jpg?auto=compress&cs=tinysrgb&w=1920&h=1280&fit=crop',
     title: 'Fitness & Vitality',
     description: 'Build strength and energy through personalized fitness programs'
   }

@@ -64,7 +64,7 @@ const FacilityServices: React.FC = () => {
         'Stay by December 15,2025'
       ],
       status: 'inactive',
-      image: 'https://images.pexels.com/photos/3825587/pexels-photo-3825587.jpeg'
+      image: 'https://pranissa-media.s3.us-east-1.amazonaws.com/images/glassvilla.png'
     },
     // Pending tab example
     {

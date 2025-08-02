@@ -18,35 +18,35 @@ const WellnessInsightsSection: React.FC = () => {
       label: "New",
       heading: "Premier center spotlight",
       description: "Discover our latest elite destination.",
-      image: "https://images.pexels.com/photos/3757952/pexels-photo-3757952.jpeg?auto=compress&cs=tinysrgb&w=800"
+      image: "https://pranissa-media.s3.us-east-1.amazonaws.com/images/hamam.png?auto=compress&cs=tinysrgb&w=800"
     },
     {
       id: 2,
       label: "Insight",
       heading: "Market intelligence report",
       description: "Track emerging luxury wellness trends.",
-      image: "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=800"
+      image: "https://pranissa-media.s3.us-east-1.amazonaws.com/images/latesthealth.jpg?auto=compress&cs=tinysrgb&w=800"
     },
     {
       id: 3,
       label: "Education",
       heading: "Professional advisory access",
       description: "Gain access to leading experts and educational resources.",
-      image: "https://images.pexels.com/photos/6787202/pexels-photo-6787202.jpeg?auto=compress&cs=tinysrgb&w=800"
+      image: "https://images.pexels.com/photos/7659567/pexels-photo-7659567.jpeg?auto=compress&cs=tinysrgb&w=800"
     },
     {
       id: 4,
       label: "Update",
       heading: "Global center launches",
       description: "See new openings in key markets.",
-      image: "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?auto=compress&cs=tinysrgb&w=800"
+      image: "https://pranissa-media.s3.us-east-1.amazonaws.com/images/balconyswim.png?auto=compress&cs=tinysrgb&w=800"
     },
     {
       id: 5,
       label: "Featured",
       heading: "Next-Gen Therapies",
       description: "Discover breakthrough treatments for holistic well-being.",
-      image: "https://images.pexels.com/photos/7659567/pexels-photo-7659567.jpeg?auto=compress&cs=tinysrgb&w=800"
+      image: "https://pranissa-media.s3.us-east-1.amazonaws.com/images/ChatGPT+Image+Aug+2%2C+2025+at+07_35_33+PM.png"
     },
     {
       id: 6,

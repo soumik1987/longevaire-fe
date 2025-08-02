@@ -450,7 +450,7 @@ const updateScrollIndicator = useCallback(() => {
                 <div className="included-image-container">
                   <div className="included-image-wrapper">
                     <img
-                      src={program.imageGallery?.[currentIncludedIndex + 8] || "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=800"}
+                      src={program.imageGallery?.[currentIncludedIndex + 8] || "https://pranissa-media.s3.us-east-1.amazonaws.com/images/yoga.png?auto=compress&cs=tinysrgb&w=800"}
                       alt={program.includes[currentIncludedIndex].title}
                       className="included-image"
                       loading="lazy"
@@ -548,14 +548,14 @@ const updateScrollIndicator = useCallback(() => {
           <p className="section-subtitle">Explore limited-time offers to help you enjoy your perfect getaway</p>
           <div className="offers-grid">
             <div className="offer-card">
-              <img src={program.imageGallery?.[9] || "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=600"} alt="Early Bird Special" loading="lazy" decoding="async" />
+              <img src={program.imageGallery?.[9] || "https://pranissa-media.s3.us-east-1.amazonaws.com/images/pexels-olly-917732.jpg?auto=compress&cs=tinysrgb&w=600"} alt="Early Bird Special" loading="lazy" decoding="async" />
               <div className="offer-content">
                 <h3>Big Ultimate Mindful Yoga Experience</h3>
                 <p>Enjoy a 3-day yoga retreat</p>
               </div>
             </div>
             <div className="offer-card">
-              <img src={program.imageGallery?.[10] || "https://images.pexels.com/photos/6787202/pexels-photo-6787202.jpeg?auto=compress&cs=tinysrgb&w=600"} alt="Extended Stay Discount" loading="lazy" decoding="async" />
+              <img src={program.imageGallery?.[10] || "https://pranissa-media.s3.us-east-1.amazonaws.com/images/pexels-olia-danilevich-9335986.jpg?auto=compress&cs=tinysrgb&w=600"} alt="Extended Stay Discount" loading="lazy" decoding="async" />
               <div className="offer-content">
                 <h3>Spa Fitness Getaway</h3>
                 <p>Enjoy a 3-day spa retreat</p>

@@ -39,7 +39,7 @@ export const programCategories: ProgramCategory[] = [
     type: "Medical Wellness",
     description: "Explore transformative medical wellness experiences",
     badge: "Restorative Health",
-    image: "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    image: "https://pranissa-media.s3.us-east-1.amazonaws.com/images/pexels-lucaspezeta-2035066.jpg?auto=compress&cs=tinysrgb&w=1200",
     programs: [
       {
         name: "Desert Longevity Program",
@@ -55,7 +55,7 @@ export const programCategories: ProgramCategory[] = [
         ],
         description: "This cutting-edge longevity program combines the latest medical advancements with the unique healing environment of the Arizona desert to optimize your biological age and vitality.",
         imageGallery: [
-          "https://images.pexels.com/photos/4587999/pexels-photo-4587999.jpeg",
+          "https://pranissa-media.s3.us-east-1.amazonaws.com/images/desertcamp.png",
           "https://images.pexels.com/photos/4588008/pexels-photo-4588008.jpeg",
           "https://images.pexels.com/photos/3825572/pexels-photo-3825572.jpeg",
           "https://images.pexels.com/photos/3825575/pexels-photo-3825575.jpeg",
@@ -111,7 +111,7 @@ export const programCategories: ProgramCategory[] = [
     type: "Regenerative Medicine",
     description: "Rejuvenate your body with cutting-edge regenerative therapies",
     badge: "Youth Reboot",
-    image: "https://images.pexels.com/photos/3259629/pexels-photo-3259629.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    image: "https://pranissa-media.s3.us-east-1.amazonaws.com/images/pexels-n-voitkevich-7077815.jpg?auto=compress&cs=tinysrgb&w=1200",
     programs: [
       {
         name: "Sonoran Stem Cell Revival",
@@ -127,7 +127,7 @@ export const programCategories: ProgramCategory[] = [
         ],
         description: "Harness the regenerative power of stem cells in Tucson's unique desert environment, combining advanced medical treatments with natural healing elements for comprehensive rejuvenation.",
         imageGallery: [
-          "https://images.pexels.com/photos/3825581/pexels-photo-3825581.jpeg",
+          "https://pranissa-media.s3.us-east-1.amazonaws.com/images/pexels-olia-danilevich-9336024.jpg",
           "https://images.pexels.com/photos/3825583/pexels-photo-3825583.jpeg",
           "https://images.pexels.com/photos/3825585/pexels-photo-3825585.jpeg",
           "https://images.pexels.com/photos/4588008/pexels-photo-4588008.jpeg",
@@ -159,7 +159,7 @@ export const programCategories: ProgramCategory[] = [
         ],
         description: "This state-of-the-art regenerative retreat utilizes the latest stem cell technologies to support joint recovery, reduce pain, and boost overall wellness in a luxurious setting.",
         imageGallery: [
-          "https://images.pexels.com/photos/3825581/pexels-photo-3825581.jpeg",
+          "https://pranissa-media.s3.us-east-1.amazonaws.com/images/pexels-koolshooters-6628809.jpg",
           "https://images.pexels.com/photos/3825583/pexels-photo-3825583.jpeg",
           "https://images.pexels.com/photos/3825585/pexels-photo-3825585.jpeg",
           "https://images.pexels.com/photos/4588008/pexels-photo-4588008.jpeg",
@@ -183,7 +183,7 @@ export const programCategories: ProgramCategory[] = [
     type: "Metabolic Health",
     description: "Achieve metabolic balance with science-backed protocols",
     badge: "Balance & Vitality",
-    image: "https://images.pexels.com/photos/7588985/pexels-photo-7588985.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    image: "https://pranissa-media.s3.us-east-1.amazonaws.com/images/metabolic.jpg?auto=compress&cs=tinysrgb&w=1200",
     programs: [
       {
         name: "Desert Metabolic Reset",
@@ -234,7 +234,7 @@ export const programCategories: ProgramCategory[] = [
         ],
         description: "Perfect for individuals struggling with weight, low energy, or metabolic issues, this program offers a structured reset to improve health markers and vitality.",
         imageGallery: [
-          "https://images.pexels.com/photos/3825587/pexels-photo-3825587.jpeg",
+          "https://pranissa-media.s3.us-east-1.amazonaws.com/images/glassvilla.png",
           "https://images.pexels.com/photos/3825589/pexels-photo-3825589.jpeg",
           "https://images.pexels.com/photos/3825591/pexels-photo-3825591.jpeg",
           "https://images.pexels.com/photos/4588008/pexels-photo-4588008.jpeg",
