@@ -86,9 +86,9 @@ html {
 }
 
 .btn-primary:hover {
-  background: #8B7C6E; /* Color changed for button hover */
+  background: #A93E2B;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px #9f9387; /* Shadow adjusted to new button color */
+  box-shadow: 0 6px 20px rgba(196, 76, 48, 0.3);
 }
 
 .btn-secondary {

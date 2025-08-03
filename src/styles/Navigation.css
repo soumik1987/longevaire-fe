@@ -1,7 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
-h1,h2,h3,h4,h5,h6{
-  font-family: 'Recoleta' ,'Futura'!important;
-}
 .navigation {
   position: fixed;
   top: 0;
@@ -16,6 +12,52 @@ h1,h2,h3,h4,h5,h6{
 .navigation.scrolled {
   background: #F8F6F2;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navigation.homepage {
+  background: transparent;
+  box-shadow: none;
+}
+
+.navigation.homepage .nav-item {
+  color: white;
+}
+
+.navigation.homepage .nav-item:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.navigation.homepage .nav-item.active {
+  color: white;
+  font-weight: 600;
+}
+
+.navigation.homepage .nav-item.active::after {
+  background-color: white;
+}
+
+.navigation.homepage .mobile-menu-toggle.light {
+  color: white;
+}
+
+.navigation.homepage .mobile-menu-toggle.light:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.navigation.homepage .desktop-join-btn.transparent {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid white;
+  color: white;
+}
+
+.navigation.homepage .desktop-join-btn.transparent:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.navigation.homepage .profile-avatar.light {
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid white;
+  color: white;
 }
 
 .nav-container {
@@ -88,7 +130,6 @@ h1,h2,h3,h4,h5,h6{
   justify-content: flex-end;
 }
 
-/* Desktop Auth Section */
 .desktop-auth-section {
   display: flex;
   align-items: center;
@@ -113,7 +154,6 @@ h1,h2,h3,h4,h5,h6{
   transform: translateY(-2px);
 }
 
-/* Mobile Navigation Section */
 .mobile-nav-section {
   display: none;
   align-items: center;
@@ -139,7 +179,6 @@ h1,h2,h3,h4,h5,h6{
   background: #F0ECDD;
 }
 
-/* Profile Dropdown Styles */
 .profile-dropdown-container {
   position: relative;
   margin-top: 30px;
@@ -168,6 +207,7 @@ h1,h2,h3,h4,h5,h6{
   color: white;
   font-size: 12px;
   font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 .profile-dropdown {
@@ -245,7 +285,6 @@ h1,h2,h3,h4,h5,h6{
   background: #FEF2F2;
 }
 
-/* Mobile Sidebar Styles */
 .mobile-sidebar {
   position: fixed;
   top: 0;
@@ -263,7 +302,18 @@ h1,h2,h3,h4,h5,h6{
   right: 0;
 }
 
-
+.mobile-sidebar-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
 
 .mobile-sidebar.open + .mobile-sidebar-backdrop,
 .mobile-sidebar-backdrop {
@@ -359,7 +409,6 @@ h1,h2,h3,h4,h5,h6{
   background: #A93E2B;
 }
 
-/* Responsive Breakpoints */
 @media (max-width: 768px) {
   .nav-center {
     display: none;
@@ -420,7 +469,6 @@ h1,h2,h3,h4,h5,h6{
   }
 }
 
-/* Medium Devices (tablets and small laptops, 769px–1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
   .nav-center {
     gap: 20px;
@@ -431,7 +479,6 @@ h1,h2,h3,h4,h5,h6{
   }
 }
 
-/* Large Devices (large laptops and desktops, 1025px–1399px) */
 @media (min-width: 1025px) and (max-width: 1399px) {
   .nav-container {
     padding: 14px 30px;
@@ -442,7 +489,6 @@ h1,h2,h3,h4,h5,h6{
   }
 }
 
-/* Extra Large Devices (≥1400px) */
 @media (min-width: 1400px) {
   .nav-container {
     padding: 16px 40px;

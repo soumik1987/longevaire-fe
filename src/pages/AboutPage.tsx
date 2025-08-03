@@ -5,6 +5,7 @@ import ExpertiseSection from '../components/ExpertiseSection';
 
 import ProgramsSection from '../components/ProgramsSection';
 import HeroSection from '../components/HeroSection';
+import ImmersiveScrollSection from '../components/ImmersiveScrollingSection';
 
 const AboutPage: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const AboutPage: React.FC = () => {
      <LongevityGrid />
      <ExpertiseSection />
       <FAQSection />
+      <ImmersiveScrollSection/>
       <ProgramsSection/>
     </div>
   );

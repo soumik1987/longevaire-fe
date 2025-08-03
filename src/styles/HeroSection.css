@@ -32,8 +32,8 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .hero-title-main {
-  font-family: 'Baskervville', serif;
   font-size: clamp(2rem, 5vw, 2.8rem);
+  font-family: 'Recoleta' ,'Futura'!important;
   font-weight: 700;
   line-height: 1.2;
   color: #3C3C3C;

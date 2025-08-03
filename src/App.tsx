@@ -22,7 +22,7 @@ import WellnessInsightSection from './components/WellnessInsightSection';
 import PricingSection from './components/PricingSection';
 import LuxuryRetreats from './components/LuxuryRetreats';
 import Footer from './components/Footer';
-import ImmersiveScrollSection from './components/ImmersiveScrollingSection';
+// import ImmersiveScrollSection from './components/ImmersiveScrollingSection';
 import PricingPage from './components/PricingPage';
 
 import AboutPage from './pages/AboutPage';
@@ -78,7 +78,6 @@ const HomePage: React.FC = () => {
       <HomeProgramPage/>
       <ProgramsSection/>
       <WellnessInsightSection />
-      <ImmersiveScrollSection />
       <PricingSection />
       <LuxuryRetreats />
     </>

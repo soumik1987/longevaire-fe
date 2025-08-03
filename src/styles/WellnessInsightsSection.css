@@ -57,7 +57,10 @@
 }
 
 .wellness-insight-explore-button:hover {
-  background-color: #7B6C5E;
+  /* background-color: #7B6C5E; */
+  background: #A93E2B;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(196, 76, 48, 0.3);
 }
 
 .wellness-insight-button-icon {

@@ -8,8 +8,9 @@ h1,h2,h3,h4,h5,h6{
   font-family: 'Recoleta' ,'Futura'!important;
 }
 
+
 .program-details-page {
-  font-family: 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  /* font-family: 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif; */
   color: #333;
   line-height: 1.6;
   background-color: #fff;
@@ -68,7 +69,7 @@ h1,h2,h3,h4,h5,h6{
   padding-bottom: 0 !important;
 }
 
-.hero-section {
+.program-details-hero-section {
   position: relative;
   width: 100%;
   height: 80vh;
@@ -77,14 +78,14 @@ h1,h2,h3,h4,h5,h6{
   margin-bottom: 0;
 }
 
-.hero-image-container {
+.program-details-hero-image-container {
   position: absolute;
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
 
-.hero-image {
+.program-details-hero-image {
   position: absolute;
   top: 0;
   left: 0;
@@ -93,7 +94,7 @@ h1,h2,h3,h4,h5,h6{
   object-fit: cover;
 }
 
-.hero-overlay {
+.program-details-hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -105,7 +106,7 @@ h1,h2,h3,h4,h5,h6{
   padding: 0 5% 5%;
 }
 
-.hero-content {
+.program-details-hero-content {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -119,6 +120,10 @@ h1,h2,h3,h4,h5,h6{
   margin-bottom: 1rem;
   text-transform: uppercase;
   color: #f0f0f0;
+   font-size: clamp(2rem, 5vw, 2.8rem);
+  font-family: 'Recoleta' ,'Futura'!important;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .hero-subtitle-programdetails {
@@ -257,15 +262,19 @@ h1,h2,h3,h4,h5,h6{
   box-sizing: border-box;
 }
 
-.award-winning-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
-  font-weight: 400;
+.program-details-award-winning-title {
+  /* font-family: 'Playfair Display', serif; */
+  /* font-size: 2.5rem; */
+  /* font-weight: 400; */
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #555;
   line-height: 1.2;
   margin-bottom: 0.5rem;
+   font-size: clamp(2rem, 5vw, 2.8rem);
+  font-family: 'Recoleta' ,'Futura'!important;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .award-winning-subtitle {
@@ -417,6 +426,11 @@ h1,h2,h3,h4,h5,h6{
   position: relative;
   padding-bottom: 15px;
   display: inline-block;
+   font-size: clamp(2rem, 5vw, 2.8rem);
+  font-family: 'Futura'!important;
+  font-weight: 700;
+  line-height: 1.2;
+
 }
 
 .included-header .section-title::after {
@@ -1992,4 +2006,26 @@ h1,h2,h3,h4,h5,h6{
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#program-details-head-title{
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-family: 'Recoleta' ,'Futura'!important;
+  font-weight: 700;
+  line-height: 1.2;
 }

@@ -4,13 +4,14 @@ h1,h2,h3,h4,h5,h6{
   font-family: 'Recoleta' ,'Futura'!important;
 }
 .faq-section {
-  padding: 120px 0;
+  padding: 0px 0;
   background: #F8F6F2; /* Light Cream/Off-White */
 }
 
 .faq-list {
   max-width: 800px;
   margin: 0 auto;
+ margin-top: 0px; 
 }
 
 .faq-item {
@@ -29,6 +30,10 @@ h1,h2,h3,h4,h5,h6{
 #faqhead{
   text-align: center;
   margin-bottom: 30px;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-family: 'Recoleta' ,'Futura'!important;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .faq-question {

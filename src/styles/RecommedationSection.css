@@ -1,23 +1,28 @@
 /* Destinations Section Styles */
 .reco{
     background-color: white;
-    height: 110vh;
+    min-height: 100vh;
+    padding-bottom: 2rem;
 }
+
 h1,h2,h3,h4,h5,h6{
   font-family: 'Recoleta' ,'Futura'!important;
 }
+
 .recommendadedsection-destinations-container {
-  padding: 0rem 1rem;
+  padding: 4rem 1rem 2rem 1rem;
   max-width: 1400px;
   margin: 0 auto;
-  margin-top: 0px ;
   background: white;
-  height: 110vh;
+  min-height: calc(100vh - 4rem);
+  display: flex;
+  flex-direction: column;
 }
 
 .recommendadedsection-destinations-header {
   text-align: center;
   margin-bottom: 3rem;
+  flex-shrink: 0;
 }
 
 .recommendadedsection-destinations-title {
@@ -26,7 +31,10 @@ h1,h2,h3,h4,h5,h6{
   color: #4a5568;
   letter-spacing: 0.15em;
   margin-bottom: 1.5rem;
-  font-family: 'Georgia', serif;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-family: 'Recoleta' ,'Futura'!important;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .recommendadedsection-destinations-subtitle {
@@ -41,6 +49,9 @@ h1,h2,h3,h4,h5,h6{
   position: relative;
   margin: 0 3rem;
   overflow: visible;
+  flex: 1;
+  display: flex;
+  align-items: center;
 }
 
 .recommendadedsection-destinations-scroll-container {
@@ -52,6 +63,7 @@ h1,h2,h3,h4,h5,h6{
   scrollbar-width: thin;
   scrollbar-color: #92400e #f1f5f9;
   -webkit-overflow-scrolling: touch;
+  width: 100%;
 }
 
 /* Custom scrollbar for WebKit browsers */
@@ -195,8 +207,14 @@ h1,h2,h3,h4,h5,h6{
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .reco {
+    min-height: auto;
+    padding-bottom: 1rem;
+  }
+  
   .recommendadedsection-destinations-container {
-    padding: 3rem 0.5rem;
+    padding: 2rem 0.5rem 1rem 0.5rem;
+    min-height: auto;
   }
   
   .recommendadedsection-destinations-title {
@@ -240,9 +258,14 @@ h1,h2,h3,h4,h5,h6{
 }
 
 @media (max-width: 480px) {
+  .reco {
+    min-height: auto;
+    padding-bottom: 0.5rem;
+  }
    
   .recommendadedsection-destinations-container {
-    padding: 2rem 0.25rem;
+    padding: 1.5rem 0.25rem 0.5rem 0.25rem;
+    min-height: auto;
   }
   
   .recommendadedsection-destinations-title {
@@ -263,14 +286,19 @@ h1,h2,h3,h4,h5,h6{
   }
 }
 
-
-
-
-@media (max-width: 430px) and (min-width: 320px) {
+@media (max-width: 430px) {
+  .reco {
+    min-height: auto;
+    padding-bottom: 0;
+  }
+  
   .recommendadedsection-destinations-container {
-    padding: 1.5rem 0.5rem;
-    
-    height: 80vh;
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
+    min-height: auto;
+  }
+  
+  .recommendadedsection-destinations-header {
+    margin-bottom: 2rem;
   }
   
   .recommendadedsection-destinations-title {
@@ -291,7 +319,7 @@ h1,h2,h3,h4,h5,h6{
   
   .recommendadedsection-destinations-scroll-container {
     gap: 1rem;
-    padding: 0.5rem 0 1.5rem 0;
+    padding: 0.5rem 0 1rem 0;
   }
   
   .recommendadedsection-destination-card {
@@ -332,5 +360,64 @@ h1,h2,h3,h4,h5,h6{
   
   .recommendadedsection-scroll-arrow-right {
     right: -0.5rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .reco {
+    padding-bottom: 0;
+  }
+  
+  .recommendadedsection-destinations-container {
+    padding: 0.75rem 0.25rem 0.25rem 0.25rem;
+  }
+  
+  .recommendadedsection-destinations-header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .recommendadedsection-destinations-title {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .recommendadedsection-destinations-subtitle {
+    font-size: 0.85rem;
+    padding: 0 0.25rem;
+  }
+  
+  .recommendadedsection-destination-card {
+    width: 200px;
+  }
+  
+  .recommendadedsection-destination-image {
+    height: 140px;
+  }
+  
+  .recommendadedsection-destination-content {
+    padding: 0.5rem;
+  }
+  
+  .recommendadedsection-destination-location {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .recommendadedsection-destinations-container {
+    padding: 0.5rem 0.125rem 0.125rem 0.125rem;
+  }
+  
+  .recommendadedsection-destinations-title {
+    font-size: 1.25rem;
+  }
+  
+  .recommendadedsection-destination-card {
+    width: 180px;
+  }
+  
+  .recommendadedsection-destination-image {
+    height: 120px;
   }
 }

@@ -293,17 +293,17 @@ const updateScrollIndicator = useCallback(() => {
 
   return (
     <div className="program-details-page">
-      <section ref={heroRef} className="hero-section">
-        <div className="hero-image-container">
+      <section ref={heroRef} className="program-details-hero-section">
+        <div className="program-details-hero-image-container">
           <img
             src={program.imageGallery?.[0] || "https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=1200"}
             alt={program.name}
-            className="hero-image"
+            className="program-details-hero-image"
             loading="lazy"
             decoding="async"
           />
-          <div className="hero-overlay">
-            <div className="hero-content">
+          <div className="program-details-hero-overlay">
+            <div className="program-details-hero-content">
               <h1 className="hero-title-programdetails">{program.name.toUpperCase()}</h1>
               <p className="hero-subtitle-programdetails">A Transformative Wellness Journey in {program.location}</p>
             </div>
@@ -346,7 +346,7 @@ const updateScrollIndicator = useCallback(() => {
             <div className="overview-content">
               <div className="award-winning-container-top">
                 <div className="award-winning-content-top">
-                  <h2 className="award-winning-title">AWARD-WINNING WELLNESS</h2>
+                  <h2 className="program-details-award-winning-title">AWARD-WINNING WELLNESS</h2>
                   <p className="award-winning-subtitle">
                     Recognized with the highest honor of Three Keys by the Michelin Guide
                   </p>
@@ -407,7 +407,7 @@ const updateScrollIndicator = useCallback(() => {
 
         <section id="included" ref={includedRef} className="content-section included-section">
           <div className="included-header">
-            <h2 className="section-title">ALWAYS INCLUDED</h2>
+            <h2 className="section-title" id='program-details-head-title'>ALWAYS INCLUDED</h2>
             <p className="section-subtitle">When you want it all taken care of, it matters where you stay.</p>
           </div>
           
@@ -416,7 +416,7 @@ const updateScrollIndicator = useCallback(() => {
               <div className="included-content-wrapper">
                 <div className="included-features">
                   <div className="included-feature active">
-                    <h3 className="feature-title">Program Features</h3>
+                    <h3 className="feature-title" >Program Features</h3>
                     <ul className="feature-list">
                       {program.includes.map((item, index) => (
                         <li 
@@ -544,7 +544,7 @@ const updateScrollIndicator = useCallback(() => {
         </section>
 
         <section id="offers" ref={offersRef} className="content-section offers-section">
-          <h2 className="section-title">SPECIAL OFFERS</h2>
+          <h2 className="section-title"  id='program-details-head-title'>SPECIAL OFFERS</h2>
           <p className="section-subtitle">Explore limited-time offers to help you enjoy your perfect getaway</p>
           <div className="offers-grid">
             <div className="offer-card">
@@ -566,7 +566,7 @@ const updateScrollIndicator = useCallback(() => {
 
         <section id="events" ref={eventsRef} className="content-section events-section">
           <div className="events-header">
-            <h2 className="section-title">EVENTS & RETREATS</h2>
+            <h2 className="section-title" id='program-details-head-title'>EVENTS & RETREATS</h2>
             <p className="section-subtitle">Gain fresh perspectives on physical, spiritual, and mental wellness</p>
           </div>
 
@@ -689,7 +689,7 @@ const updateScrollIndicator = useCallback(() => {
         </section>
 
         <section id="schedule" ref={scheduleRef} className="content-section schedule-section">
-          <h2 className="section-title">DAILY SCHEDULE</h2>
+          <h2 className="section-title" id='program-details-head-title'>DAILY SCHEDULE</h2>
           <p className="section-subtitle">Choose from over 40 daily organized resort activities, with three included in your stay</p>
           <div className="schedule-grid">
             <div className="schedule-card">
@@ -731,7 +731,7 @@ const updateScrollIndicator = useCallback(() => {
 
         <section id="location" ref={locationRef} className="content-section location-section">
           <div className="section-header">
-            <h2 className="section-title">{program.location.split(' - ')[0].toUpperCase()} ARRIVAL</h2>
+            <h2 className="section-title" id='program-details-head-title'>{program.location.split(' - ')[0].toUpperCase()} ARRIVAL</h2>
             <p className="section-subtitle">Find your way to our wellness sanctuary</p>
           </div>
           <div className="location-content">

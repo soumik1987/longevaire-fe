@@ -9,6 +9,8 @@ h1, h2, h3, h4, h5, h6 {
   background-color: rgb(60, 55, 55);
   color: white;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Header */
@@ -18,12 +20,14 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  flex-shrink: 0;
 }
 
 .programs-main-title {
-  font-family: 'Georgia', 'Times New Roman', serif;
-  font-size: 2.5rem;
-  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-family: 'Recoleta' ,'Futura'!important;
+  font-weight: 700;
+  line-height: 1.2;
   letter-spacing: 3px;
   margin-bottom: 1rem;
   color: #ffffff;
@@ -31,7 +35,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .programs-subtitle {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family: 'Source Sans 3', sans-serif;
   font-size: 1.1rem;
   color: #b8c5d1;
   line-height: 1.6;
@@ -41,6 +45,9 @@ h1, h2, h3, h4, h5, h6 {
 /* Scroll Wrapper */
 .programs-scroll-wrapper {
   position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
 }
 
 .programs-horizontal-scroll {
@@ -51,6 +58,7 @@ h1, h2, h3, h4, h5, h6 {
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  width: 100%;
 }
 
 .programs-horizontal-scroll::-webkit-scrollbar {
@@ -85,7 +93,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Program Card */
-.program-card {
+.programsection-program-card {
   flex: 0 0 320px;
   height: 480px;
   background: white;
@@ -97,30 +105,30 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
 }
 
-.program-card:hover {
+.programsection-program-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 
-.program-card-image {
+.programsection-program-card-image {
   width: 100%;
   height: 100%;
   position: relative;
   overflow: hidden;
 }
 
-.program-card-image img {
+.programsection-program-card-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
 
-.program-card:hover .program-card-image img {
+.programsection-program-card:hover .programsection-program-card-image img {
   transform: scale(1.05);
 }
 
-.program-card-badge {
+.programsection-program-card-badge {
   position: absolute;
   top: 20px;
   left: 20px;
@@ -128,8 +136,8 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 25px;
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: 0.45rem;
+  font-weight: 500;
   letter-spacing: 1px;
   z-index: 3;
   text-transform: uppercase;
@@ -158,7 +166,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .program-card-title {
   font-family: 'Georgia', 'Times New Roman', serif;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: #ffffff;
   line-height: 1.3;
@@ -168,7 +176,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .program-card-subtitle {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: #e8e8e8;
   line-height: 1.4;
   margin-bottom: 1rem;
@@ -189,15 +197,11 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.8;
 }
 
-.programs-horizontal-scroll {
-  gap: 1.5rem;
-}
-
 /* ---------- RESPONSIVE BREAKPOINTS ---------- */
 
 /* 1299px to 1024px */
 @media (max-width: 1299px) {
-  .program-card {
+  .programsection-program-card {
     flex: 0 0 300px;
     height: 460px;
   }
@@ -214,10 +218,11 @@ h1, h2, h3, h4, h5, h6 {
 /* 1024px to 768px */
 @media (max-width: 1024px) {
   .programs-section-container {
-    padding: 3rem 1.5rem;
+    padding: 3rem 1.5rem 1.5rem;
+    min-height: auto;
   }
 
-  .program-card {
+  .programsection-program-card {
     flex: 0 0 280px;
     height: 440px;
   }
@@ -238,10 +243,15 @@ h1, h2, h3, h4, h5, h6 {
 /* 768px to 568px */
 @media (max-width: 768px) {
   .programs-section-container {
-    padding: 2.5rem 1rem;
+    padding: 2.5rem 1rem 1rem;
+    min-height: auto;
   }
 
-  .program-card {
+  .programs-header {
+    margin-bottom: 2rem;
+  }
+
+  .programsection-program-card {
     flex: 0 0 260px;
     height: 420px;
   }
@@ -257,11 +267,20 @@ h1, h2, h3, h4, h5, h6 {
   .program-card-content {
     padding: 2.5rem 1rem 1rem;
   }
+
+  .programs-horizontal-scroll {
+    padding: 0.5rem 0 1.5rem;
+  }
 }
 
 /* 568px to 456px */
 @media (max-width: 568px) {
-  .program-card {
+  .programs-section-container {
+    padding: 2rem 0.75rem 0.75rem;
+    min-height: auto;
+  }
+
+  .programsection-program-card {
     flex: 0 0 240px;
     height: 400px;
   }
@@ -273,11 +292,24 @@ h1, h2, h3, h4, h5, h6 {
   .program-card-subtitle {
     font-size: 0.85rem;
   }
+
+  .programs-horizontal-scroll {
+    padding: 0.5rem 0 1rem;
+  }
 }
 
-/* 456px to 320px */
+/* 456px to 430px */
 @media (max-width: 456px) {
-  .program-card {
+  .programs-section-container {
+    padding: 1.5rem 0.5rem 0.5rem;
+    min-height: auto;
+  }
+
+  .programs-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .programsection-program-card {
     flex: 0 0 220px;
     height: 380px;
   }
@@ -293,10 +325,35 @@ h1, h2, h3, h4, h5, h6 {
   .program-card-content {
     padding: 2rem 0.75rem 0.75rem;
   }
+
+  .programs-horizontal-scroll {
+    padding: 0.25rem 0 0.75rem;
+  }
 }
 
-@media (max-width: 320px) {
-  .program-card {
+/* 430px to 375px */
+@media (max-width: 430px) {
+  .programs-section-container {
+    padding: 1.25rem 0.5rem 0.25rem;
+    min-height: auto;
+  }
+
+  .programs-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .programs-main-title {
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+  }
+
+  .programs-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .programsection-program-card {
     flex: 0 0 200px;
     height: 360px;
   }
@@ -305,11 +362,128 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.9rem;
   }
 
+  .program-card-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .program-card-content {
+    padding: 1.75rem 0.5rem 0.5rem;
+  }
+
+  .programs-horizontal-scroll {
+    gap: 1rem;
+    padding: 0.25rem 0 0.5rem;
+  }
+
+  .scroll-arrow {
+    width: 32px;
+    height: 32px;
+    padding: 0.4rem;
+  }
+
+  .scroll-arrow svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* 375px to 320px */
+@media (max-width: 375px) {
+  .programs-section-container {
+    padding: 1rem 0.25rem 0.125rem;
+    min-height: auto;
+  }
+
+  .programs-header {
+    margin-bottom: 1rem;
+  }
+
   .programs-main-title {
     font-size: 1.4rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
   }
 
   .programs-subtitle {
     font-size: 0.9rem;
+    padding: 0 0.25rem;
+  }
+
+  .programsection-program-card {
+    flex: 0 0 180px;
+    height: 340px;
+  }
+
+  .program-card-title {
+    font-size: 0.85rem;
+  }
+
+  .program-card-subtitle {
+    font-size: 0.7rem;
+  }
+
+  .program-card-content {
+    padding: 1.5rem 0.4rem 0.4rem;
+  }
+
+  .programs-horizontal-scroll {
+    gap: 0.75rem;
+    padding: 0.125rem 0 0.25rem;
+  }
+}
+
+/* 320px and below */
+@media (max-width: 320px) {
+  .programs-section-container {
+    padding: 0.75rem 0.125rem 0;
+    min-height: auto;
+  }
+
+  .programs-header {
+    margin-bottom: 0.75rem;
+  }
+
+  .programs-main-title {
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.4rem;
+  }
+
+  .programs-subtitle {
+    font-size: 0.85rem;
+    padding: 0 0.125rem;
+  }
+
+  .programsection-program-card {
+    flex: 0 0 160px;
+    height: 320px;
+  }
+
+  .program-card-title {
+    font-size: 0.8rem;
+  }
+
+  .program-card-subtitle {
+    font-size: 0.65rem;
+  }
+
+  .program-card-content {
+    padding: 1.25rem 0.3rem 0.3rem;
+  }
+
+  .programs-horizontal-scroll {
+    gap: 0.5rem;
+    padding: 0.125rem 0 0.125rem;
+  }
+
+  .scroll-arrow {
+    width: 28px;
+    height: 28px;
+    padding: 0.3rem;
+  }
+
+  .scroll-arrow svg {
+    width: 14px;
+    height: 14px;
   }
 }
