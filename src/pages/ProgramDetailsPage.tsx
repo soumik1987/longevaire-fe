@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { fetchProgramByName, fetchRelatedPrograms } from '../api';
+import { fetchProgramByName, fetchProgramByCode, fetchRelatedPrograms } from '../api';
 import type { Program } from '../data/programs';
 import BookingModal from '../components/BookingModal';
 import GalleryModal from '../components/GalleryModal';
@@ -110,7 +110,7 @@ const updateScrollIndicator = useCallback(() => {
 }, []);
 
   useEffect(() => {
-    const state = location.state as { programName: string };
+    const state = location.state as { programName: string; programCode?: string };
     if (!state?.programName) {
       navigate('/explore');
       return;
@@ -118,7 +118,18 @@ const updateScrollIndicator = useCallback(() => {
 
     const loadProgram = async () => {
       try {
-        const foundProgram = await fetchProgramByName(state.programName);
+        let foundProgram: Program | undefined;
+        
+        // Try to fetch by code first (if available), then fall back to name
+        if (state.programCode) {
+          foundProgram = await fetchProgramByCode(state.programCode);
+        }
+        
+        // If not found by code or no code provided, try by name
+        if (!foundProgram) {
+          foundProgram = await fetchProgramByName(state.programName);
+        }
+        
         if (foundProgram) {
           setProgram(foundProgram);
           if (foundProgram.imageGallery) {

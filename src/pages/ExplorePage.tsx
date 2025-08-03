@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Search, X, MapPin, Calendar } from 'lucide-react';
-import { fetchProgramCategories, fetchDestinations } from '../api';
+import { fetchProgramCategories, fetchDestinations, searchProgramsAndDestinations } from '../api';
 import '../styles/ExplorePage.css';
 import type { Destination } from '../data/destinations';
 import type { ProgramCategory, Program } from '../data/programs';
@@ -66,51 +66,63 @@ const ExplorePage: React.FC = () => {
       return;
     }
 
-    const searchLower = searchTerm.toLowerCase();
-    const results: SearchResult[] = [];
+    const performSearch = async () => {
+      try {
+        const results = await searchProgramsAndDestinations(searchTerm);
+        setSearchResults(results.slice(0, 8));
+      } catch (error) {
+        console.error('Search failed:', error);
+        // Fallback to local search
+        const searchLower = searchTerm.toLowerCase();
+        const results: SearchResult[] = [];
 
-    // Search programs
-    programCategories.forEach(category => {
-      category.programs.forEach(program => {
-        if (program.name.toLowerCase().includes(searchLower) ||
-            program.location.toLowerCase().includes(searchLower) ||
-            program.details.toLowerCase().includes(searchLower)) {
-          results.push({
-            type: 'program',
-            title: program.name,
-            subtitle: `${program.location} • ${program.duration || 'Duration varies'}`,
-            programData: program,
-            categoryType: category.type
+        // Search programs (fallback)
+        programCategories.forEach(category => {
+          category.programs.forEach(program => {
+            if (program.name.toLowerCase().includes(searchLower) ||
+                program.location.toLowerCase().includes(searchLower) ||
+                program.details.toLowerCase().includes(searchLower)) {
+              results.push({
+                type: 'program',
+                title: program.name,
+                subtitle: `${program.location} • ${program.duration || 'Duration varies'}`,
+                programData: program,
+                categoryType: category.type
+              });
+            }
           });
-        }
-      });
-    });
-
-    // Search destinations
-    destinations.forEach(destination => {
-      if (destination.country.toLowerCase().includes(searchLower)) {
-        results.push({
-          type: 'destination',
-          title: destination.country,
-          subtitle: `${destination.cities.length} cities available`,
-          country: destination.country
         });
-      }
 
-      destination.cities.forEach(city => {
-        if (city.toLowerCase().includes(searchLower)) {
-          results.push({
-            type: 'city',
-            title: city,
-            subtitle: destination.country,
-            country: destination.country,
-            city: city
+        // Search destinations (fallback)
+        destinations.forEach(destination => {
+          if (destination.country.toLowerCase().includes(searchLower)) {
+            results.push({
+              type: 'destination',
+              title: destination.country,
+              subtitle: `${destination.cities.length} cities available`,
+              country: destination.country
+            });
+          }
+
+          destination.cities.forEach(city => {
+            if (city.toLowerCase().includes(searchLower)) {
+              results.push({
+                type: 'city',
+                title: city,
+                subtitle: destination.country,
+                country: destination.country,
+                city: city
+              });
+            }
           });
-        }
-      });
-    });
+        });
 
-    setSearchResults(results.slice(0, 8));
+        setSearchResults(results.slice(0, 8));
+      }
+    };
+
+    const debounceTimer = setTimeout(performSearch, 300);
+    return () => clearTimeout(debounceTimer);
   }, [searchTerm, programCategories, destinations]);
 
   // Filter programs based on search term
