@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { fetchProgramCategories, fetchProgramsByLocation } from '../api';
+import { fetchProgramCategories, fetchProgramsByLocation, fetchProgramsByStyle } from '../api';
+import { transformProgramForList } from '../utils/dataTransform';
 import '../styles/ProgramListsPage.css';
 import type { Program as ImportedProgram } from '../data/programs';
 
@@ -45,8 +46,13 @@ const ProgramListPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const handleProgramClick = useCallback((programName: string) => {
-    navigate('/program-details', { state: { programName } });
+  const handleProgramClick = useCallback((program: TransformedProgram) => {
+    navigate('/program-details', { 
+      state: { 
+        programName: program.name,
+        programCode: (program as any).code || program.id
+      } 
+    });
   }, [navigate]);
 
   const handleBackClick = useCallback(() => {
@@ -128,16 +134,40 @@ const ProgramListPage: React.FC = () => {
         setError(null);
         
         if (state.type === 'category' && state.categoryType) {
-          const allCategories = await fetchProgramCategories();
-          const category = allCategories.find(cat => cat.type === state.categoryType);
-          if (category) {
-            if (isMounted) {
+          // First try to get programs by style (backend approach)
+          try {
+            const stylePrograms = await fetchProgramsByStyle(state.categoryType);
+            if (stylePrograms.length > 0) {
+              if (isMounted) {
+                setPrograms(stylePrograms.map(transformProgramForList));
+                setPageTitle(state.categoryType);
+                setPageSubtitle(`Discover ${state.categoryType.toLowerCase()} programs`);
+              }
+            } else {
+              // Fallback to categories approach (sample data)
+              const allCategories = await fetchProgramCategories();
+              const category = allCategories.find(cat => cat.type === state.categoryType);
+              if (category) {
+                if (isMounted) {
+                  setPrograms(transformProgramData(category.programs));
+                  setPageTitle(category.type);
+                  setPageSubtitle(category.description);
+                }
+              } else if (isMounted) {
+                setError('Category not found');
+              }
+            }
+          } catch (err) {
+            // Fallback to categories approach on error
+            const allCategories = await fetchProgramCategories();
+            const category = allCategories.find(cat => cat.type === state.categoryType);
+            if (category && isMounted) {
               setPrograms(transformProgramData(category.programs));
               setPageTitle(category.type);
               setPageSubtitle(category.description);
+            } else if (isMounted) {
+              setError('Category not found');
             }
-          } else if (isMounted) {
-            setError('Category not found');
           }
         } else if (state.type === 'location' && state.country) {
           const locationPrograms = await fetchProgramsByLocation(
@@ -145,7 +175,7 @@ const ProgramListPage: React.FC = () => {
             state.city
           );
           if (isMounted) {
-            setPrograms(transformProgramData(locationPrograms));
+            setPrograms(locationPrograms.map(transformProgramForList));
             setPageTitle(`Programs in ${state.country}${state.city ? ` - ${state.city}` : ''}`);
             setPageSubtitle(`Discover wellness experiences in ${state.country}${state.city ? `, ${state.city}` : ''}`);
           }
@@ -201,7 +231,7 @@ const ProgramListPage: React.FC = () => {
           <ProgramCard
             key={program.id}
             program={program}
-            onClick={() => handleProgramClick(program.name)}
+                          onClick={() => handleProgramClick(program)}
           />
         ))}
       </div>
