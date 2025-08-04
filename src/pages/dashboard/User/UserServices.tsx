@@ -4,7 +4,7 @@
 // src/pages/dashboard/User/UserServices.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import DashboardLayout from '../../../components/Layout/DashboardLayout';
+// import DashboardLayout from '../../../components/Layout/DashboardLayout';
 import { Plus } from 'lucide-react';
 import '../../../styles/UserServices.css';
 
@@ -112,7 +112,7 @@ const UserServices: React.FC = () => {
   };
 
   return (
-    <DashboardLayout role="user">
+    // <DashboardLayout role="user">
       <div className="user-services">
         <div className="user-services__header">
           <h1 className="user-services__title">MY PROGRAMS</h1>
@@ -189,7 +189,7 @@ const UserServices: React.FC = () => {
           )}
         </div>
       </div>
-    </DashboardLayout>
+    // </DashboardLayout>
   );
 };
 
