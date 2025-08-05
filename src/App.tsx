@@ -15,7 +15,7 @@ import Navigation from './components/Navigation';
 import ChatBarSection from './components/ChatBarSection';
 import ChatboxPage from './components/ChatBoxPage';
 // import LongevityGrid from './components/LongevityGrid';
-import Slideshow from './components/Slideshow';
+// import Slideshow from './components/Slideshow';
 // import ExpertiseSection from './components/ExpertiseSection';
 // import FAQSection from './components/FAQSection';
 import WellnessInsightSection from './components/WellnessInsightSection';
@@ -49,6 +49,7 @@ import './styles/App.css';
 import './styles/global.css';
 import HomeProgramPage from './components/HomeProgramPage';
 import ProgramsSection from './components/ProgramsSection';
+import AnimatedSlideshow from './components/AnimatedSlideshow';
 
 
 // Protected Route Component with Role Checking
@@ -73,7 +74,7 @@ const ProtectedRoute: React.FC<{
 const HomePage: React.FC = () => {
   return (
     <>
-      <Slideshow />
+      <AnimatedSlideshow />
       <ChatBarSection />
       <HomeProgramPage/>
       <ProgramsSection/>

@@ -1,6 +1,8 @@
 /* src/styles/SignInModal.css */
+
 h1,h2,h3,h4,h5,h6{
-  font-family: 'Recoleta' ,'Futura'!important;
+  font-family: 'Sapphire'',Recoleta' ,'Futura'!important;
+  font-weight: 100!important;
 }
 /* Porsche-style Sign-in Modal */
 .signin-modal-overlay {

@@ -1,8 +1,8 @@
 /* Base Fonts */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Recoleta', 'Futura' !important;
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Sapphire'',Recoleta' ,'Futura'!important;
+  font-weight: 100!important;
 }
-
 /* Footer Base Styles */
 .footer {
   background: #1a1a1a;

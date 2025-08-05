@@ -3,16 +3,17 @@
 
 /* Home Page Styles */
 .home-page {
-  min-height: 100vh;
+  max-height: 90vh;
   background: #F8F6F2;
   margin-top: 30px;
 }
 
 .home-container {
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 0 24px;
-  position: relative; /* Added for arrow positioning */
+  position: relative;
+  margin-bottom: 0px!important; /* Added for arrow positioning */
 }
 
 /* Tab Navigation */

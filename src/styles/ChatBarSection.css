@@ -1,10 +1,11 @@
 h1,h2,h3,h4,h5,h6{
-  font-family: 'Recoleta' ,'Futura'!important;
+  font-family: 'Sapphire'',Recoleta' ,'Futura'!important;
+  font-weight: 100!important;
 }
 
 .chatbar-section {
   padding: 2rem 0;
-  background: linear-gradient(135deg, #fff8f0 0%, #f0f8ff 100%);
+  background: #F8F6F2;
   text-align: center;
 }
 

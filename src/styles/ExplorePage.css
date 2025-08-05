@@ -1,11 +1,16 @@
 /* Custom Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap'); */
+
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Sapphire'',Recoleta' ,'Futura'!important;
+  font-weight: 100!important;
+}
 
 /* Explore Page Styles */
 .explore-page {
   min-height: 100vh;
   background: #F8F6F2;
-  padding-top: 80px;
+  padding-top: 0px;
 }
 
 .explore-container {
@@ -352,7 +357,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 32px;
-  margin-top: 60px;
+  margin-top: 10px;
 }
 
 /* Program Cards */

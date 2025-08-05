@@ -1,17 +1,18 @@
 /* components/PricingTeaser.css */
 h1,h2,h3,h4,h5,h6{
-  font-family: 'Recoleta' ,'Futura'!important;
+  font-family: 'Sapphire'',Recoleta' ,'Futura'!important;
+  font-weight: 100!important;
 }
-
 .pricing-teaser {
   background-color: #F8F6F2;
-  padding: 80px 20px;
+  padding: 20px 0px;
   text-align: center;
 }
 
 .teaser-container {
   max-width: 800px;
   margin: 0 auto;
+  min-height: 40vh;
 }
 
 .teaser-title {
@@ -20,6 +21,8 @@ h1,h2,h3,h4,h5,h6{
   color: #3C3C3C;
   margin-bottom: 20px;
   line-height: 1.2;
+  margin-top: 0px!important;
+  padding-top: 0px;
 }
 
 .teaser-subtitle {

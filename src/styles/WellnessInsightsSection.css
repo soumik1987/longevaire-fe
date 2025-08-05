@@ -3,6 +3,10 @@
   background-color: #F8F6F2;
   padding: 100px 0;
 }
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Sapphire'',Recoleta' ,'Futura'!important;
+  font-weight: 100!important;
+}
 
 .wellness-insight-container {
   display: flex;
@@ -24,9 +28,9 @@
 }
 
 .wellness-insight-main-heading {
-  font-family: 'Baskervville', serif;
+  font-family: 'Polish','Baskervville', serif !important;
   font-size: 3rem;
-  font-weight: 800;
+  font-weight: 100;
   color: #3C3C3C;
   margin-bottom: 20px;
   line-height: 1.2;
@@ -267,7 +271,7 @@
   }
 
   .wellness-insight-card {
-    min-width: 280px;
+    width: 280px;
     scroll-snap-align: start;
   }
 

@@ -1,20 +1,19 @@
 
 
 /* GLOBAL FONT RESET */
-@import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap'); */
 
 * {
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: 'Polish', 'Recoleta', 'Source Sans 3', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 /* HEADINGS (H1-H6) */
-h1, h2, h3, h4, h5, h6 {
-  /* font-family: 'Baskervville', serif; */
-  font-family: 'Recoleta' ,'Futura'!important;
-  font-weight: 700;
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Polished','Sapphire','Recoleta' ,'Futura'!important;
+  font-weight: 100!important;
   letter-spacing: -0.02em;
   line-height: 1.2;
   margin-top: 40px;

@@ -1,4 +1,9 @@
 /* AdminPanel.css - Media Responsive Version */
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Sapphire'',Recoleta' ,'Futura'!important;
+  font-weight: 100!important;
+}
+
 .admin-panel-container {
   background: white;
   border-radius: 8px;
