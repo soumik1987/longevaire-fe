@@ -224,7 +224,7 @@ const AnimatedSlideshow: React.FC = () => {
       id: 1,
       title: 'Discover Inner Peace',
       subtitle: 'Find balance and tranquility through our wellness programs',
-      videoUrl: 'https://www.pexels.com/video/a-happy-woman-dancing-at-a-park-8531180/'
+      videoUrl: 'https://videos.pexels.com/video-files/8531180/8531180-uhd_2560_1440_25fps.mp4'
     },
     {
       id: 2,
