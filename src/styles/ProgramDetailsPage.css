@@ -54,7 +54,7 @@ h1,h2,h3,h4,h5,h6{
   scroll-margin-top: 150px;
   width: 100%;
   padding-top: 30px;
-  padding-bottom: 30px;
+  /* padding-bottom: 30px; */
 }
 
 .section-title {
@@ -67,7 +67,7 @@ h1,h2,h3,h4,h5,h6{
 
 .events-slider-container {
   padding-top: 0 !important;
-  padding-bottom: 0 !important;
+  padding-bottom: 10px !important;
 }
 
 .program-details-hero-section {
@@ -259,8 +259,9 @@ h1,h2,h3,h4,h5,h6{
   margin: 3rem auto 1.5rem auto;
   max-width: 900px;
   text-align: center;
-  padding: 0;
+  padding-top: 0px;
   box-sizing: border-box;
+  margin-top: 0px;
 }
 
 .program-details-award-winning-title {
@@ -276,6 +277,7 @@ h1,h2,h3,h4,h5,h6{
   font-family: 'Recoleta' ,'Futura'!important;
   font-weight: 700;
   line-height: 1.2;
+  margin-top: 0px;
 }
 
 .award-winning-subtitle {

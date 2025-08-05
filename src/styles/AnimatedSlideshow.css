@@ -163,6 +163,29 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
+.hero-slideshow__music-control {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 5.5rem;
+  z-index: 20;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero-slideshow__music-control:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 .hero-slideshow__pagination {
   position: absolute;
   bottom: 2rem;
@@ -274,6 +297,11 @@
     left: 1rem;
   }
   
+  .hero-slideshow__music-control {
+    bottom: 1rem;
+    left: 4.5rem;
+  }
+  
   .hero-slideshow__pagination {
     bottom: 1.5rem;
   }
@@ -326,3 +354,4 @@
     font-size: 0.85rem;
   }
 }
+
