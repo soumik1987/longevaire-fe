@@ -1,0 +1,87 @@
+/* Luxury Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;500&family=Crimson+Text:wght@300;400;600&family=Libre+Baskerville:wght@400;700&display=swap');
+
+/* Sticky Book Button Styles - Mobile Only */
+.sticky-book-button-container {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 16px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.1) 0%, transparent 100%);
+  backdrop-filter: blur(10px);
+}
+
+.sticky-book-button {
+  width: 100%;
+  background: linear-gradient(135deg, #C44C30 0%, #A93E2B 100%);
+  color: white;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(196, 76, 48, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sticky-book-button:hover {
+  background: linear-gradient(135deg, #A93E2B 0%, #8B3323 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(196, 76, 48, 0.4);
+}
+
+.sticky-book-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 16px rgba(196, 76, 48, 0.3);
+}
+
+/* Mobile Breakpoints */
+@media (max-width: 1299px) {
+  .sticky-book-button-container {
+    display: block;
+  }
+}
+
+@media (max-width: 1029px) {
+  .sticky-book-button {
+    font-size: 17px;
+    padding: 15px 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sticky-book-button {
+    font-size: 16px;
+    padding: 14px 20px;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 567px) {
+  .sticky-book-button {
+    font-size: 15px;
+    padding: 13px 18px;
+  }
+}
+
+@media (max-width: 465px) {
+  .sticky-book-button {
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+}
+
+@media (max-width: 320px) {
+  .sticky-book-button {
+    font-size: 13px;
+    padding: 11px 14px;
+  }
+}

@@ -1,7 +1,11 @@
+/* Luxury Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Crimson+Text:wght@300;400;600&family=Libre+Baskerville:wght@400;700&display=swap');
+
 h1,h2,h3,h4,h5,h6{
-  font-family: 'Sapphire','Recoleta' ,'Futura'!important;
-  font-weight: 100!important;
+  font-family: 'Playfair Display', 'Cormorant Garamond', serif !important;
+  font-weight: 300 !important;
 }
+
 .slideshow {
   position: relative;
   height: 80vh;
@@ -50,46 +54,52 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .slide-title {
-  font-family:'Polish' ,'Sapphire','Recoleta','Baskervville', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 3rem;
-  font-weight: bold;
+  font-weight: 300;
   margin-bottom: 1rem;
   animation: fade-in-up 1s ease forwards;
   opacity: 0;
   color: #FFFFFF;
+  letter-spacing: -0.025em;
 }
 
 .slide-description {
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1.25rem;
+  font-weight: 300;
   animation: fade-in-up 1s ease forwards;
   animation-delay: 0.2s;
   opacity: 0;
-  color: #F5F5DC;
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: 2rem;
+  letter-spacing: 0.025em;
+  line-height: 1.6;
 }
 
 .slideshow-book-btn {
-  background: #C44C30;
+  background: linear-gradient(135deg, #C44C30 0%, #A93E2B 100%);
   color: white;
   padding: 12px 24px;
   border: none;
   border-radius: 6px;
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: 'Playfair Display', serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: nowrap;
   animation: fade-in-up 1s ease forwards;
   animation-delay: 0.4s;
   opacity: 0;
+  letter-spacing: 0.5px;
+  box-shadow: 0 8px 25px rgba(196, 76, 48, 0.3);
 }
 
 .slideshow-book-btn:hover {
-  background: #A93E2B;
+  background: linear-gradient(135deg, #A93E2B 0%, #8B3323 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(196, 76, 48, 0.3);
+  box-shadow: 0 12px 32px rgba(196, 76, 48, 0.4);
 }
 
 .nav-button {
@@ -174,12 +184,20 @@ h1,h2,h3,h4,h5,h6{
   }
 }
 
+/* Hide slideshow book button on mobile - sticky button will be used instead */
+@media (max-width: 1299px) {
+  .slideshow-book-btn {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .slideshow {
-  position: relative;
-  height: 80vh;
-  overflow: hidden;
-}
+    position: relative;
+    height: 80vh;
+    overflow: hidden;
+  }
+  
   .slide-title {
     font-size: 2rem;
   }
@@ -188,12 +206,37 @@ h1,h2,h3,h4,h5,h6{
     font-size: 1rem;
   }
 
-  .slideshow-book-btn {
-    padding: 10px 20px;
-    font-size: 14px;
-  }
-
   .nav-button {
     padding: 8px;
+  }
+}
+
+@media (max-width: 567px) {
+  .slide-title {
+    font-size: 1.8rem;
+  }
+
+  .slide-description {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 465px) {
+  .slide-title {
+    font-size: 1.6rem;
+  }
+
+  .slide-description {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .slide-title {
+    font-size: 1.4rem;
+  }
+
+  .slide-description {
+    font-size: 0.85rem;
   }
 }

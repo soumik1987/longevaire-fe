@@ -673,11 +673,11 @@ const AuthModal: React.FC<AuthModalProps> = ({ mode, onClose, onSwitchMode }) =>
     alert('Google authentication is not implemented in this demo');
   };
 
-  const handleTestAccount = (email: string) => {
-    if (mode === 'signin') {
-      setSignInData({ email, password: 'password' });
-    }
-  };
+  // const handleTestAccount = (email: string) => {
+  //   if (mode === 'signin') {
+  //     setSignInData({ email, password: 'password' });
+  //   }
+  // };
 
   return (
     <div className="auth-modal-overlay" onClick={onClose}>
@@ -748,12 +748,12 @@ const AuthModal: React.FC<AuthModalProps> = ({ mode, onClose, onSwitchMode }) =>
 
                   <div className="auth-modal-footer">
                     <p>Don't have an account? <button type="button" className="auth-link-button" onClick={() => onSwitchMode('signup')}>Sign up here</button></p>
-                    <div className="auth-test-accounts">
-                      <p><strong>Test Accounts:</strong></p>
+                    {/* <div className="auth-test-accounts"> */}
+                      {/* <p><strong>Test Accounts:</strong></p>
                       <p>Facility: <button className="auth-test-account" onClick={() => handleTestAccount('test@facility.com')}>test@facility.com</button> / password</p>
                       <p>User: <button className="auth-test-account" onClick={() => handleTestAccount('test@user.com')}>test@user.com</button> / password</p>
-                      <p>Admin: <button className="auth-test-account" onClick={() => handleTestAccount('test@admin.com')}>test@admin.com</button> / password</p>
-                    </div>
+                      <p>Admin: <button className="auth-test-account" onClick={() => handleTestAccount('test@admin.com')}>test@admin.com</button> / password</p> */}
+                    {/* </div> */}
                   </div>
                 </>
               ) : (

@@ -307,7 +307,7 @@ h1,h2,h3,h4,h5,h6{
   right: 0;
 }
 
-.mobile-sidebar-backdrop {
+/* .mobile-sidebar-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -318,7 +318,7 @@ h1,h2,h3,h4,h5,h6{
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
-}
+} */
 
 .mobile-sidebar.open + .mobile-sidebar-backdrop,
 .mobile-sidebar-backdrop {

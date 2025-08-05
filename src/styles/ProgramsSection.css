@@ -1,6 +1,6 @@
 /* Base Fonts */
 h1,h2,h3,h4,h5,h6{
-  font-family: 'Sapphire'',Recoleta' ,'Futura'!important;
+  font-family: 'Sapphire','Recoleta' ,'Futura'!important;
   font-weight: 100!important;
 }
 
@@ -9,7 +9,7 @@ h1,h2,h3,h4,h5,h6{
   padding: 4rem 2rem 2rem;
   background-color: rgb(60, 55, 55);
   color: white;
-  min-height: 100vh;
+  min-height: 105vh;
   display: flex;
   flex-direction: column;
 }
@@ -26,15 +26,15 @@ h1,h2,h3,h4,h5,h6{
 
 .programs-main-title {
   font-size: clamp(2rem, 5vw, 2.8rem);
-  font-family: 'Recoleta' ,'Futura'!important;
+  font-family:'Sapphire', 'Recoleta' ,'Futura'!important;
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: 3px;
   margin-bottom: 1rem;
   color: #ffffff;
   text-transform: uppercase;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 25px;
+  margin-bottom: 20px;
 }
 
 .programs-subtitle {

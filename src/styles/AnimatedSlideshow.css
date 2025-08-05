@@ -1,5 +1,5 @@
 /* Luxury Animated Slideshow Styles */
-/* @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Crimson+Text:wght@300;400;600&family=Libre+Baskerville:wght@400;700&display=swap');
 
 .hero-slideshow {
   position: relative;
@@ -55,9 +55,9 @@
 }
 
 .hero-slideshow__title {
-  font-family: 'Polish', 'Playfair Display', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 400;
   color: white;
   margin-bottom: 1.5rem;
   letter-spacing: -0.025em;
@@ -69,7 +69,7 @@
 .hero-slideshow__subtitle {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.25rem;
-  font-weight: 400;
+  font-weight: 300;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 2rem;
   max-width: 32rem;
@@ -87,26 +87,25 @@
 }
 
 .hero-slideshow__button {
-  background: #E97444;
+  background: linear-gradient(135deg, #C44C30 0%, #A93E2B 100%);
   color: white;
   padding: 1rem 3rem;
   border-radius: 9999px;
   font-size: 1.125rem;
-  font-weight: 600;
-  font-family: 'Inter', sans-serif;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-weight: 400;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.5px;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
   transform: translateY(0);
-  box-shadow: 0 10px 25px rgba(233, 116, 68, 0.3);
+  box-shadow: 0 10px 25px rgba(196, 76, 48, 0.3);
 }
 
 .hero-slideshow__button:hover {
-  background: #d86239;
+  background: linear-gradient(135deg, #A93E2B 0%, #8B3323 100%);
   transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 15px 35px rgba(233, 116, 68, 0.4);
+  box-shadow: 0 15px 35px rgba(196, 76, 48, 0.4);
 }
 
 .hero-slideshow__nav-button {
@@ -219,10 +218,18 @@
   }
 }
 
-/* Responsive Design */
-@media (min-width: 768px) {
+/* Hide CTA button on mobile - sticky button will be used instead */
+@media (max-width: 1299px) {
+  .hero-slideshow__cta {
+    display: none;
+  }
+}
+
+/* Desktop Responsive Design */
+@media (min-width: 1300px) {
   .hero-slideshow__title {
     font-size: 4rem;
+    font-weight: 300;
   }
   
   .hero-slideshow__subtitle {
@@ -233,6 +240,7 @@
 @media (min-width: 1024px) {
   .hero-slideshow__title {
     font-size: 5rem;
+    font-weight: 300;
   }
   
   .hero-slideshow__subtitle {
@@ -243,6 +251,7 @@
 @media (min-width: 1280px) {
   .hero-slideshow__title {
     font-size: 6rem;
+    font-weight: 300;
   }
   
   .hero-slideshow__subtitle {
@@ -267,5 +276,53 @@
   
   .hero-slideshow__pagination {
     bottom: 1.5rem;
+  }
+  
+  .hero-slideshow__title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-slideshow__subtitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-slideshow__title {
+    font-size: 2.2rem;
+  }
+  
+  .hero-slideshow__subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 567px) {
+  .hero-slideshow__title {
+    font-size: 2rem;
+  }
+  
+  .hero-slideshow__subtitle {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 465px) {
+  .hero-slideshow__title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-slideshow__subtitle {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .hero-slideshow__title {
+    font-size: 1.6rem;
+  }
+  
+  .hero-slideshow__subtitle {
+    font-size: 0.85rem;
   }
 }
