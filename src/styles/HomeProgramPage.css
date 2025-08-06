@@ -39,7 +39,7 @@
   border: none;
   background: transparent;
   color: #5A5A5A;
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -204,7 +204,7 @@
   color: white;
   padding: 8px 16px;
   border-radius: 25px;
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 0.875rem;
   font-weight: 600;
   width: fit-content;
@@ -216,7 +216,7 @@
 }
 
 .home-card-title {
-  font-family: 'Baskervville', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 1.75rem;
   font-weight: 700;
   margin-bottom: 12px;
@@ -225,7 +225,7 @@
 }
 
 .home-card-description {
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1rem;
   line-height: 1.5;
   margin-bottom: 24px;
@@ -240,7 +240,7 @@
   color: white;
   padding: 12px 24px;
   border-radius: 30px;
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -316,7 +316,7 @@
   color: white;
   padding: 8px 16px;
   border-radius: 25px;
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 0.875rem;
   font-weight: 600;
   width: fit-content;
@@ -328,7 +328,7 @@
 }
 
 .home-destination-title {
-  font-family: 'Baskervville', serif;
+  font-family: 'Playfair Display', serif;
   font-size: 1.75rem;
   font-weight: 700;
   margin-bottom: 12px;
@@ -338,7 +338,7 @@
 }
 
 .home-destination-description {
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1rem;
   line-height: 1.5;
   margin-bottom: 24px;
@@ -353,7 +353,7 @@
   color: white;
   padding: 12px 24px;
   border-radius: 30px;
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;

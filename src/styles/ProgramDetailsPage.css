@@ -5,13 +5,13 @@
 }
 
 h1,h2,h3,h4,h5,h6{
-  font-family: 'Sapphire'',Recoleta' ,'Futura'!important;
+  font-family: 'Playfair Display', serif;
   font-weight: 100!important;
 }
 
 
 .program-details-page {
-  /* font-family: 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif; */
+  font-family: 'Cormorant Garamond', serif;
   color: #333;
   line-height: 1.6;
   background-color: #fff;
@@ -133,6 +133,8 @@ h1,h2,h3,h4,h5,h6{
   letter-spacing: 0.05em;
   max-width: 800px;
   color: #eee;
+    font-family: 'Cormorant Garamond', serif;
+
 }
 
 .section-navigation {
@@ -200,8 +202,10 @@ h1,h2,h3,h4,h5,h6{
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
   box-sizing: border-box;
+  margin-top: 0px;
+  padding-top: 0px;
 }
 
 .section-title {
@@ -211,6 +215,7 @@ h1,h2,h3,h4,h5,h6{
   text-transform: uppercase;
   margin-bottom: 1rem;
   color: #333;
+  font-family: 'Playfair Display', serif;
   position: relative;
   padding-bottom: 1rem;
 }
@@ -273,18 +278,18 @@ h1,h2,h3,h4,h5,h6{
   color: #555;
   line-height: 1.2;
   margin-bottom: 0.5rem;
-   font-size: clamp(2rem, 5vw, 2.8rem);
-  font-family: 'Recoleta' ,'Futura'!important;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-family: 'Playfair Display', serif !important;
   font-weight: 700;
   line-height: 1.2;
   margin-top: 0px;
 }
 
 .award-winning-subtitle {
-  font-family: 'Georgia', serif;
-  font-size: 1.1rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
   color: #777;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .image-grid-special-container {
@@ -430,7 +435,7 @@ h1,h2,h3,h4,h5,h6{
   padding-bottom: 15px;
   display: inline-block;
    font-size: clamp(2rem, 5vw, 2.8rem);
-  font-family: 'Futura'!important;
+  font-family: 'Playfair Display', serif !important;
   font-weight: 700;
   line-height: 1.2;
 
@@ -1967,6 +1972,10 @@ h1,h2,h3,h4,h5,h6{
   .hero-title-programdetails {
     font-size: 2rem;
   }
+    .award-winning-title {
+      margin-top: 0px;
+    font-size: 2rem;
+  }
 
   .hero-subtitle-programdetails {
     font-size: 1rem;
@@ -2028,7 +2037,7 @@ h1,h2,h3,h4,h5,h6{
 
 #program-details-head-title{
   font-size: clamp(2rem, 5vw, 2.8rem);
-  font-family: 'Recoleta' ,'Futura'!important;
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 700;
   line-height: 1.2;
 }

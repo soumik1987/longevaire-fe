@@ -235,7 +235,8 @@ export const programCategories: ProgramCategory[] = [
         description: "Perfect for individuals struggling with weight, low energy, or metabolic issues, this program offers a structured reset to improve health markers and vitality.",
         imageGallery: [
           "https://pranissa-media.s3.us-east-1.amazonaws.com/images/glassvilla.png",
-          "https://images.pexels.com/photos/3825589/pexels-photo-3825589.jpeg",
+          // "https://images.pexels.com/photos/3825589/pexels-photo-3825589.jpeg",
+          "https://images.pexels.com/photos/5668200/pexels-photo-5668200.jpeg",
           "https://images.pexels.com/photos/3825591/pexels-photo-3825591.jpeg",
           "https://images.pexels.com/photos/4588008/pexels-photo-4588008.jpeg",
           "https://images.pexels.com/photos/6787202/pexels-photo-6787202.jpeg",
@@ -300,7 +301,8 @@ export const programCategories: ProgramCategory[] = [
         ],
         description: "Purify your body and mind with our desert detox program featuring ancient healing techniques adapted for modern wellness seekers in the magical red rocks of Sedona.",
         imageGallery: [
-          "https://images.pexels.com/photos/3825589/pexels-photo-3825589.jpeg",
+          // "https://images.pexels.com/photos/3825589/pexels-photo-3825589.jpeg",
+          "https://images.pexels.com/photos/5668200/pexels-photo-5668200.jpeg",
           "https://images.pexels.com/photos/3825599/pexels-photo-3825599.jpeg",
           "https://images.pexels.com/photos/3825601/pexels-photo-3825601.jpeg",
           "https://images.pexels.com/photos/3825603/pexels-photo-3825603.jpeg"

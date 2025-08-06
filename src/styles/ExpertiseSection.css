@@ -2,7 +2,7 @@
  /* @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap'); */ */
 
 h1,h2,h3,h4,h5,h6{
-  font-family: 'Sapphire'',Recoleta' ,'Futura'!important;
+  font-family: 'Playfair Display', serif;
   font-weight: 100!important;
 }
 .expertise-section {
@@ -17,10 +17,12 @@ h1,h2,h3,h4,h5,h6{
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  font-family: 'Playfair Display', serif;
+
 }
 
 .testimonial {
-  font-family: 'Baskervville', serif; /* Serif font */
+  font-family: 'Playfair Display', serif;
   font-size: 1.5rem;
   font-style: italic;
   color: #3C3C3C; /* Dark Brown/Charcoal */
@@ -30,7 +32,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .testimonial-author {
-  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1rem;
   color: #5A5A5A; /* Slightly lighter dark text */
   font-style: normal;
@@ -80,7 +82,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .expert-name {
-  font-family: 'Baskervville', serif; /* Serif font */
+  font-family: 'Playfair Display', serif;
   font-size: 1.1rem;
   font-weight: 600;
   color: #3C3C3C; /* Dark Brown/Charcoal */
@@ -88,7 +90,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .expert-role {
-  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  font-family: 'Playfair Display', serif;
   font-size: 0.95rem;
   color: #5A5A5A; /* Slightly lighter dark text */
   font-weight: 400;

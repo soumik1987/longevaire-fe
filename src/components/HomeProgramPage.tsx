@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchProgramCategories, fetchDestinations } from '../api';
@@ -26,7 +24,6 @@ const HomeProgramPage: React.FC = () => {
     }
   };
 
-  // Memoized data loading function
   const loadData = useCallback(async () => {
     try {
       setLoading(true);
@@ -62,10 +59,8 @@ const HomeProgramPage: React.FC = () => {
 
   return (
     <div className="home-page">
-      {/* Wellness Preview Section */}
       <div className="home-wellness-preview-section">
         <div className="home-container">
-          {/* Tab Navigation */}
           <div className="home-tab-container">
             <div className="home-tab-navigation">
               <button
@@ -85,7 +80,6 @@ const HomeProgramPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Horizontal Scrolling Cards */}
           {!loading && (
             <div className="home-horizontal-cards-container">
               <div className="home-scroll-wrapper">
@@ -135,6 +129,7 @@ const HomeProgramPage: React.FC = () => {
                       <div 
                         key={destination.country}
                         className={`home-destination-card-horizontal ${selectedDestination === destination.country ? 'expanded' : ''}`}
+                        onClick={() => handleDestinationClick(destination.country)}
                       >
                         <div className="home-destination-card-inner">
                           <div className="home-destination-image-container">

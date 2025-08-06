@@ -1,12 +1,40 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const StickyBookButton: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
-  // Only show on homepage
-  if (location.pathname !== '/') {
+  useEffect(() => {
+    const checkSidebarState = () => {
+      const mobileSidebar = document.querySelector('.mobile-sidebar');
+      if (mobileSidebar) {
+        const isOpen = mobileSidebar.classList.contains('open');
+        setIsMobileSidebarOpen(isOpen);
+      }
+    };
+
+    // Check immediately
+    checkSidebarState();
+
+    // Set up observer to watch for class changes
+    const observer = new MutationObserver(checkSidebarState);
+    const mobileSidebar = document.querySelector('.mobile-sidebar');
+    
+    if (mobileSidebar) {
+      observer.observe(mobileSidebar, {
+        attributes: true,
+        attributeFilter: ['class']
+      });
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Hide button if not on homepage or if mobile sidebar is open
+  if (location.pathname !== '/' || isMobileSidebarOpen) {
     return null;
   }
 

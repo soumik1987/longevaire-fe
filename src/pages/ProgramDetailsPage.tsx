@@ -35,7 +35,7 @@ const ProgramDetailsPage: React.FC = () => {
   const scheduleRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const locationRef = useRef<HTMLDivElement>(null);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const scrollRequestRef = useRef<number | null>(null);
   const eventsContainerRef = useRef<HTMLDivElement>(null);
 

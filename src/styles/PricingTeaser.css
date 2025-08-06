@@ -1,6 +1,6 @@
 /* components/PricingTeaser.css */
 h1,h2,h3,h4,h5,h6{
-  font-family: 'Sapphire'',Recoleta' ,'Futura'!important;
+  font-family: 'Playfair Display', serif;
   font-weight: 100!important;
 }
 .pricing-teaser {
@@ -16,7 +16,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .teaser-title {
-  font-family: 'Baskervville', serif;
+  font-family: 'Playfair Display', serif !important;
   font-size: 2.5rem;
   color: #3C3C3C;
   margin-bottom: 20px;
@@ -26,8 +26,8 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .teaser-subtitle {
-  font-family: 'Source Sans 3', sans-serif;
-  font-size: 1.2rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
   color: #5A5A5A;
   margin-bottom: 40px;
 }
@@ -37,7 +37,7 @@ h1,h2,h3,h4,h5,h6{
   padding: 16px 40px;
   background: linear-gradient(135deg, #c74427, #c74427);
   color: white;
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 600;
   font-size: 1.1rem;
   border-radius: 30px;

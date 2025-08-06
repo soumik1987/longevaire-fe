@@ -1,0 +1,5 @@
+# robots.txt for Longevaire (PWA)
+User-agent: *
+Allow: /
+
+Sitemap: https://yourdomain.com/sitemap.xml

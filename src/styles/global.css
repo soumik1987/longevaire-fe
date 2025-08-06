@@ -12,7 +12,7 @@
 
 /* HEADINGS (H1-H6) */
 h1,h2,h3,h4,h5,h6{
-  font-family: 'Polished','Sapphire','Recoleta' ,'Futura'!important;
+  font-family: 'Playfair Display', serif!important;
   font-weight: 100!important;
   letter-spacing: -0.02em;
   line-height: 1.2;
@@ -37,7 +37,7 @@ h3 {
 
 /* PARAGRAPH / SUBTEXT */
 p, .subheading, .card-description {
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 400;
   font-size: 1.125rem;
   line-height: 1.7;

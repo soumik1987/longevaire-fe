@@ -1,6 +1,6 @@
 h1,h2,h3,h4,h5,h6{
-  font-family: 'Sapphire'',Recoleta' ,'Futura'!important;
-  font-weight: 100!important;
+  font-family: 'Playfair Display', serif;
+  font-weight: 100;
 }
 
 .hero-section-main {
@@ -34,7 +34,7 @@ h1,h2,h3,h4,h5,h6{
 
 .hero-title-main {
   font-size: clamp(2rem, 5vw, 2.8rem);
-  font-family: 'Recoleta' ,'Futura'!important;
+  font-family: 'Playfair Display', serif;
   font-weight: 700;
   line-height: 1.2;
   color: #3C3C3C;
@@ -44,8 +44,8 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .hero-subtitle-main {
-  font-family: 'Source Sans 3', sans-serif;
-  font-size: clamp(1rem, 2vw, 1.1rem);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2vw, 1.4rem);
   color: #5A5A5A;
   margin-bottom: 32px;
   line-height: 1.6;
@@ -61,7 +61,7 @@ h1,h2,h3,h4,h5,h6{
 .btn-secondary {
   padding: 12px 24px;
   border-radius: 6px;
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 500;
   text-decoration: none;
   transition: all 0.3s ease;

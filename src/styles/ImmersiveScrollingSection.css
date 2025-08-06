@@ -59,7 +59,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .card-label {
-  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  font-family: 'Cormorant Garamond', serif;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.15em;
@@ -70,7 +70,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .card-heading {
-  font-family: 'Baskervville', serif; /* Serif font */
+  font-family: 'Playfair Display', serif;
   font-size: 2.5rem;
   font-weight: 700; /* Increased weight for headings */
   line-height: 1.2;
@@ -80,7 +80,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .card-description {
-  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1.125rem;
   font-weight: 400;
   line-height: 1.6;
@@ -95,7 +95,7 @@ h1,h2,h3,h4,h5,h6{
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  font-family: 'Cormorant Garamond', serif;
   font-size: 1rem;
   font-weight: 600; /* Increased weight for CTA */
   color: #8B7C6E; /* Muted Brown/Sepia */

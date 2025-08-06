@@ -1,7 +1,7 @@
 /* Custom Fonts (Add if this is a standalone file, otherwise import in global app.css) */
 /* @import url('https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap'); */
 h1,h2,h3,h4,h5,h6{
-  font-family: 'Sapphire'',Recoleta' ,'Futura'!important;
+  font-family: 'Playfair Display', serif;
   font-weight: 100!important;
 }
 .faq-section {
@@ -32,7 +32,7 @@ h1,h2,h3,h4,h5,h6{
   text-align: center;
   margin-bottom: 30px;
   font-size: clamp(2rem, 5vw, 2.8rem);
-  font-family: 'Recoleta' ,'Futura'!important;
+  font-family: 'Playfair Display', serif;
   font-weight: 700;
   line-height: 1.2;
 }
@@ -47,7 +47,7 @@ h1,h2,h3,h4,h5,h6{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  font-family: 'Playfair Display', serif;
   font-size: 1.1rem;
   font-weight: 600;
   color: #3C3C3C; /* Dark Brown/Charcoal */
@@ -85,7 +85,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .faq-answer p {
-  font-family: 'Source Sans 3', sans-serif; /* Sans-serif font */
+  font-family: 'Cormorant Garamond', serif;
   color: #5A5A5A; /* Slightly lighter dark text */
   line-height: 1.6;
   font-size: 1rem;
