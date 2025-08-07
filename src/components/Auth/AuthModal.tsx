@@ -697,7 +697,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ mode, onClose, onSwitchMode }) =>
           <div className="auth-modal-form-container">
             <div className="auth-modal-header">
               <div className="auth-modal-logo">
-                <span className="auth-logo-text">LONGENOMICS</span>
+                <span className="auth-logo-text">Pranissa</span>
               </div>
               <div className="auth-modal-help">
                 {/* <span>NEED HELP? <Link to="/contact" className="auth-contact-link">CONTACT US</Link></span> */}
