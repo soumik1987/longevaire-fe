@@ -5,7 +5,7 @@ import '../styles/Navigation.css';
 import ContactModal from './ContactModal';
 import { useAuth } from '../contexts/AuthContext';
 import AuthModal from './Auth/AuthModal';
-import premiyaLogo from '../assets/logo_new.jpg';
+import premiyaLogo from '../assets/logo_new.png';
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
