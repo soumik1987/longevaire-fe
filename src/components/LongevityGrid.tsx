@@ -27,7 +27,7 @@ const LongevityGrid: React.FC = () => {
     },
     {
       title: "Pioneers in longevity care",
-      description: "Each journey is developed and supervised by a team of leading longevity doctors, functional medicine experts, and integrative health coaches-so you're never alone on the path to total renewal.",
+      description: "Each journey is developed and supervised by a team of leading longevity doctors, functional longevity experts, and integrative health coaches-so you're never alone on the path to total renewal.",
       image: "https://images.pexels.com/photos/6787203/pexels-photo-6787203.jpeg"
     },
     {

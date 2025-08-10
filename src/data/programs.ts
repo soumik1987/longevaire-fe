@@ -108,13 +108,13 @@ export const programCategories: ProgramCategory[] = [
     ]
   },
   {
-    type: "Regenerative Medicine",
+    type: "Healing & Renewal Experience",
     description: "Rejuvenate your body with cutting-edge regenerative therapies",
     badge: "Youth Reboot",
     image: "https://pranissa-media.s3.us-east-1.amazonaws.com/images/pexels-n-voitkevich-7077815.jpg?auto=compress&cs=tinysrgb&w=1200",
     programs: [
       {
-        name: "Sonoran Stem Cell Revival",
+        name: "Restorative Wellness",
         location: "Tucson - USA",
         details: "Desert-enhanced stem cell therapies for regeneration",
         duration: "5 Days / 4 Nights",
@@ -145,9 +145,9 @@ export const programCategories: ProgramCategory[] = [
         terms: ["Book by March 15,2025", "Stay by November 30,2025"]
       },
       {
-        name: "Stem Cell Revive",
+        name: "Revitalization Program",
         location: "Palm Springs - USA",
-        details: "Harness the power of regenerative stem cell treatments.",
+        details: "Harness the power of regenerative wellness treatments.",
         duration: "5 Days / 4 Nights",
         includes: [
           { title: "Autologous stem cell infusions", description: "Stem cells from your own body for targeted healing." },
