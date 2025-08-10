@@ -12,7 +12,7 @@ const SecretsSection: React.FC = () => {
         <div className="secrets-visual fade-in-up">
           <img 
             src="https://images.pexels.com/photos/4047148/pexels-photo-4047148.jpeg" 
-            alt="Sophisticated wellness clinic entrance" 
+            alt="Sophisticated wellness center entrance" 
             className="secrets-image"
           />
         </div>

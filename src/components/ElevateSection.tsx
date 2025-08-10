@@ -46,7 +46,7 @@ const ElevateSection: React.FC = () => {
             <h2 className="elevate-title">Elevate your longevity journey</h2>
             <p className="elevate-description">
               Discover leading insights, expert strategies, and premier destinations in longevity. 
-              Access the latest research, wellness innovations, and exclusive global clinics for 
+              Access the latest research, wellness innovations, and exclusive global wellness centers for 
               optimal health and extended vitality.
             </p>
           </div>

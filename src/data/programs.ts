@@ -36,8 +36,8 @@ const citiesByCountryCache = new Map<string, string[]>();
 
 export const programCategories: ProgramCategory[] = [
   {
-    type: "Medical Wellness",
-    description: "Explore transformative medical wellness experiences",
+    type: "Transformative Health & Wellbeing",
+    description: "Explore transformative health and wellness experiences",
     badge: "Restorative Health",
     image: "https://pranissa-media.s3.us-east-1.amazonaws.com/images/pexels-lucaspezeta-2035066.jpg?auto=compress&cs=tinysrgb&w=1200",
     programs: [
@@ -53,7 +53,7 @@ export const programCategories: ProgramCategory[] = [
           { title: "Heat adaptation training", description: "Train your body to regulate temperature and improve performance." },
           { title: "Sleep optimization program", description: "Techniques and tools to enhance sleep cycles." }
         ],
-        description: "This cutting-edge longevity program combines the latest medical advancements with the unique healing environment of the Arizona desert to optimize your biological age and vitality.",
+        description: "This cutting-edge longevity program combines the latest longevity advancements with the unique healing environment of the Arizona desert to optimize your biological age and vitality.",
         imageGallery: [
           "https://pranissa-media.s3.us-east-1.amazonaws.com/images/desertcamp.png",
           "https://images.pexels.com/photos/4588008/pexels-photo-4588008.jpeg",
@@ -125,7 +125,7 @@ export const programCategories: ProgramCategory[] = [
           { title: "Low-level laser therapy", description: "Stimulates repair at the cellular level." },
           { title: "Tissue regeneration protocols", description: "Custom strategies for specific tissue rejuvenation." }
         ],
-        description: "Harness the regenerative power of stem cells in Tucson's unique desert environment, combining advanced medical treatments with natural healing elements for comprehensive rejuvenation.",
+        description: "Harness the regenerative power of stem cells in Tucson's unique desert environment, combining advanced holistic treatments with natural healing elements for comprehensive rejuvenation.",
         imageGallery: [
           "https://pranissa-media.s3.us-east-1.amazonaws.com/images/pexels-olia-danilevich-9336024.jpg",
           "https://images.pexels.com/photos/3825583/pexels-photo-3825583.jpeg",

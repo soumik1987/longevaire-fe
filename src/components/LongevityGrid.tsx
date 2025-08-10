@@ -17,7 +17,7 @@ const LongevityGrid: React.FC = () => {
   const gridItems = [
     {
       title: "Global Wellness Partnerships",
-      description: "Gain access to a curated network of the world's most trusted wellness clinics and medical centers. Our partners specialize in cutting-edge diagnostics, anti-aging therapies, and regenerative protocols, all delivered with unmatched discretion and care",
+      description: "Gain access to a curated network of the world's most trusted wellness clinics and longevity centers. Our partners specialize in cutting-edge diagnostics, anti-aging therapies, and regenerative protocols, all delivered with unmatched discretion and care",
       image: "https://pranissa-media.s3.us-east-1.amazonaws.com/images/forest+bunglow.png"
     },
     {
