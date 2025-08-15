@@ -189,8 +189,9 @@ const ChatBarSection: React.FC = () => {
   };
 
   return (
-    <div className="chatbar-section" onClick={handleClickOutside}>
-      <div className="chatbarsection-content">
+    // <div className="chatbar-section" onClick={handleClickOutside}>
+    <div className='chatbarsection'>
+      <div className="chatbarsection-content" onClick={handleClickOutside}>
         <h2 className="chatbarsection-heading">Let's find your optimal wellness program</h2>
         <form onSubmit={handleSubmit} className="chatbar-input-form">
           <div className="chatbarsection-input-bar">
