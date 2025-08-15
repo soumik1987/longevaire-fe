@@ -57,17 +57,13 @@ const WellnessInsightsSection: React.FC = () => {
     }
   ];
 
-  const handleCardClick = (cardId: number) => {
-    console.log(`Clicked card ${cardId}`);
-  };
-
   const handleExploreClick = () => {
     console.log('Explore insights clicked');
   };
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
-      const scrollAmount = 280; // Fixed scroll amount for mobile
+      const scrollAmount = 280;
       scrollRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
@@ -76,75 +72,77 @@ const WellnessInsightsSection: React.FC = () => {
   };
 
   return (
-    <section className="wellness-insight-section">
-      <div className="wellness-insight-container">
-        <div className="wellness-insight-left-content-wrapper">
-          <div className="wellness-insight-left-content-block">
-            <h2 className="wellness-insight-main-heading">
+    <section className="luxury-wellness-insights-section">
+      <div className="luxury-wellness-insights-container">
+        <div className="luxury-wellness-left-panel">
+          <div className="luxury-wellness-content-block">
+            <h2 className="luxury-wellness-main-title">
               Curated wellness insights, delivered
             </h2>
-            <p className="wellness-insight-sub-text">
-              Explore global centers, trends, and expertise.
+            <p className="luxury-wellness-subtitle">
+              Explore global centers, trends, and expertise through our carefully selected collection of premium wellness insights.
             </p>
-            <button 
+            <button
               onClick={handleExploreClick}
-              className="wellness-insight-explore-button"
+              className="luxury-wellness-cta-button"
             >
-              Explore Insights
-              <ArrowRight className="wellness-insight-button-icon" />
+              <span>Explore Insights</span>
+              <ArrowRight className="luxury-wellness-button-arrow" />
+              <div className="luxury-wellness-button-shine"></div>
             </button>
           </div>
         </div>
 
-        <div className="wellness-insight-right-content-wrapper">
-          {/* Mobile arrows - only visible on mobile */}
-          <div className="mobile-scroll-controls">
+        <div className="luxury-wellness-right-panel">
+          <div className="luxury-wellness-horizontal-cards-container">
             <button 
-              className="wellness-insight-scroll-arrow left" 
+              className="luxury-wellness-scroll-arrow luxury-wellness-scroll-left" 
               onClick={() => scroll('left')}
               aria-label="Scroll left"
             >
               &#8249;
             </button>
+            
+            <div className="luxury-wellness-cards-container luxury-wellness-horizontal-scroll" ref={scrollRef}>
+              {insightCards.map((card, index) => (
+                <div
+                  key={card.id}
+                  className={`luxury-wellness-insight-card luxury-wellness-card-${index + 1}`}
+                  style={{ '--card-index': index } as React.CSSProperties}
+                >
+                  <img
+                    src={card.image}
+                    alt={card.heading}
+                    className="luxury-wellness-card-image"
+                  />
+                  <div className="luxury-wellness-card-gradient-overlay"></div>
+                  <div className="luxury-wellness-card-label">
+                    {card.label}
+                  </div>
+                  <div className="luxury-wellness-card-content">
+                    <h3 className="luxury-wellness-card-title">
+                      {card.heading}
+                    </h3>
+                    <p className="luxury-wellness-card-text">
+                      {card.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
             <button 
-              className="wellness-insight-scroll-arrow right" 
+              className="luxury-wellness-scroll-arrow luxury-wellness-scroll-right" 
               onClick={() => scroll('right')}
               aria-label="Scroll right"
             >
               &#8250;
             </button>
           </div>
-          
-          <div className="wellness-insight-cards-grid" ref={scrollRef}>
-            {insightCards.map((card) => (
-              <div
-                key={card.id}
-                onClick={() => handleCardClick(card.id)}
-                className="wellness-insight-card"
-              >
-                <div className="wellness-insight-card-image-container">
-                  <img
-                    src={card.image}
-                    alt={card.heading}
-                    className="wellness-insight-card-image"
-                  />
-                  <div className="wellness-insight-card-label">
-                    {card.label}
-                  </div>
-                </div>
-                <div className="wellness-insight-card-content">
-                  <h3 className="wellness-insight-card-heading">
-                    {card.heading}
-                  </h3>
-                  <p className="wellness-insight-card-description">
-                    {card.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
+      
+
     </section>
   );
 };

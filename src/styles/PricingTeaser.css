@@ -4,7 +4,7 @@ h1,h2,h3,h4,h5,h6{
   font-weight: 100!important;
 }
 .pricing-teaser {
-  background-color: #F8F6F2;
+  background: linear-gradient(135deg, #F8F6F2 0%, #F5F2EC 50%, #F2EDE6 100%);
   padding: 20px 0px;
   text-align: center;
 }

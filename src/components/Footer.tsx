@@ -1,8 +1,8 @@
-import React from 'react';
+// import React from 'react';
 import { Instagram, Twitter, Facebook, Linkedin } from 'lucide-react';
-import '../styles/Footer.css';
+import '../styles/Footer.css'; // This is the import for the new CSS file
 
-const Footer: React.FC = () => {
+const Footer = () => {
   const destinationLinks = ["Clinics", "Resorts", "Spas", "Retreats", "Partners"];
   const serviceLinks = ["Concierge", "Consulting", "Advisory", "Support", "Access"];
   const resourceLinks = ["Insights", "Guides", "Events", "News", "Reports"];
@@ -58,8 +58,8 @@ const Footer: React.FC = () => {
           </div>
         </div>
         
-        <div className="footer-bottom">
-          <div className="social-links">
+        <div className="footer-minimalist-section">
+          <div className="footer-social-top">
             <a href="#" className="social-link" aria-label="Instagram">
               <Instagram size={20} />
             </a>
@@ -73,7 +73,15 @@ const Footer: React.FC = () => {
               <Linkedin size={20} />
             </a>
           </div>
-          <p className="footer-copyright">© 2025 Longenomics</p>
+          <div className="footer-divider"></div>
+          <div className="footer-copyright-bottom">
+            <div className="footer-links">
+              <a href="#" className="footer-link">Privacy</a>
+              <a href="#" className="footer-link">Terms</a>
+              <a href="#" className="footer-link">Cookies</a>
+            </div>
+            <p className="footer-copyright">© 2025 Pranissa</p>
+          </div>
         </div>
       </div>
     </footer>

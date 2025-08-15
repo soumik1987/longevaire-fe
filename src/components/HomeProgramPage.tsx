@@ -11,8 +11,11 @@ const HomeProgramPage: React.FC = () => {
   const [programCategories, setProgramCategories] = useState<ProgramCategory[]>([]);
   const [destinations, setDestinations] = useState<Destination[]>([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
   const scrollRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
+  // Fix: Initialize the navigate function from the useNavigate hook.
+  const navigate = useNavigate();
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
@@ -41,21 +44,59 @@ const HomeProgramPage: React.FC = () => {
     }
   }, []);
 
-  useEffect(() => {
-    loadData();
-  }, [loadData]);
-
   const handleProgramClick = useCallback((categoryType: string) => {
+    // Fix: Use the initialized navigate function.
     navigate('/programs', { state: { type: 'category', categoryType } });
-  }, [navigate]);
+  }, [navigate]); // navigate is now a valid dependency
 
   const handleDestinationClick = useCallback((country: string) => {
     setSelectedDestination(prev => prev === country ? null : country);
   }, []);
 
   const handleCityClick = useCallback((country: string, city: string) => {
+    // Fix: Use the initialized navigate function.
     navigate('/programs', { state: { type: 'location', country, city } });
-  }, [navigate]);
+  }, [navigate]); // navigate is now a valid dependency
+  
+  // Fix: Changed NodeJS.Timeout to number, which is the correct type for browser environments.
+  const debounce = (func: Function, delay: number) => {
+    let timeout: number;
+    return (...args: any[]) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func(...args), delay);
+    };
+  };
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
+  
+  useEffect(() => {
+    if (activeTab === 'destinations' && selectedDestination) {
+      const handleScroll = debounce(() => {
+        if (scrollRef.current && cardRefs.current[selectedDestination]) {
+          const cardElement = cardRefs.current[selectedDestination];
+          const containerRect = scrollRef.current.getBoundingClientRect();
+          const cardRect = cardElement.getBoundingClientRect();
+          
+          const isPartiallyVisible = 
+            cardRect.left < containerRect.right && 
+            cardRect.right > containerRect.left;
+          
+          // Collapse card if it's no longer fully visible within the scroll container
+          if (!isPartiallyVisible) {
+            setSelectedDestination(null);
+          }
+        }
+      }, 100); // 100ms debounce
+      
+      scrollRef.current?.addEventListener('scroll', handleScroll);
+      return () => {
+        scrollRef.current?.removeEventListener('scroll', handleScroll);
+      };
+    }
+  }, [activeTab, selectedDestination]);
+
 
   return (
     <div className="home-page">
@@ -64,19 +105,26 @@ const HomeProgramPage: React.FC = () => {
           <div className="home-tab-container">
             <div className="home-tab-navigation">
               <button
-                className={`home-tab-btn ${activeTab === 'programs' ? 'active' : ''}`}
-                onClick={() => setActiveTab('programs')}
-                aria-label="View our programs"
-              >
-                Our Programs
-              </button>
-              <button
                 className={`home-tab-btn ${activeTab === 'destinations' ? 'active' : ''}`}
-                onClick={() => setActiveTab('destinations')}
+                onClick={() => {
+                  setActiveTab('destinations');
+                  setSelectedDestination(null);
+                }}
                 aria-label="View our destinations"
               >
                 Our Destinations
               </button>
+              <button
+                className={`home-tab-btn ${activeTab === 'programs' ? 'active' : ''}`}
+                onClick={() => {
+                  setActiveTab('programs');
+                  setSelectedDestination(null);
+                }}
+                aria-label="View our programs"
+              >
+                Our Programs
+              </button>
+              
             </div>
           </div>
 
@@ -128,6 +176,8 @@ const HomeProgramPage: React.FC = () => {
                     destinations.map((destination) => (
                       <div 
                         key={destination.country}
+                        // Fix: The ref callback now explicitly returns void.
+                        ref={el => { cardRefs.current[destination.country] = el; }}
                         className={`home-destination-card-horizontal ${selectedDestination === destination.country ? 'expanded' : ''}`}
                         onClick={() => handleDestinationClick(destination.country)}
                       >

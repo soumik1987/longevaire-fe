@@ -22,9 +22,12 @@ const Navigation: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 10);
     };
-    window.addEventListener('scroll', handleScroll);
+
+    handleScroll(); // Check initial scroll position
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -132,7 +135,8 @@ const Navigation: React.FC = () => {
   const isSubscriptionActive = location.pathname === '/pricing';
   const isBlogsActive = location.pathname === '/blogs';
 
-  const handleDestinationsClick = (_e: React.MouseEvent) => {
+  const handleDestinationsClick = (e: React.MouseEvent) => {
+    e.preventDefault();
     navigate('/explore', {
       state: { initialTab: 'destinations', forceReload: true },
       replace: false
@@ -140,7 +144,8 @@ const Navigation: React.FC = () => {
     setIsMobileMenuOpen(false);
   };
 
-  const handleProgramsClick = (_e: React.MouseEvent) => {
+  const handleProgramsClick = (e: React.MouseEvent) => {
+    e.preventDefault();
     navigate('/explore', {
       state: { initialTab: 'programs', forceReload: true },
       replace: false
@@ -155,7 +160,7 @@ const Navigation: React.FC = () => {
       <nav className={`navigation ${isScrolled ? 'scrolled' : ''} ${isHomepage && !isScrolled ? 'homepage' : ''}`}>
         <div className="nav-container">
           <div className="nav-left">
-            <Link to="/" className="logo">
+            <Link to="/" className="logo" onClick={() => setIsMobileMenuOpen(false)}>
               <img src={premiyaLogo} alt="Premiya Beyond Wellness" className="logo-image" />
             </Link>
           </div>
@@ -168,23 +173,21 @@ const Navigation: React.FC = () => {
               Home
             </Link>
 
-            <Link
-              to="/explore"
-              className={`nav-item ${isProgramsActive ? 'active' : ''}`}
-              onClick={handleProgramsClick}
-              state={{ initialTab: 'programs', forceReload: true }}
-            >
-              Wellness Programs
-            </Link>
-
-            <Link
-              to="/explore"
+            <a
+              href="/explore"
               className={`nav-item ${isDestinationsActive ? 'active' : ''}`}
               onClick={handleDestinationsClick}
-              state={{ initialTab: 'destinations', forceReload: true }}
             >
               Destinations
-            </Link>
+            </a>
+
+            <a
+              href="/explore"
+              className={`nav-item ${isProgramsActive ? 'active' : ''}`}
+              onClick={handleProgramsClick}
+            >
+              Wellness Programs
+            </a>
 
             <Link
               to="/about"
@@ -200,7 +203,12 @@ const Navigation: React.FC = () => {
               Subscription
             </Link>
 
-            <a href="https://longenomics.substack.com/" target="_blank" rel="noopener noreferrer" className={`nav-item ${isBlogsActive ? 'active' : ''}`}>
+            <a 
+              href="https://longenomics.substack.com/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className={`nav-item ${isBlogsActive ? 'active' : ''}`}
+            >
               Blogs
             </a>
           </div>
@@ -208,7 +216,10 @@ const Navigation: React.FC = () => {
           <div className="nav-right">
             <div className="desktop-auth-section">
               {!isAuthenticated ? (
-                <button className={`desktop-join-btn ${isHomepage && !isScrolled ? 'transparent' : ''}`} onClick={handleSignIn}>
+                <button 
+                  className={`desktop-join-btn ${isHomepage && !isScrolled ? 'transparent' : ''}`} 
+                  onClick={handleSignIn}
+                >
                   JOIN NOW
                 </button>
               ) : (
@@ -217,8 +228,11 @@ const Navigation: React.FC = () => {
                     className="profile-button"
                     onClick={() => setShowProfileDropdown(!showProfileDropdown)}
                     aria-expanded={showProfileDropdown}
+                    aria-haspopup="true"
                   >
-                    <div className={`profile-avatar ${isHomepage && !isScrolled ? 'light' : ''}`}>{getInitials()}</div>
+                    <div className={`profile-avatar ${isHomepage && !isScrolled ? 'light' : ''}`}>
+                      {getInitials()}
+                    </div>
                   </button>
 
                   {showProfileDropdown && (
@@ -247,17 +261,18 @@ const Navigation: React.FC = () => {
             <div className="mobile-nav-section">
               {!isAuthenticated && (
                 <button 
-                  className={`desktop-join-btn ${isHomepage && !isScrolled ? 'transparent' : ''}`}
+                  className={`mobile-join-btn-small ${isHomepage && !isScrolled ? 'transparent' : ''}`}
                   onClick={handleSignIn}
                 >
-                  JOIN NOW
+                  JOIN
                 </button>
               )}
               
               <button
                 className={`mobile-menu-toggle ${isHomepage && !isScrolled ? 'light' : ''}`}
                 onClick={toggleMobileMenu}
-                aria-label="Toggle menu"
+                aria-label="Toggle navigation menu"
+                aria-expanded={isMobileMenuOpen}
               >
                 {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -285,24 +300,22 @@ const Navigation: React.FC = () => {
                   Home
                 </Link>
 
-                <Link
-                  to="/explore"
-                  className={`mobile-nav-item ${isProgramsActive ? 'active' : ''}`}
-                  onClick={handleProgramsClick}
-                  state={{ initialTab: 'programs', forceReload: true }}
-                >
-                  Wellness Programs
-                </Link>
-
-                <Link
-                  to="/explore"
+                <a
+                  href="/explore"
                   className={`mobile-nav-item ${isDestinationsActive ? 'active' : ''}`}
                   onClick={handleDestinationsClick}
-                  state={{ initialTab: 'destinations', forceReload: true }}
                 >
                   Destinations
-                </Link>
+                </a>
 
+                <a
+                  href="/explore"
+                  className={`mobile-nav-item ${isProgramsActive ? 'active' : ''}`}
+                  onClick={handleProgramsClick}
+                >
+                  Wellness Programs
+                </a>
+                
                 <Link
                   to="/about"
                   className={`mobile-nav-item ${isAboutActive ? 'active' : ''}`}
@@ -319,7 +332,13 @@ const Navigation: React.FC = () => {
                   Subscription
                 </Link>
 
-                <a href="https://longenomics.substack.com/" target="_blank" rel="noopener noreferrer" className={`mobile-nav-item ${isBlogsActive ? 'active' : ''}`}>
+                <a 
+                  href="https://longenomics.substack.com/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className={`mobile-nav-item ${isBlogsActive ? 'active' : ''}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
                   Blogs
                 </a>
 
@@ -363,6 +382,9 @@ const Navigation: React.FC = () => {
         <div 
           className="mobile-sidebar-backdrop"
           onClick={toggleMobileMenu}
+          role="button"
+          tabIndex={0}
+          aria-label="Close navigation menu"
         />
       )}
 
@@ -374,7 +396,9 @@ const Navigation: React.FC = () => {
         />
       )}
 
-      {showContactModal && <ContactModal onClose={() => setShowContactModal(false)} />}
+      {showContactModal && (
+        <ContactModal onClose={() => setShowContactModal(false)} />
+      )}
     </>
   );
 };

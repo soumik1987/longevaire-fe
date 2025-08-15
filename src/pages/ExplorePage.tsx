@@ -357,17 +357,18 @@ const ExplorePage: React.FC = () => {
           <div className="explore-tab-container">
             <div className="explore-tab-navigation">
               <button
-                className={`explore-tab-btn ${activeTab === 'programs' ? 'active' : ''}`}
-                onClick={() => setActiveTab('programs')}
-              >
-                Program Types
-              </button>
-              <button
                 className={`explore-tab-btn ${activeTab === 'destinations' ? 'active' : ''}`}
                 onClick={() => setActiveTab('destinations')}
               >
-                Destinations
+                Our Destinations
               </button>
+              <button
+                className={`explore-tab-btn ${activeTab === 'programs' ? 'active' : ''}`}
+                onClick={() => setActiveTab('programs')}
+              >
+                Our Program 
+              </button>
+              
             </div>
           </div>
 
